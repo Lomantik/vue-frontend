@@ -1,0 +1,8 @@
+@use "variables" as *;
+
+$primary: $color-text-base;
+$secondary: $color-text-secondary;
+$tertiary: $color-text-tertiary;
+$font-family-base: $font-family-base;
+
+@import "bootstrap/scss/bootstrap";
