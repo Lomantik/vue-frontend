@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { useNavigationStore } from '@/stores/navigation.store.js'
+import { getImageUrl } from '@/domain/images/image.js'
 
 /** @typedef {import('@/types/category.js').Category} Category */
 /** @typedef {import('@/types/product.js').Product} Product */
@@ -23,7 +24,7 @@ const navStore = useNavigationStore()
 
 <template>
   <div class="card me-sm-3 mb-sm-3">
-    <img class="card-img-top" :src="product.imageUrl" alt="">
+    <img class="card-img-top" :src="getImageUrl(product.imageUrl)" alt="">
     <div class="card-body">
       <h4 class="card-title text-center">{{ product.title }}</h4>
       <p class="card-text text-center">${{ product.price }}</p>
