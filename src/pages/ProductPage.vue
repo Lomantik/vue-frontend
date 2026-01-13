@@ -1,4 +1,6 @@
 <script setup>
+import { getImageUrl } from '@/domain/images/image.js'
+
 /** @typedef {import('@/types/product.js').Product} Product */
 
 defineProps(({
@@ -14,7 +16,7 @@ defineProps(({
   <div class="container" v-if="product">
     <div class="row">
       <div class="col-sm-4">
-        <img :src="product.imageUrl" alt="" class="mb-3 w-100">
+        <img :src="getImageUrl(product.imageUrl)" alt="" class="mb-3 w-100">
       </div>
       <div class="col-sm-8">
         <div class="row mb-5">
