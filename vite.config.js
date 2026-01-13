@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
-    base: isGithubPages ? '/vue-test/' : '/',
+    base: isGithubPages ? '/vue-frontend/' : '/',
     css: {
       preprocessorOptions: {
         scss: {
