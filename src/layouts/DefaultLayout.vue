@@ -1,19 +1,19 @@
 <script setup>
 import PromoBar from "@/components/PromoBar.vue"
-import Header from "@/components/Header.vue"
-import Breadcrumbs from "@/components/Breadcrumbs.vue"
-import Footer from "@/components/Footer.vue"
+import MainHeader from "@/components/MainHeader.vue"
+import MainBreadcrumbs from "@/components/MainBreadcrumbs.vue"
+import MainFooter from "@/components/MainFooter.vue"
 </script>
 
 <template>
     <div class="d-flex flex-column min-vh-100">
         <PromoBar />
-        <Header />
-        <Breadcrumbs />
+        <MainHeader />
+        <MainBreadcrumbs />
         <main class="flex-grow-1">
             <RouterView />
         </main>
-        <Footer />
+        <MainFooter />
     </div>
 </template>
 

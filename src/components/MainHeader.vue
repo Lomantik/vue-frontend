@@ -1,6 +1,6 @@
 <script setup>
 import MainMenu from '@/components/MainMenu.vue'
-import Logo from '@/components/Logo.vue'
+import MainLogo from '@/components/MainLogo.vue'
 import UserActions from '@/components/UserActions.vue'
 </script>
 
@@ -9,7 +9,7 @@ import UserActions from '@/components/UserActions.vue'
     <div class="container-fluid">
       <div class="row align-items-center">
         <div class="col-auto p-0">
-          <Logo />
+          <MainLogo />
         </div>
         <div class="col p-0">
           <MainMenu />

@@ -48,10 +48,13 @@ export function useBreadcrumbs() {
     if (meta.value.breadcrumb) {
       crumbs.push({ label: meta.value.breadcrumb, path: route.path })
     } else {
+
+      /** @type {Product|Category|Page|null} */
+      let data = null
       switch (pageContext.type) {
         case 'product':
           /** @type {Product} */
-          const product = pageContext.data
+          data = pageContext.data
           if (navStore.categoryTrail) {
             /** @type {Category} */
             const trail = navStore.categoryTrail
@@ -61,17 +64,17 @@ export function useBreadcrumbs() {
             const trail = navStore.fixedTrail
             crumbs.push({ label: trail.title, path: trail.path })
           }
-          crumbs.push({ label: product.title, path: product.slug })
+          crumbs.push({ label: data.title, path: data.slug })
           break
         case 'category':
           /** @type {Category} */
-          const category = pageContext.data
-          crumbs.push(...buildCategoryBreadcrumbs(category))
+          data = pageContext.data
+          crumbs.push(...buildCategoryBreadcrumbs(data))
           break
         case 'page':
           /** @type {Page} */
-          const page = pageContext.data
-          crumbs.push({ label: page.title, path: page.slug })
+          data = pageContext.data
+          crumbs.push({ label: data.title, path: data.slug })
           break
         case 'not-found':
           crumbs.length = 0
