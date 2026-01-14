@@ -1,4 +1,6 @@
 <script setup>
+import { resolveHtmlUrls } from '@/domain/urls.js'
+
 /** @typedef {import('@/types/page.js').Page} Page */
 
 defineProps(({
@@ -13,7 +15,7 @@ defineProps(({
 <template>
   <div class="container">
     <h1 v-if="page.title">{{ page.title }}</h1>
-    <div class="static-content" v-html="page.content" />
+    <div class="static-content" v-html="resolveHtmlUrls(page.content)" />
   </div>
 </template>
 

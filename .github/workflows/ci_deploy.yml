@@ -1,5 +1,5 @@
 name: CI, Build and Deploy to GitHub Pages
-run-name: ${{ github.actor }}'s vue-frontend processing
+run-name: ${{ github.actor }}'s vue-frontend CI, Build and Deploy
 
 on: [ push, pull_request ]
 
