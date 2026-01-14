@@ -7,7 +7,7 @@ export function resolvePublicUrl(path) {
   if (/^(https?:)?\/\//.test(path)) return path
 
   const base =  import.meta.env.BASE_URL
-  return base.replace(/\/$/, '') + path
+  return base.replace(/\/$/, '') + '/' + path
 }
 
 export function resolveHtmlUrls(html) {
