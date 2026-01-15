@@ -1,61 +1,87 @@
-// Brand
-$color-brand-primary: #0d6efd;
-$color-brand-secondary: #6c757d;
-$color-brand-accent: #ff9900;
+// Container
+$custom-container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1260px
+);
 
 // UI
-$color-bg: #ffffff;
-$color-bg-muted: #f8f9fa;
-$color-border: #dee2e6;
+$color-bg-base: #ffffff;
+//$color-bg: #ffffff;
+//$color-bg-muted: #f8f9fa;
+//$color-border: #dee2e6;
+
+$bg-footer: #154747 url("../images/footer-bg.png") top left no-repeat;
+$bg-subfooter: #154747;
 
 // Text
 $color-text-base: #154747;
 $color-text-secondary: #ffd0ad;
 $color-text-tertiary: #f8f1e3;
 $color-text-muted: #6c757d;
-$color-text-inverse: #ffffff;
+//$color-text-inverse: #ffffff;
+$color-text-link: #154747;
+$footer-text-color: rgba(255,255,255,0.9);
+$subfooter-text-color: rgba(255,255,255,0.6);
 
-// States
-$color-success: #198754;
-$color-warning: #ffc107;
-$color-danger: #dc3545;
-$color-info: #0dcaf0;
+$line-height-footer-text-block: 24px;
 
 $font-family-base: 'Spline Sans', system-ui, -apple-system, sans-serif;
-$font-family-heading: $font-family-base;
+$font-family-heading: 'Bitter' !important;
+$font-family-bitter: 'Bitter' !important;
+$font-family-blooms: 'blooms' !important;
 
-$font-size-base: 1rem;
-$font-size-sm: .875rem;
-$font-size-lg: 1.125rem;
+$font-size-base: 1.063rem; // 17px
+//$font-size-sm: .875rem; //14px
+//$font-size-lg: 1.125rem; //18px
+$font-size-footer: 0.875rem; // 14px
+$font-size-footer-title: 1.75rem; //24px
+$font-size-footer-contact-link: 0.813rem; //13px
+$font-size-subfooter: 0.75rem; //12px
+$font-size-footer-subtitle: 0.75rem; //12px
 
-$font-weight-normal: 400;
-$font-weight-medium: 500;
-$font-weight-bold: 700;
+$font-weight-contact-link: 500;
 
-$line-height-base: 1.5;
-$line-height-heading: 1.2;
+$line-height-base: 1.75;
+//$line-height-heading: 1.2;
+$line-height-footer-nav-link: 1.7;
 
-$container-max-width: 1320px;
+$container-max-width: 1290px;
 
-$spacing-1: .25rem;
-$spacing-2: .5rem;
-$spacing-3: 1rem;
-$spacing-4: 1.5rem;
-$spacing-5: 3rem;
+$spacing-footer: 0.02em;
+$spacing-footer-title: normal;
+$spacing-footer-subtitle: 0.1em;
 
-$radius-sm: .2rem;
-$radius-md: .375rem;
-$radius-lg: .5rem;
+//$radius-sm: .2rem;
+//$radius-md: .375rem;
+//$radius-lg: .5rem;
 
-$shadow-sm: 0 1px 2px rgba(0,0,0,.05);
-$shadow-md: 0 4px 6px rgba(0,0,0,.1);
-$shadow-lg: 0 10px 15px rgba(0,0,0,.15);
+//$shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+//$shadow-md: 0 4px 6px rgba(0,0,0,.1);
+//$shadow-lg: 0 10px 15px rgba(0,0,0,.15);
 
-$z-dropdown: 1000;
-$z-sticky: 1020;
-$z-fixed: 1030;
-$z-modal-backdrop: 1040;
-$z-modal: 1050;
-$z-tooltip: 1080;
+//$z-dropdown: 1000;
+//$z-sticky: 1020;
+//$z-fixed: 1030;
+//$z-modal-backdrop: 1040;
+//$z-modal: 1050;
+//$z-tooltip: 1080;
 
 $logo-max-height: 22px;
+
+$padding-x-container: 70px;
+$padding-footer: 95px 0 125px 0;
+$padding-footer-nav-link: 0;
+$padding-subfooter: 30px 0;
+$padding-footer-links-column: 0 15px;
+
+$margin-footer-subtitle: 0 0 25px 0;
+$margin-footer-nav-link: 0 0 8px 0;
+$margin-footer-text-block: 0 0 32px 0;
+$margin-footer-title: 0 0 24px 0;
+
+$border-footer: 1px solid rgba(255,255,255,0.1);
+
+$gutter-row: 30px;
