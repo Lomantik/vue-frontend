@@ -1,5 +1,5 @@
 <script setup>
-import MainMenu from '@/components/MainMenu.vue'
+import LayoutMenu from '@/components/layout/LayoutMenu.vue'
 import MainLogo from '@/components/MainLogo.vue'
 import UserActions from '@/components/UserActions.vue'
 </script>
@@ -12,7 +12,7 @@ import UserActions from '@/components/UserActions.vue'
           <MainLogo />
         </div>
         <div class="col p-0">
-          <MainMenu />
+          <LayoutMenu />
         </div>
         <div class="col-auto p-0">
           <UserActions />

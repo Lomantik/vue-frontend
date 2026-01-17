@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
-import ProductCard from '@/components/ProductCard.vue'
+import ProductCard from '@/components/product/ProductCard.vue'
 import { getProductsByCategoryId } from '@/api/products.api.js'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Autoplay } from 'swiper/modules'
@@ -24,7 +24,7 @@ watchEffect(async () => {
         navigation
         :autoplay="{delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true}"
         :slides-per-view="4"
-        :space-between="16"
+        :space-between="30"
         :breakpoints="{ 320: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 4 }}">
         <SwiperSlide v-for="product in products" :key="product.id">
           <ProductCard :product="product" />

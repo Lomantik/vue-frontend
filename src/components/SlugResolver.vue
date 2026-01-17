@@ -3,7 +3,7 @@ import { watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import ProductPage from '@/pages/ProductPage.vue'
 import CategoryPage from '@/pages/CategoryPage.vue'
-import NotFound from '@/pages/NotFound.vue'
+import NotFoundPage from '@/pages/NotFoundPage.vue'
 import StaticPage from '@/pages/StaticPage.vue'
 import { useSlugResolver } from '@/composables/useSlugResolver.js'
 import { usePageContextStore } from '@/stores/pageContext.store.js'
@@ -37,7 +37,7 @@ watchEffect(async () => {
   <ProductPage v-if="resolvedType === 'product'" :product="resolvedData" />
   <CategoryPage v-else-if="resolvedType === 'category'" :category="resolvedData" />
   <StaticPage v-else-if="resolvedType === 'page'" :page="resolvedData" />
-  <NotFound v-else />
+  <NotFoundPage v-else />
 </template>
 
 <style scoped>

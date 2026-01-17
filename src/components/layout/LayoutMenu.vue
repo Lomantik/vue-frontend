@@ -27,7 +27,7 @@ import { RouterLink } from 'vue-router'
   </nav>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .main-menu {
   font-size: 14px;
   font-weight: 400;
@@ -49,8 +49,10 @@ import { RouterLink } from 'vue-router'
   align-items: center;
 }
 
-.main-menu ul li a.active {
-  color: #6b6b6b;
+.nav-link {
+  &.active {
+    color: #6b6b6b;
+  }
 }
 
 .main-menu ul li a:hover {

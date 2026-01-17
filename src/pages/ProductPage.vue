@@ -13,7 +13,7 @@ defineProps(({
 </script>
 
 <template>
-  <div class="container" v-if="product">
+  <div class="container pb-4" v-if="product">
     <div class="row">
       <div class="col-sm-4">
         <img :src="resolvePublicUrl(product.imageUrl)" alt="" class="mb-3 w-100">
