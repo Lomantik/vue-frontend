@@ -49,7 +49,7 @@ import { RouterLink } from 'vue-router'
   align-items: center;
 }
 
-.active {
+.nav-link.active {
   color: #6b6b6b;
 }
 
