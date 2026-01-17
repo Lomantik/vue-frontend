@@ -85,3 +85,8 @@ $margin-footer-title: 0 0 24px 0;
 $border-footer: 1px solid rgba(255,255,255,0.1);
 
 $gutter-row: 30px;
+
+.g-30 {
+  --bs-gutter-x: 30px;
+  --bs-gutter-y: 30px;
+}

@@ -1,7 +1,8 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
-import ProductCard from '@/components/ProductCard.vue'
+import ProductCard from '@/components/product/ProductCard.vue'
 import { getProductsByCategoryId } from '@/api/products.api.js'
+import ProductList from '@/components/product/ProductList.vue'
 
 /** @typedef {import('@/types/category.js').Category} Category */
 /** @typedef {import('@/types/product.js').Product} Product */
@@ -23,16 +24,12 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <section class="hero">
-    <div class="container px-0">
+  <section>
+    <div class="container pb-4">
       <div class="row">
         <div class="col-12">
           <h1 class="pb-2" v-if="category">{{ category.title }}</h1>
-          <div class="row g-3" v-if="category">
-            <div class="col-12 col-sm-6 col-md-3" v-for="product in products" :key="product.id">
-              <ProductCard :product="product" :category="category" />
-            </div>
-          </div>
+          <ProductList :category="category" :titleTag="'h3'" />
         </div>
       </div>
     </div>

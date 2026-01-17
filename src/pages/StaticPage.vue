@@ -13,7 +13,7 @@ defineProps(({
 </script>
 
 <template>
-  <div class="container">
+  <div class="container pb-4">
     <h1 v-if="page.title">{{ page.title }}</h1>
     <div class="static-content" v-html="resolveHtmlUrls(page.content)" />
   </div>

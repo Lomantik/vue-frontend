@@ -1,10 +1,10 @@
 <script setup>
-import MainHero from '@/components/MainHero.vue'
-import ProductCarousel from '@/components/ProductCarousel.vue'
+import LayoutHero from '@/components/layout/LayoutHero.vue'
+import ProductCarousel from '@/components/product/ProductCarousel.vue'
 </script>
 
 <template>
-  <MainHero />
+  <LayoutHero />
   <ProductCarousel />
 </template>
 

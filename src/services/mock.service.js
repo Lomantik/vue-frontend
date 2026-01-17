@@ -1,8 +1,11 @@
 import products from '@/data/products.json'
 import categories from '@/data/categories.json'
 import pages from '@/data/pages.json'
+import reviews from '@/data/reviews.json'
 import aboutHtml from '@/content/pages/about.html?raw'
 import contactHtml from '@/content/pages/contact.html?raw'
+
+/** @typedef {import('@/types/product.js').Product} Product */
 
 const pagesContent = {
   about: aboutHtml,
@@ -10,14 +13,22 @@ const pagesContent = {
 }
 
 export const mockService = {
-  async getAllProducts() {
-    return products
+  async getAllProducts(activeOnly = true, showInCatalogOnly = true) {
+    /** @type Product */
+    let result = products
+    if (activeOnly) result = result.filter(product => product.active === true)
+    if (showInCatalogOnly) result = result.filter(product => product.showInCatalog === true)
+    return result
   },
-  async getProductsByCategoryId(categoryId) {
-    return products.filter(product => product.categoryIds.includes(categoryId))
+  async getProductsByCategoryId(categoryId, activeOnly = true, showInCatalogOnly = true) {
+    /** @type Product */
+    let result = products.filter(product => product.categoryIds.includes(categoryId))
+    if (activeOnly) result = result.filter(product => product.active === true)
+    if (showInCatalogOnly) result = result.filter(product => product.showInCatalog === true)
+    return result
   },
-  async getProductsByCategorySlug(categorySlug) {
-    const category = await this.getCategoryBySlug(categorySlug)
+  async getProductsByCategorySlug(categorySlug, activeOnly = true, showInCatalogOnly = true) {
+    const category = await this.getCategoryBySlug(categorySlug, activeOnly, showInCatalogOnly)
     if (!category) return []
     return products.filter(product => product.categoryIds.includes(category.id))
   },
@@ -47,5 +58,8 @@ export const mockService = {
     const page = pages.find(page => page.slug === pageSlug)
     if (!page) return
     return {...page, content: pagesContent[page.content]}
+  },
+  async getReviewsByProductId(productId) {
+    return reviews.filter(review => review.productId === productId)
   }
 }
