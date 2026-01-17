@@ -1,6 +1,5 @@
 <script setup>/** @typedef {import('@/types/product.js').Product} Product */
 import { useProductPrice } from '@/composables/useProductPrice.js'
-import { getAllChildProducts } from '@/utils/product.js'
 
 const props = defineProps({
   /** @type {Product} */

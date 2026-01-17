@@ -1,6 +1,5 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
-import ProductCard from '@/components/product/ProductCard.vue'
 import { getProductsByCategoryId } from '@/api/products.api.js'
 import ProductList from '@/components/product/ProductList.vue'
 

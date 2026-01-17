@@ -1,4 +1,3 @@
-import { getProductById } from '@/api/products.api.js'
 import { computed, ref, watch } from 'vue'
 import { getAllChildProducts } from '@/utils/product.js'
 
