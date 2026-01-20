@@ -44,6 +44,16 @@ export const mockService = {
   async getCategoryById(categoryId) {
     return categories.find(category => category.id === categoryId)
   },
+  async getCategoryTree(category = null) {
+    const resultChildren = []
+    if (category === null) category = await this.getCategoryById(0)
+    const children = categories.filter(child => child.parentId === category.id)
+    for (const child of children) {
+      if (child) resultChildren.push(await this.getCategoryTree(child))
+      else resultChildren.push(null)
+    }
+    return {...category, children: resultChildren}
+  },
   async getCategoryBySlug(categorySlug) {
     return categories.find(category => category.slug === categorySlug)
   },

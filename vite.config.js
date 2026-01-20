@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
       preprocessorOptions: {
         scss: {
           quietDeps: true,
-          additionalData: `@use "@/assets/styles/variables.scss" as *;`
+          additionalData: `@use "@/assets/styles/tokens/variables.scss" as *;`
         },
       },
     },

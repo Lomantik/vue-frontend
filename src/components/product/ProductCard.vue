@@ -63,6 +63,8 @@ watchEffect(async () => {
 </template>
 
 <style scoped lang="scss">
+@use "sass:map";
+
 .card {
   width: 100%;
   border: none;
@@ -80,7 +82,7 @@ watchEffect(async () => {
   margin: 0 0 9px 0;
 }
 .product-title {
-  font-family: $font-family-bitter;
+  font-family: map.get($custom-font-family, 'bitter');
   font-size: 16px;
   margin: 0 0 3px 0;
 }

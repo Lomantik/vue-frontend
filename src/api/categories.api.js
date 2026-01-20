@@ -18,6 +18,14 @@ export async function getCategoryById(categoryId) {
 }
 
 /**
+ * @param {number|null} categoryId
+ * @returns {Promise<Category[]>}
+ */
+export async function getCategoryTree(categoryId = null) {
+  return dataService.getCategoryTree(categoryId)
+}
+
+/**
  * @param {string} categorySlug
  * @returns {Promise<Category>}
  */

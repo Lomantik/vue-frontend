@@ -3,7 +3,6 @@ import { ref, watchEffect } from 'vue'
 import ProductCard from '@/components/product/ProductCard.vue'
 import { getProductsByCategoryId } from '@/api/products.api.js'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -20,12 +19,9 @@ watchEffect(async () => {
   <section class="product-carousel py-3" v-if="products">
     <div class="container">
       <Swiper
-        :modules="[Navigation, Autoplay ]"
-        navigation
-        :autoplay="{delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true}"
         :slides-per-view="4"
         :space-between="30"
-        :breakpoints="{ 320: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 4 }}">
+        :breakpoints="{ 320: { slidesPerView: 2 }, 555: { slidesPerView: 4 }}">
         <SwiperSlide v-for="product in products" :key="product.id">
           <ProductCard :product="product" />
         </SwiperSlide>
