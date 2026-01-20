@@ -80,7 +80,7 @@ watchEffect(async () => {
   margin: 0 0 9px 0;
 }
 .product-title {
-  font-family: $font-family-bitter;
+  font-family: font-family('bitter');
   font-size: 16px;
   margin: 0 0 3px 0;
 }

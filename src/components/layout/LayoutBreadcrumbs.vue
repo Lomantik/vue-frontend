@@ -5,7 +5,7 @@ const { meta, breadcrumbs } = useBreadcrumbs()
 </script>
 
 <template>
-  <nav v-if="!meta.hideBreadcrumbs" aria-label="breadcrumb">
+  <nav v-if="!meta.hideBreadcrumbs" aria-label="breadcrumb" class="ms-5 py-20 px-0">
     <div class="container px-0">
       <ol class="breadcrumb mb-0">
         <li v-for="(crumb, index) in breadcrumbs" :key="index" class="breadcrumb-item">
@@ -20,8 +20,5 @@ const { meta, breadcrumbs } = useBreadcrumbs()
 </template>
 
 <style scoped>
-nav {
-  margin-left: 5px;
-  padding: 20px 0;
-}
+
 </style>

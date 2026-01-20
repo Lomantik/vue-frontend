@@ -26,6 +26,8 @@ watchEffect(async () => {
 </template>
 
 <style scoped lang="scss">
+@use "sass:map";
+
 .star-rating {
   position: relative;
   line-height: 1;
@@ -38,7 +40,7 @@ watchEffect(async () => {
 .star-rating:before {
   opacity: 1;
   color: #ffcd00;
-  font-family: $font-family-blooms;
+  font-family: map.get($custom-font-family, 'blooms');
   content: "\e805 \e805 \e805 \e805 \e805" !important;
 }
 .star-rating > span {
@@ -53,6 +55,6 @@ watchEffect(async () => {
 .star-rating > span:before {
   color: #ffd0ad;
   content: "\e806 \e806 \e806 \e806 \e806" !important;
-  font-family: $font-family-blooms;
+  font-family: map.get($custom-font-family, 'blooms');
 }
 </style>

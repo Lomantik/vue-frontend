@@ -1,33 +1,39 @@
 [
   {
+    "id": 0,
+    "slug": "root",
+    "title": "Root",
+    "parentId": null
+  },
+  {
     "id": 1,
     "slug": "pet_friendly",
     "title": "Pet Friendly",
-    "parentId": null
+    "parentId": 0
   },
   {
     "id": 2,
     "slug": "fresh",
     "title": "Fresh",
-    "parentId": null
+    "parentId": 0
   },
   {
     "id": 3,
     "slug": "low_light",
     "title": "Low Light",
-    "parentId": null
+    "parentId": 0
   },
   {
     "id": 4,
     "slug": "arid",
     "title": "Arid",
-    "parentId": null
+    "parentId": 0
   },
   {
     "id": 5,
     "slug": "tropical",
     "title": "Tropical",
-    "parentId": null
+    "parentId": 0
   },
   {
     "id": 6,
@@ -57,7 +63,7 @@
     "id": 10,
     "slug": "plants",
     "title": "Plants",
-    "parentId": null
+    "parentId": 0
   },
   {
     "id": 11,

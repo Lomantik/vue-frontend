@@ -1,0 +1,211 @@
+@use 'sass:map';
+
+// Container
+$custom-container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1260px
+);
+@function container-max-width($key) {
+  @return map.get($custom-container-max-widths, $key);
+}
+
+// padding, margin, left, right, bottom, top
+$custom-spacers: (
+  0: 0,
+  1: .25rem,
+  2: .5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 5px,
+  8: 8px,
+  m8: -8px,
+  m9: -9px,
+  10: 10px,
+  12: 12px,
+  15: 15px,
+  m16: -18px,
+  18: 18px,
+  20: 20px,
+  22: 22px,
+  24: 24px,
+  25: 25px,
+  27: 27px,
+  30: 30px,
+  32: 32px,
+  35: 35px,
+  40: 40px,
+  45: 45px,
+  50: 50px,
+  95: 95px,
+  100: 100%,
+  125: 125px
+);
+@function spacer($key) {
+  @return map.get($custom-spacers, $key);
+}
+
+$custom-height: (
+  0: 0,
+  10: 10px,
+  22: 22px,
+  38: 38px,
+  100: 100%
+);
+@function height($key) {
+  @return map.get($custom-height, $key);
+}
+
+
+$custom-width: (
+  10: 10px,
+  100: 100%,
+  180: 180px
+);
+@function width($key) {
+  @return map.get($custom-width, $key);
+}
+
+$custom-line-height: (
+  1: 1,
+  '1_1': 1.1,
+  sm: 1.25,
+  '1_7': 1.7,
+  base: 1.75,
+  lg: 2,
+  14: 14px,
+  24: 24px
+);
+@function line-height($key) {
+  @return map.get($custom-line-height, $key);
+}
+
+$custom-text-opacity: (
+  60: .6,
+  90: .9,
+);
+@function text-opacity($key) {
+  @return map.get($custom-text-opacity, $key);
+}
+
+$font-sizes: (
+  1: 5rem,
+  2: 4rem,
+  3: 3rem,
+  4: 2rem,
+  5: 1.5rem,
+  6: 1rem,
+  7: 0.438rem,
+  12: 0.75rem,
+  13: 0.813rem,
+  14: 0.875rem,
+  17: 1.063rem,
+  24: 1.75rem
+);
+@function font-size($key) {
+  @return map.get($font-sizes, $key);
+}
+
+$custom-letter-spacings: (
+  '02': 0.02em,
+  1: 0.1em,
+  2: 0.2em,
+  3: 0.3em,
+  normal: normal
+);
+@function letter-spacing($key) {
+  @return map.get($custom-letter-spacings, $key);
+}
+
+// UI
+$color-bg-base: #ffffff;
+
+// Text
+$color-primary: #154747;
+$color-secondary: #ffd0ad;
+$color-tertiary: #f8f1e3;
+$color-muted: #6c757d;
+$color-text-link: #154747;
+
+$custom-theme-colors: (
+  "primary": $color-primary,
+  "secondary": $color-secondary,
+  "tertiary": $color-tertiary,
+  "muted": $color-muted,
+  "white": #ffffff,
+  "light-grey-10": rgba(21, 71, 71, 0.1),
+);
+@function color($key) {
+  @return map.get($custom-theme-colors, $key);
+}
+
+$custom-background: (
+  footer: $color-primary url("../../images/footer-bg.png") top left no-repeat
+);
+@function background($key) {
+  @return map.get($custom-background, $key);
+}
+
+$custom-font-family: (
+  base: ('Spline Sans', system-ui, -apple-system, sans-serif),
+  bitter: ('Bitter', Georgia, serif),
+  blooms: ('blooms', serif)
+);
+@function font-family($key) {
+  @return map.get($custom-font-family, $key);
+}
+
+$custom-content: (
+  empty: '',
+  big-arrow-right: "\e80c",
+  arrow-down: "\e800",
+  arrow-right: "\e801",
+);
+@function content($key) {
+  @return map.get($custom-content, $key);
+}
+
+$custom-border-radius: (
+  120: 120px
+);
+@function border-radius($key) {
+  @return map.get($custom-border-radius, $key);
+}
+
+$custom-border: (
+  none: none
+);
+@function border($key) {
+  @return map.get($custom-border, $key);
+}
+
+$custom-position: (
+  absolute: absolute
+);
+@function position($key) {
+  @return map.get($custom-position, $key);
+}
+
+$custom-pointer-events: (
+  none: none,
+  auto: auto,
+  initial: initial,
+);
+@function pointer-events($key) {
+  @return map.get($custom-pointer-events, $key);
+}
+
+$container-max-width: 1290px;
+
+$logo-max-height: 22px;
+
+$padding-x-container: 70px;
+
+$gutter-row: 30px;
+
+.g-30 {
+  --bs-gutter-x: 30px;
+  --bs-gutter-y: 30px;
+}

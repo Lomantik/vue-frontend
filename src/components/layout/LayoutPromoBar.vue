@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <aside class="promo-bar bg-primary text-white">
+  <aside class="promo-bar bg-primary text-white d-none d-lg-block">
     <div class="text-center">
       Free express shipping ➺ On all orders $40 + Easy returns
     </div>

@@ -1,81 +1,112 @@
 <script setup>
-
 import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <footer class="footer">
+  <footer class="footer py-40 pt-md-95 pb-md-125 lh-1 text-white text-opacity-90 background-footer
+    border-bottom border-1 border-solid border-opacity-10 border-white fs-14 ls-02">
     <div class="container">
-      <div class="extra-padding">
+      <div class="p-0">
         <div class="row">
-          <div class="col-4">
-            <div class="footer-title">Visit Us in Store</div>
-            <p class="text-block">We would love to chat to you in person about making a lasting
+          <div class="col-12 col-md-3 col-lg-4">
+            <div class="footer-title mb-24 text-tertiary fs-24 ls-normal font-family-bitter">Visit Us in Store</div>
+            <p class="lh-24 mb-32">We would love to chat to you in person about making a lasting
               difference for children in need. Find your closest store location below.</p>
-            <p class="mb-0">
-              <RouterLink to="/contact" class="contact-link">FIND STORE</RouterLink>
+            <p class="mb-32 mb-md-0">
+              <RouterLink to="/contact" class="contact-link lh-24 d-inline-flex
+                text-decoration-none text-white text-opacity-90 fs-13 fw-medium">
+                FIND STORE
+              </RouterLink>
             </p>
           </div>
-          <div class="col-2"></div>
-          <div class="col-2 links-column">
-            <div class="footer-subtitle">COMPANY</div>
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <RouterLink to="/about" class="nav-link">About</RouterLink>
+          <div class="d-none d-lg-block col-lg-2"></div>
+          <div class="col-6 col-md-3 col-lg-2 py-0 px-15">
+            <div class="footer-subtitle mb-25 fs-12 ls-1 font-family-bitter">COMPANY</div>
+            <ul class="nav flex-column lh-1_7">
+              <li class="nav-item mb-8">
+                <RouterLink to="/about" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  About
+                </RouterLink>
               </li>
-              <li class="nav-item">
-                <RouterLink to="/environmental-initiatives" class="nav-link">
+              <li class="nav-item mb-8">
+                <RouterLink to="/environmental-initiatives" class="nav-link text-white text-opacity-90 p-0 d-inline">
                   Environmental Initiatives
                 </RouterLink>
               </li>
-              <li class="nav-item">
-                <RouterLink to="/factories" class="nav-link">Factories</RouterLink>
+              <li class="nav-item mb-8">
+                <RouterLink to="/factories" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  Factories
+                </RouterLink>
+              </li>
+              <li class="nav-item mb-8">
+                <RouterLink to="/careers" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  Careers
+                </RouterLink>
               </li>
               <li class="nav-item">
-                <RouterLink to="/careers" class="nav-link">Careers</RouterLink>
-              </li>
-              <li class="nav-item">
-                <RouterLink to="/accessibility" class="nav-link m-0">Accessibility</RouterLink>
-              </li>
-            </ul>
-          </div>
-          <div class="col-2 links-column">
-            <div class="footer-subtitle">ACCOUNT</div>
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <RouterLink to="/my-account" class="nav-link">My account</RouterLink>
-              </li>
-              <li class="nav-item">
-                <RouterLink to="/manage-account" class="nav-link">Manage Account</RouterLink>
-              </li>
-              <li class="nav-item">
-                <RouterLink to="/saved-items" class="nav-link">Saved Items</RouterLink>
-              </li>
-              <li class="nav-item">
-                <RouterLink to="/orders-and-returns" class="nav-link">Orders & Returns</RouterLink>
-              </li>
-              <li class="nav-item">
-                <RouterLink to="/redeem-a-gift-card" class="nav-link m-0">Redeem a Gift Card</RouterLink>
+                <RouterLink to="/accessibility" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  Accessibility
+                </RouterLink>
               </li>
             </ul>
           </div>
-          <div class="col-2 links-column">
-            <div class="footer-subtitle">GET IN TOUCH</div>
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <RouterLink to="/facebook" class="nav-link">Facebook</RouterLink>
+          <div class="col-6 col-md-3 col-lg-2 py-0 px-15">
+            <div class="footer-subtitle mb-25 fs-12 ls-1 font-family-bitter">ACCOUNT</div>
+            <ul class="nav flex-column lh-1_7">
+              <li class="nav-item mb-8">
+                <RouterLink to="/my-account" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  My account
+                </RouterLink>
+              </li>
+              <li class="nav-item mb-8">
+                <RouterLink to="/manage-account" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  Manage Account
+                </RouterLink>
+              </li>
+              <li class="nav-item mb-8">
+                <RouterLink to="/saved-items" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  Saved Items
+                </RouterLink>
+              </li>
+              <li class="nav-item mb-8">
+                <RouterLink to="/orders-and-returns" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  Orders & Returns
+                </RouterLink>
               </li>
               <li class="nav-item">
-                <RouterLink to="/instagram" class="nav-link">Instagram</RouterLink>
+                <RouterLink to="/redeem-a-gift-card" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  Redeem a Gift Card
+                </RouterLink>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3 col-lg-2 py-0 px-15">
+            <div class="footer-subtitle mt-25 mt-md-0 mb-25 fs-12 ls-1 font-family-bitter">GET IN TOUCH</div>
+            <ul class="nav flex-column lh-1_7">
+              <li class="nav-item mb-8">
+                <RouterLink to="/facebook" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  Facebook
+                </RouterLink>
+              </li>
+              <li class="nav-item mb-8">
+                <RouterLink to="/instagram" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  Instagram
+                </RouterLink>
+              </li>
+              <li class="nav-item mb-8">
+                <RouterLink to="/twitter" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  Twitter
+                </RouterLink>
+              </li>
+              <li class="nav-item mb-8">
+                <RouterLink to="/linkedin" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  Linkedin
+                </RouterLink>
               </li>
               <li class="nav-item">
-                <RouterLink to="/twitter" class="nav-link">Twitter</RouterLink>
-              </li>
-              <li class="nav-item">
-                <RouterLink to="/linkedin" class="nav-link">Linkedin</RouterLink>
-              </li>
-              <li class="nav-item">
-                <RouterLink to="/youtube" class="nav-link m-0">Youtube</RouterLink>
+                <RouterLink to="/youtube" class="nav-link text-white text-opacity-90 p-0 d-inline">
+                  Youtube
+                </RouterLink>
               </li>
             </ul>
           </div>
@@ -83,70 +114,20 @@ import { RouterLink } from 'vue-router'
       </div>
     </div>
   </footer>
-  <div class="subfooter">
-    <div class="container">
-      Copyright&nbsp;&nbsp;©&nbsp;&nbsp;2026
+  <div class="subfooter text-white text-opacity-60 bg-primary py-30 fs-12">
+    <div class="container justify-content-center justify-content-md-start d-flex">
+      <div>Copyright&nbsp;&nbsp;©&nbsp;&nbsp;2026</div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.footer {
-  background: $bg-footer;
-  padding: $padding-footer;
-  border-bottom: $border-footer;
-  font-size: $font-size-footer;
-  color: $footer-text-color;
-  letter-spacing: $spacing-footer;
-  line-height: 1;
-}
-.footer-title {
-  color: $color-text-tertiary;
-  font-family: $font-family-bitter;
-  letter-spacing: $spacing-footer-title;
-  font-size: $font-size-footer-title;
-  margin: $margin-footer-title;
-}
-.text-block {
-  margin: $margin-footer-text-block;
-  line-height: $line-height-footer-text-block;
-}
-.footer-subtitle {
-  font-family: $font-family-bitter;
-  font-size: $font-size-footer-subtitle;
-  letter-spacing: $spacing-footer-subtitle;
-  margin: $margin-footer-subtitle;
-}
-.nav-link {
-  color: $footer-text-color;
-  line-height: $line-height-footer-nav-link;
-  margin: $margin-footer-nav-link;
-  padding: $padding-footer-nav-link;
-}
-.subfooter {
-  background: $bg-subfooter;
-  padding: $padding-subfooter;
-  font-size: $font-size-subfooter;
-  color: $subfooter-text-color;
-}
-.contact-link {
-  text-decoration: none;
-  color: $footer-text-color;
-  line-height: 24px;
-  display: inline-flex;
-  font-size: $font-size-footer-contact-link;
-  font-weight: $font-weight-contact-link;
-}
+@use "sass:map";
+
 .contact-link::after {
-  content: "\e80c";
-  margin-left: 12px;
-  font-size: 7px;
-  font-family: $font-family-blooms;
-}
-.links-column {
-  padding: $padding-footer-links-column;
-}
-.extra-padding {
-  padding: 0;
+  content: content('big-arrow-right');
+  margin-left: spacer(12);
+  font-size: font-size(7);
+  font-family: map.get($custom-font-family, 'blooms');
 }
 </style>

@@ -12,6 +12,9 @@
 <style scoped>
 .hero {
   overflow: hidden;
+  min-height: 65vh;
+  aspect-ratio: unset;
+  display: flex;
 }
 
 .bg-grayer {
@@ -19,7 +22,7 @@
   opacity: 0.3;
 }
 
-.hero a {
-  //object-fit: cover;
+img {
+  object-fit: cover;
 }
 </style>
