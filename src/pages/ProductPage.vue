@@ -20,7 +20,7 @@ defineProps(({
             resolvePublicUrl(product.imageUrlL)
             + ' 600w, ' + resolvePublicUrl(product.imageUrlM)
             + ' 250w, ' + resolvePublicUrl(product.imageUrlS)
-            +  ' 200w'" sizes="(min-width: 600px) 100vw, 600px" loading="lazy">
+            +  ' 200w'" sizes="(max-width: 600px) 100vw, 600px" loading="lazy">
       </div>
       <div class="col-sm-8">
         <div class="row mb-5">
