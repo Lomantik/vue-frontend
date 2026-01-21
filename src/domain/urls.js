@@ -23,5 +23,19 @@ export function resolveHtmlUrls(html) {
     }
   })
 
+  doc.querySelectorAll('[srcset]').forEach(el => {
+    const srcset = el.getAttribute('srcset')
+    if (!srcset) return
+
+    const resultSrcset = []
+    srcset.trim().split(',').map(item => {
+      const [url, descriptor] = item.trim().split(/\s+/, 2)
+      if (url.startsWith('/')) {
+        resultSrcset.push(base.replace(/\/$/, '') + url + ' ' + (descriptor ? descriptor : ''))
+      }
+    })
+    el.setAttribute('srcset', resultSrcset.join(', '))
+  })
+
   return doc.body.innerHTML
 }
