@@ -8,7 +8,7 @@
     <img class="w-100" src="/hero-img.jpg" srcset="/hero-img.jpg 1680w,
       /hero-img-1536x503.jpg  1536w, /hero-img-1024x335.jpg 1024w, /hero-img-768x251.jpg 768w,
       /hero-img-600x196.jpg 600w, /hero-img-300x98.jpg 300w"
-         sizes="(min-width: 1680px) 100vw, 1680px" alt="" fetchpriority="high" decoding="async">
+         sizes="(max-width: 1680px) 100vw, 1680px" alt="" fetchpriority="high" decoding="async">
   </section>
 </template>
 
