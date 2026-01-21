@@ -39,7 +39,12 @@ watchEffect(async () => {
     <div class="product-image">
       <RouterLink :to="'/' + product.slug"
                   @click="category && navStore.setCategoryTrail(category)">
-      <img class="card-img-top" :src="resolvePublicUrl(product.imageUrl)" alt="">
+      <img class="card-img-top" :src="resolvePublicUrl(product.imageUrl)" alt=""
+           :srcset="
+            resolvePublicUrl(product.imageUrlL)
+            + ' 600w, ' + resolvePublicUrl(product.imageUrlM)
+            + ' 250w, ' + resolvePublicUrl(product.imageUrlS)
+            +  ' 200w'" sizes="(min-width: 600px) 100vw, 600px" loading="lazy" decoding="async">
     </RouterLink>
     </div>
     <div class="card-body d-flex flex-column p-0">

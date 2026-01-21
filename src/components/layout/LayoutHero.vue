@@ -5,7 +5,10 @@
 <template>
   <section class="hero overflow-hidden position-relative">
     <span class="bg-grayer position-absolute d-block w-100 h-100 top-0 left-0"></span>
-    <img class="w-100" src="/hero-img.jpg" alt="">
+    <img class="w-100" src="/hero-img.jpg" srcset="/hero-img.jpg 1680w,
+      /hero-img-1536x503.jpg  1536w, /hero-img-1024x335.jpg 1024w, /hero-img-768x251.jpg 768w,
+      /hero-img-600x196.jpg 600w, /hero-img-300x98.jpg 300w"
+         sizes="(min-width: 1680px) 100vw, 1680px" alt="" fetchpriority="high" decoding="async">
   </section>
 </template>
 

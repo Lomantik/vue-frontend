@@ -12,6 +12,9 @@
  * @property {string} sku
  * @property {string[]|null} tags
  * @property {string|null} imageUrl
+ * @property {string|null} imageUrlL
+ * @property {string|null} imageUrlM
+ * @property {string|null} imageUrlS
  * @property {number|null} qty
  * @property {Object<string, number>|null} attributes
  * @property {number[]} configurableAttributes

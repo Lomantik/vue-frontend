@@ -16,7 +16,11 @@ defineProps(({
   <div class="container pb-4" v-if="product">
     <div class="row">
       <div class="col-sm-4">
-        <img :src="resolvePublicUrl(product.imageUrl)" alt="" class="mb-3 w-100">
+        <img class="mb-3 w-100" :src="resolvePublicUrl(product.imageUrl)" alt="" :srcset="
+            resolvePublicUrl(product.imageUrlL)
+            + ' 600w, ' + resolvePublicUrl(product.imageUrlM)
+            + ' 250w, ' + resolvePublicUrl(product.imageUrlS)
+            +  ' 200w'" sizes="(min-width: 600px) 100vw, 600px" loading="lazy">
       </div>
       <div class="col-sm-8">
         <div class="row mb-5">
