@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <aside class="promo-bar bg-primary text-white d-none d-lg-block">
+  <aside class="promo-bar bg-primary text-white d-none d-lg-block fs-13 py-13 px-0 lh-1">
     <div class="text-center">
       Free express shipping ➺ On all orders $40 + Easy returns
     </div>
@@ -11,9 +11,5 @@
 </template>
 
 <style scoped>
-.promo-bar {
-  font-size: 13px;
-  padding: 13px 0;
-  line-height: 1;
-}
+
 </style>

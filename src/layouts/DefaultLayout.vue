@@ -18,4 +18,5 @@ import LayoutFooter from "@/components/layout/LayoutFooter.vue"
 </template>
 
 <style scoped>
+
 </style>

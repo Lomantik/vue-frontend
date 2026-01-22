@@ -19,7 +19,7 @@ const {
 </script>
 
 <template>
-  <span class="price">
+  <span class="price fs-14">
     <template v-if="isRange">
       <bdi>
         <span class="currency-symbol">$</span>{{ minPrice }}
@@ -30,12 +30,12 @@ const {
       </bdi>
     </template>
     <template v-else-if="hasDiscount">
-      <del>
+      <del class="opacity-60">
         <bdi>
           <span class="currency-symbol">$</span>{{ minPrice }}
         </bdi>
       </del>
-      <ins>
+      <ins class="text-decoration-none ms-7">
         <bdi>
           <span class="currency-symbol">$</span>{{ salePrice }}
         </bdi>
@@ -51,14 +51,5 @@ const {
 </template>
 
 <style scoped>
-.price {
-  font-size: 14px;
-}
-del {
-  opacity: 0.6;
-}
-ins {
-  text-decoration: none;
-  margin-left: 7px;
-}
+
 </style>
