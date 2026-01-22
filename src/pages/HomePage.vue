@@ -9,4 +9,5 @@ import ProductCarousel from '@/components/product/ProductCarousel.vue'
 </template>
 
 <style scoped>
+
 </style>

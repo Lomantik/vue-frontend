@@ -3,13 +3,11 @@ import LayoutMenu from '@/components/layout/LayoutMenu.vue'
 </script>
 
 <template>
-  <header class="header px-15 px-md-50">
+  <header class="header px-15 px-md-50 border-bottom border-light-white">
     <LayoutMenu />
   </header>
 </template>
 
 <style scoped>
-.header {
-  border-bottom: 1px solid #ebebeb;
-}
+
 </style>

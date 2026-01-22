@@ -3,74 +3,44 @@
 @use "../tokens/variables" as *;
 
 $container-max-widths: $custom-container-max-widths;
-$spacer: spacer(3);
 $spacers: $custom-spacers;
-
-$primary: $color-primary;
-$secondary: $color-secondary;
-$tertiary: $color-tertiary;
-
 $theme-colors: $custom-theme-colors;
 
-// Тело документа
-$body-font-family: font-family('base');
-$body-font-size: 17px;
-//$body-font-weight: 400;
-$line-height-base: map.get($custom-line-height, 'base');
-//map.get($custom-line-height, 'base');
-
-//$container-padding-x: $padding-x-container;
-
-$grid-gutter-width: $gutter-row;
-
-// Цвет текста и фона
-$body-color: $color-primary;
 $body-bg: map.get($custom-theme-colors, 'white');
-
-// Заголовки (h1–h6)
-$headings-font-family: font-family('bitter');
-//$headings-font-weight: 600;
-$headings-color: $color-primary;
-//$headings-line-height: 1.2;
-
-// Кнопки
+$body-color: color('primary');
+$body-font-family: font-family('base');
+$body-font-size: font-size(17);
+$breadcrumb-active-color: color('primary');
+$breadcrumb-color: color('muted');
+$btn-color: color('primary');
 $btn-font-family: font-family('base');
-//$btn-font-weight: 500;
-//$btn-line-height: 1.5;
-$btn-color: $color-primary;
-$btn-link-color: $color-primary;
-
-// Цвета текста (.text-*)
-$text-color: $color-primary;
-$text-muted: $color-muted;
-$link-color: $color-text-link;
-$link-hover-color: color.adjust($color-text-link, $lightness: -10%);
-
-// Формы (input, textarea, label)
+$btn-link-color: color('primary');
+$dropdown-font-size: font-size(14);
+$dropdown-link-active-bg: background('none');
+$dropdown-link-active-color: color('grey');
+$dropdown-link-active-hover-color: color('blue');
+$dropdown-link-hover-bg: background('none');
+$dropdown-link-hover-color: color('blue');
+$dropdown-link-line-height: line-height('1_1');
+$grid-gutter-width: gutter(30);
+$headings-color: color('primary');
+$headings-font-family: font-family('bitter');
+$input-color: color('primary');
 $input-font-family: font-family('base');
-//$input-font-size: 1rem;
-$input-color: $color-primary;
-$input-placeholder-color: $color-muted;
-
-// Навигация, dropdown, breadcrumb
+$input-placeholder-color: color('muted');
+$line-height-base: map.get($custom-line-height, 'base');
+$link-color: color('primary');
+$link-hover-color: color('blue');
+$nav-link-color: color('primary');
 $nav-link-font-family: font-family('base');
-$nav-link-color: $color-primary;
-$nav-link-hover-color: $primary;
-
-$breadcrumb-color: $color-muted;
-$breadcrumb-active-color: $color-primary;
-
-$navbar-nav-link-padding-x: 20px;
-$navbar-light-color: $primary;
-$navbar-light-hover-color: rgb(20, 104, 160);
-$navbar-light-active-color: #6b6b6b;
-$dropdown-font-size: 14px;
-$dropdown-link-hover-color: $navbar-light-hover-color;
-$dropdown-link-hover-bg: none;
-$dropdown-link-active-color: $navbar-light-hover-color;
-$dropdown-link-active-hover-color: $navbar-light-hover-color;
-$dropdown-link-active-bg: none;
-$dropdown-link-line-height: 1.1;
+$nav-link-hover-color: color('blue');
+$navbar-light-active-color: color('grey');
+$navbar-light-color: color('primary');
+$navbar-light-hover-color: color('blue');
+$navbar-nav-link-padding-x: spacer(20);
+$spacer: spacer(3);
+$text-color: color('primary');
+$text-muted: color('muted');
 
 /* Bootstrap required */
 @import "../../../../node_modules/bootstrap/scss/functions";
@@ -81,6 +51,14 @@ $dropdown-link-line-height: 1.1;
 /* Bootstrap utilities */
 @import "../../../../node_modules/bootstrap/scss/utilities";
 
+$aspect-ratios: map-merge(
+    $aspect-ratios,
+    $custom-aspect-ratios
+);
+$gutters: map-merge(
+    $gutters,
+    $custom-gutters
+);
 $position-values: map-merge(
     $position-values,
     $custom-position
@@ -89,48 +67,23 @@ $position-values: map-merge(
 $utilities: map-merge(
     $utilities,
     (
-      "max-height": (
-        property: max-height,
-        class: mh,
-        values: $custom-height
-      ),
-      "min-height": (
-        property: min-height,
-        class: min-h,
-        values: $custom-height
-      ),
-      "min-width": (
-        property: min-width,
-        class: min-w,
-        values: $custom-width
-      ),
-      "line-height" : (
-        property: line-height,
-        class: lh,
-        values: $custom-line-height
-      ),
-      "text-opacity": (
-        property: --bs-text-opacity,
-        class: text-opacity,
-        values: $custom-text-opacity
-      ),
-      "letter-spacing": (
-        property: letter-spacing,
-        class: ls,
-        responsive: true,
-        values: $custom-letter-spacings
-      ),
       "background": (
         property: background,
         class: background,
         responsive: true,
         values: $custom-background
       ),
-      "font-family": (
-        property: font-family,
-        class: font-family,
+      "border": (
+        property: border,
+        class: border,
         responsive: true,
-        values: $custom-font-family
+        values: $custom-border
+      ),
+      "border-radius": (
+        property: border-radius,
+        class: border-radius,
+        responsive: true,
+        values: $custom-border-radius
       ),
       "content": (
         property: content,
@@ -138,23 +91,27 @@ $utilities: map-merge(
         responsive: true,
         values: $custom-content
       ),
-      "border-radius" : (
-        property: border-radius,
-        class: border-radius,
+      "fill": (
+        property: fill,
+        class: fill,
         responsive: true,
-        values: $custom-border-radius
+        values: $custom-theme-colors
       ),
-      "border" : (
-        property: border,
-        class: border,
+      "font-family": (
+        property: font-family,
+        class: font-family,
         responsive: true,
-        values: $custom-border
+        values: $custom-font-family
       ),
-      "pointer-events": (
-        property: pointer-events,
-        class: pe,
-        responsive: true,
-        values: $custom-pointer-events
+      "height": map-merge(
+          map-get($utilities, "height"),
+          (
+            responsive: true,
+            values: map-merge(
+                map-get(map-get($utilities, "height"), "values"),
+                $custom-height
+            )
+          )
       ),
       "left": (
         property: left,
@@ -162,35 +119,85 @@ $utilities: map-merge(
         responsive: true,
         values: $custom-spacers
       ),
+      "letter-spacing": (
+        property: letter-spacing,
+        class: ls,
+        responsive: true,
+        values: $custom-letter-spacings
+      ),
+      "line-height": (
+        property: line-height,
+        class: lh,
+        values: $custom-line-height
+      ),
+      "max-height": (
+        property: max-height,
+        class: mh,
+        values: $custom-height
+      ),
+      "max-width": (
+        property: max-width,
+        class: mw,
+        values: $custom-width
+      ),
+      "min-height": (
+        property: min-height,
+        class: min-h,
+        values: $custom-height
+      ),
+      "min-viewport-height": (
+        property: min-height,
+        class: min-vh,
+        values: $custom-viewport-height
+      ),
+      "min-width": (
+        property: min-width,
+        class: min-w,
+        values: $custom-width
+      ),
+      "opacity": map-merge(
+          map-get($utilities, "opacity"),
+          (
+            values: map-merge(
+                map-get(map-get($utilities, "opacity"), "values"),
+                $custom-opacity
+            )
+          )
+      ),
+      "pointer-events": (
+        property: pointer-events,
+        class: pe,
+        responsive: true,
+        values: $custom-pointer-events
+      ),
       "stroke": (
         property: stroke,
         class: stroke,
         responsive: true,
         values: $custom-theme-colors
       ),
-      "fill": (
-        property: fill,
-        class: fill,
-        responsive: true,
-        values: $custom-theme-colors
+      "text-opacity": (
+        property: --bs-text-opacity,
+        class: text-opacity,
+        values: $custom-opacity
       )
     ));
 
-/* Utilities API (генерация классов) */
+/* Utilities API (classes generation) */
 @import "../../../../node_modules/bootstrap/scss/utilities/api";
 
-/* Остальной Bootstrap */
+/* Other Bootstrap */
 @import "../../../../node_modules/bootstrap/scss/bootstrap";
 
 :root {
   --bs-body-font-family: #{font-family('base')};
-  --bs-body-color: #{$color-primary};
-  --bs-body-bg: #{$color-bg-base};
+  --bs-body-color: #{color('primary')};
+  --bs-body-bg: #{color('white')};
 
-  --bs-heading-color: #{$color-primary};
+  --bs-heading-color: #{color('primary')};
 
-  --bs-link-color: #{$color-text-link};
-  --bs-link-hover-color: color.adjust($color-text-link, $lightness: -10%);
+  --bs-link-color: #{color('primary')};
+  --bs-link-hover-color: color('blue');
 
-  --color-accent: $color-primary;
+  --color-accent: color('primary');
 }

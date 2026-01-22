@@ -12,4 +12,5 @@ import ProductList from '@/components/product/ProductList.vue'
 </template>
 
 <style scoped>
+
 </style>

@@ -1,5 +1,69 @@
 @use 'sass:map';
 
+// Theme Colors
+$custom-theme-colors: (
+  "primary": #154747,
+  "secondary": #ffd0ad,
+  "tertiary": #f8f1e3,
+  "muted": #6c757d,
+  "grey": #6b6b6b,
+  "white": #ffffff,
+  "light-white": #ebebeb,
+  "light-grey-10": rgba(21, 71, 71, 0.1),
+  "yellow": #ffcd00,
+  "blue": rgb(20, 104, 160)
+);
+@function color($key) {
+  @return map.get($custom-theme-colors, $key);
+}
+
+// Aspect Ratios
+$custom-aspect-ratios: (
+  "unset": "unset"
+);
+@function aspect-ratio($key) {
+  @return map.get($custom-aspect-ratios, $key);
+}
+
+// Background
+$custom-background: (
+  footer: color('primary') url("../../images/footer-bg.png") top left no-repeat,
+  none: 'none'
+);
+@function background($key) {
+  @return map.get($custom-background, $key);
+}
+
+// Border
+$custom-border: (
+  none: none
+);
+@function border($key) {
+  @return map.get($custom-border, $key);
+}
+
+// Border Radius
+$custom-border-radius: (
+  6: 6px,
+  120: 120px
+);
+@function border-radius($key) {
+  @return map.get($custom-border-radius, $key);
+}
+
+// Content
+$custom-content: (
+  empty: '',
+  big-arrow-right: "\e80c",
+  arrow-down: "\e800",
+  arrow-right: "\e801",
+  stars: "\e805 \e805 \e805 \e805 \e805",
+  stars-filled: "\e806 \e806 \e806 \e806 \e806"
+);
+@function content($key) {
+  @return map.get($custom-content, $key);
+}
+
 // Container
 $custom-container-max-widths: (
   sm: 540px,
@@ -12,45 +76,51 @@ $custom-container-max-widths: (
   @return map.get($custom-container-max-widths, $key);
 }
 
-// padding, margin, left, right, bottom, top
-$custom-spacers: (
-  0: 0,
-  1: .25rem,
-  2: .5rem,
-  3: 1rem,
-  4: 1.5rem,
-  5: 5px,
-  8: 8px,
-  m8: -8px,
-  m9: -9px,
-  10: 10px,
-  12: 12px,
-  15: 15px,
-  m16: -18px,
-  18: 18px,
-  20: 20px,
-  22: 22px,
-  24: 24px,
-  25: 25px,
-  27: 27px,
-  30: 30px,
-  32: 32px,
-  35: 35px,
-  40: 40px,
-  45: 45px,
-  50: 50px,
-  95: 95px,
-  100: 100%,
-  125: 125px
+// Font Family
+$custom-font-family: (
+  base: ('Spline Sans', system-ui, -apple-system, sans-serif),
+  bitter: ('Bitter', Georgia, serif),
+  blooms: ('blooms', serif)
 );
-@function spacer($key) {
-  @return map.get($custom-spacers, $key);
+@function font-family($key) {
+  @return map.get($custom-font-family, $key);
 }
 
+// Font Sizes
+$font-sizes: (
+  1: 5rem,
+  2: 4rem,
+  3: 3rem,
+  4: 2rem,
+  5: 1.5rem,
+  6: 1rem,
+  7: 0.438rem,
+  12: 0.75rem,
+  13: 0.813rem,
+  14: 0.875rem,
+  16: 1rem,
+  17: 1.063rem,
+  24: 1.75rem
+);
+@function font-size($key) {
+  @return map.get($font-sizes, $key);
+}
+
+// Gutters
+$custom-gutters: (
+  30: 30px,
+);
+@function gutter($key) {
+  @return map.get($custom-gutters, $key);
+}
+
+// Height
 $custom-height: (
   0: 0,
   10: 10px,
+  14: 14px,
   22: 22px,
+  28: 28px,
   38: 38px,
   100: 100%
 );
@@ -58,16 +128,20 @@ $custom-height: (
   @return map.get($custom-height, $key);
 }
 
-
-$custom-width: (
-  10: 10px,
-  100: 100%,
-  180: 180px
+// Letter Spacing
+$custom-letter-spacings: (
+  '02': 0.02em,
+  '05': 0.05em,
+  1: 0.1em,
+  2: 0.2em,
+  3: 0.3em,
+  normal: normal
 );
-@function width($key) {
-  @return map.get($custom-width, $key);
+@function letter-spacing($key) {
+  @return map.get($custom-letter-spacings, $key);
 }
 
+// Line Height
 $custom-line-height: (
   1: 1,
   '1_1': 1.1,
@@ -82,112 +156,21 @@ $custom-line-height: (
   @return map.get($custom-line-height, $key);
 }
 
-$custom-text-opacity: (
+// Opacity
+$custom-opacity: (
+  1: 1,
+  30: .3,
   60: .6,
   90: .9,
 );
 @function text-opacity($key) {
-  @return map.get($custom-text-opacity, $key);
+  @return map.get($custom-opacity, $key);
+}
+@function bg-opacity($key) {
+  @return map.get($custom-opacity, $key);
 }
 
-$font-sizes: (
-  1: 5rem,
-  2: 4rem,
-  3: 3rem,
-  4: 2rem,
-  5: 1.5rem,
-  6: 1rem,
-  7: 0.438rem,
-  12: 0.75rem,
-  13: 0.813rem,
-  14: 0.875rem,
-  17: 1.063rem,
-  24: 1.75rem
-);
-@function font-size($key) {
-  @return map.get($font-sizes, $key);
-}
-
-$custom-letter-spacings: (
-  '02': 0.02em,
-  1: 0.1em,
-  2: 0.2em,
-  3: 0.3em,
-  normal: normal
-);
-@function letter-spacing($key) {
-  @return map.get($custom-letter-spacings, $key);
-}
-
-// UI
-$color-bg-base: #ffffff;
-
-// Text
-$color-primary: #154747;
-$color-secondary: #ffd0ad;
-$color-tertiary: #f8f1e3;
-$color-muted: #6c757d;
-$color-text-link: #154747;
-
-$custom-theme-colors: (
-  "primary": $color-primary,
-  "secondary": $color-secondary,
-  "tertiary": $color-tertiary,
-  "muted": $color-muted,
-  "white": #ffffff,
-  "light-grey-10": rgba(21, 71, 71, 0.1),
-);
-@function color($key) {
-  @return map.get($custom-theme-colors, $key);
-}
-
-$custom-background: (
-  footer: $color-primary url("../../images/footer-bg.png") top left no-repeat
-);
-@function background($key) {
-  @return map.get($custom-background, $key);
-}
-
-$custom-font-family: (
-  base: ('Spline Sans', system-ui, -apple-system, sans-serif),
-  bitter: ('Bitter', Georgia, serif),
-  blooms: ('blooms', serif)
-);
-@function font-family($key) {
-  @return map.get($custom-font-family, $key);
-}
-
-$custom-content: (
-  empty: '',
-  big-arrow-right: "\e80c",
-  arrow-down: "\e800",
-  arrow-right: "\e801",
-);
-@function content($key) {
-  @return map.get($custom-content, $key);
-}
-
-$custom-border-radius: (
-  120: 120px
-);
-@function border-radius($key) {
-  @return map.get($custom-border-radius, $key);
-}
-
-$custom-border: (
-  none: none
-);
-@function border($key) {
-  @return map.get($custom-border, $key);
-}
-
-$custom-position: (
-  absolute: absolute
-);
-@function position($key) {
-  @return map.get($custom-position, $key);
-}
-
+// Pointer Events
 $custom-pointer-events: (
   none: none,
   auto: auto,
@@ -197,15 +180,73 @@ $custom-pointer-events: (
   @return map.get($custom-pointer-events, $key);
 }
 
-$container-max-width: 1290px;
+// Position
+$custom-position: (
+  absolute: absolute,
+  relative: relative
+);
+@function position($key) {
+  @return map.get($custom-position, $key);
+}
 
-$logo-max-height: 22px;
+// padding, margin, left, right, bottom, top
+$custom-spacers: (
+  0: 0,
+  1: .25rem,
+  2: .5rem,
+  3: 3px,
+  4: 1.5rem,
+  5: 5px,
+  7: 7px,
+  8: 8px,
+  'm8': -8px,
+  'm9': -9px,
+  9: 9px,
+  10: 10px,
+  12: 12px,
+  13: 13px,
+  15: 15px,
+  'm16': -18px,
+  18: 18px,
+  20: 20px,
+  22: 22px,
+  24: 24px,
+  25: 25px,
+  27: 27px,
+  28: 28px,
+  30: 30px,
+  32: 32px,
+  35: 35px,
+  40: 40px,
+  45: 45px,
+  50: 50px,
+  95: 95px,
+  100: 100%,
+  125: 125px
+);
+@function spacer($key) {
+  @return map.get($custom-spacers, $key);
+}
 
-$padding-x-container: 70px;
+// Viewport Height
+$custom-viewport-height: (
+  25: 25vh,
+  50: 50vh,
+  65: 65vh,
+  75: 75vh,
+  100: 100vh
+);
+@function viewport-height($key) {
+  @return map.get($custom-viewport-height, $key);
+}
 
-$gutter-row: 30px;
-
-.g-30 {
-  --bs-gutter-x: 30px;
-  --bs-gutter-y: 30px;
+// Width
+$custom-width: (
+  10: 10px,
+  66: 66px,
+  100: 100%,
+  180: 180px
+);
+@function width($key) {
+  @return map.get($custom-width, $key);
 }

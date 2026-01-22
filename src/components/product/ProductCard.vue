@@ -35,10 +35,10 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <div class="card me-sm-3 mb-sm-3 h-100">
-    <div class="product-image">
-      <RouterLink :to="'/' + product.slug"
-                  @click="category && navStore.setCategoryTrail(category)">
+  <div class="card me-sm-3 mb-sm-3 h-100 w-100 border-none">
+    <div class="product-image border-radius-6 overflow-hidden mb-25">
+      <RouterLink :to="'/' + product.slug" @click="category && navStore.setCategoryTrail(category)"
+                  class="text-decoration-none">
       <img class="card-img-top" :src="resolvePublicUrl(product.imageUrl)" alt=""
            :srcset="
             resolvePublicUrl(product.imageUrlL)
@@ -48,13 +48,13 @@ watchEffect(async () => {
     </RouterLink>
     </div>
     <div class="card-body d-flex flex-column p-0">
-      <span class="product-category" v-if="productCardData">
-        <RouterLink :to="'/' + productCardData.primaryCategory.slug">
+      <span class="product-category fs-12 mb-9" v-if="productCardData">
+        <RouterLink :to="'/' + productCardData.primaryCategory.slug" class="text-decoration-none">
           {{ productCardData.primaryCategory.title }}
         </RouterLink>
       </span>
-      <component :is="titleTag" class="card-title product-title">
-        <RouterLink :to="'/' + product.slug"
+      <component :is="titleTag" class="card-title product-title font-family-bitter fs-16 mb-3">
+        <RouterLink :to="'/' + product.slug" class="text-decoration-none"
                     @click="category && navStore.setCategoryTrail(category)">
           {{ product.title }}
         </RouterLink>
@@ -68,27 +68,5 @@ watchEffect(async () => {
 </template>
 
 <style scoped lang="scss">
-@use "sass:map";
 
-.card {
-  width: 100%;
-  border: none;
-}
-.card a {
-  text-decoration: none;
-}
-.product-image {
-  border-radius: 6px;
-  overflow: hidden;
-  margin: 0 0 25px 0;
-}
-.product-category {
-  font-size: 12px;
-  margin: 0 0 9px 0;
-}
-.product-title {
-  font-family: map.get($custom-font-family, 'bitter');
-  font-size: 16px;
-  margin: 0 0 3px 0;
-}
 </style>

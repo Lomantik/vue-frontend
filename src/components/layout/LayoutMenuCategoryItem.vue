@@ -117,12 +117,12 @@ watchEffect(async () => {
 }
 
 .dropdown.dropend .dropdown-toggle::after {
-  content: "\e801";
+  content: content('arrow-right');
   font-family: map.get($custom-font-family, 'blooms');
-  font-size: 16px;
-  border: none;
-  margin-left: 10px;
-  position: relative;
-  right: 0;
+  font-size: font-size(16);
+  border: border('none');
+  margin-left: spacer(10);
+  position: position('relative');
+  right: spacer(0);
 }
 </style>
