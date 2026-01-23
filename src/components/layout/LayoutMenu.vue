@@ -53,23 +53,23 @@ watchEffect(async () => {
         </span>
       </button>
       <div class="navbar-collapse collapse" :class="showMobileMenuClass" @mouseleave="closeAll">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav lh-100">
           <li class="nav-item py-20" @mouseenter="openLevel(0, 'home')">
-            <RouterLink to="/" class="nav-link py-10 px-20 lh-14 min-h-38 d-flex align-items-center
+            <RouterLink to="/" class="nav-link py-10 px-20 min-h-38 d-flex align-items-center
               border-radius-120" exact-active-class="active">Home</RouterLink>
           </li>
           <LayoutMenuCategoryItem v-if="categoryTree" :link="{ title: 'Shop', slug: 'shop'}"
                                   :category="categoryTree" />
           <li class="nav-item py-20" @mouseenter="openLevel(0, 'blog')">
-            <RouterLink to="/blog" class="nav-link py-10 px-20 lh-14 min-h-38 d-flex
+            <RouterLink to="/blog" class="nav-link py-10 px-20 min-h-38 d-flex
               align-items-center border-radius-120" exact-active-class="active">Blog</RouterLink>
           </li>
           <li class="nav-item py-20" @mouseenter="openLevel(0, 'about')">
-            <RouterLink to="/about" class="nav-link py-10 px-20 lh-14 min-h-38 d-flex
+            <RouterLink to="/about" class="nav-link py-10 px-20 min-h-38 d-flex
               align-items-center border-radius-120" exact-active-class="active">About</RouterLink>
           </li>
           <li class="nav-item py-20" @mouseenter="openLevel(0, 'contact')">
-            <RouterLink to="/contact" class="nav-link py-10 px-20 lh-14 min-h-38 d-flex
+            <RouterLink to="/contact" class="nav-link py-10 px-20 min-h-38 d-flex
               align-items-center border-radius-120" exact-active-class="active">Contact</RouterLink>
           </li>
         </ul>

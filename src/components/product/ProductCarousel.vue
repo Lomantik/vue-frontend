@@ -16,7 +16,7 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <section class="product-carousel py-3" v-if="products">
+  <section class="product-carousel py-3 mt-10 mt-lg-20" v-if="products">
     <div class="container">
       <Swiper
         :slides-per-view="4"
