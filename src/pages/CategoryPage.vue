@@ -1,25 +1,16 @@
 <script setup>
-import { ref, watchEffect } from 'vue'
-import { getProductsByCategoryId } from '@/api/products.api.js'
 import ProductList from '@/components/product/ProductList.vue'
 
 /** @typedef {import('@/types/category.js').Category} Category */
 /** @typedef {import('@/types/product.js').Product} Product */
 
-const props = defineProps(({
+defineProps(({
   /** @type {{product: Category}} */
   category: {
     type: Object,
     required: true
   },
 }))
-
-/** @type {import('vue').Ref<Product[]>} */
-const products = ref([])
-
-watchEffect(async () => {
-  products.value = await getProductsByCategoryId(props.category.id)
-})
 </script>
 
 <template>

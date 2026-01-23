@@ -7,11 +7,12 @@ import { useNavigationStore } from '@/stores/navigation.store.js'
 /** @typedef {import('@/types/product.js').Product} Product */
 /** @typedef {import('@/types/category.js').Category} Category */
 /** @typedef {import('@/types/page.js').Page} Page */
-/** @typedef {import('@/types/meta.js').AppRouteMeta} AppRouteMeta */
 /** @typedef {import('@/types/meta.js').Breadcrumb} Breadcrumb */
+/** @typedef {import('@/types/meta.js').AppRouteMeta} AppRouteMeta */
 
 /**
  * @param {Category} category
+ * @return Breadcrumb[]
  */
 export function buildCategoryBreadcrumbs(category) {
   const crumbs = []
@@ -28,7 +29,7 @@ export function buildCategoryBreadcrumbs(category) {
 
 /**
  * @returns {{
- * meta: import('vue').ComputedRef<import('@/router/meta').AppRouteMeta>,
+ * meta: import('vue').ComputedRef<AppRouteMeta>,
  * breadcrumbs: import('vue').ComputedRef<Breadcrumb[]>
  * }}
  */
@@ -48,7 +49,6 @@ export function useBreadcrumbs() {
     if (meta.value.breadcrumb) {
       crumbs.push({ label: meta.value.breadcrumb, path: route.path })
     } else {
-
       /** @type {Product|Category|Page|null} */
       let data = null
       switch (pageContext.type) {

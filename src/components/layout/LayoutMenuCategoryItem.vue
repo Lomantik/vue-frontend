@@ -1,10 +1,9 @@
 <script setup>
-import { computed, inject, ref, watchEffect } from 'vue'
 import { RouterLink } from 'vue-router'
-import { buildCategoryPath } from '@/domain/categories/category.path.js'
+import { useLayoutMenuCategoryItem } from '@/composables/useLayoutMenuCategoryItem.js'
+import { toRef } from 'vue'
 
 /** @typedef {import('@/types/category.js').Category} Category */
-
 /**
  * @typedef {Object} Link
  * @property {string} title
@@ -28,53 +27,45 @@ const props = defineProps({
   },
 })
 
-const level = props.level ? props.level : 0
-const { activeMenu, openLevel } = inject('activeMenu')
-
-const hasChildren = computed(() => {
-  return props.category.children && props.category.children.length > 0
-})
-
-const isDropend = computed(() => {
-  return level % 2 !== 0
-})
-
-const canonicalPath = ref(null)
-const joinedCanonicalPath = computed(() => {
-  return canonicalPath.value ? canonicalPath.value.join('/') : ''
-})
-
-watchEffect(async () => {
-  canonicalPath.value = await buildCategoryPath(props.category)
-})
+const categoryRef = toRef(props, 'category')
+const linkRef = toRef(props, 'link')
+const levelRef = toRef(props, 'level')
+const {
+  resolvedLevel,
+  activeMenu,
+  openLevel,
+  hasChildren,
+  isDropend,
+  joinedCanonicalPath
+} = useLayoutMenuCategoryItem(categoryRef, linkRef, levelRef)
 </script>
 
 <template>
   <template v-if="link">
-    <li :class="{'dropdown position-relative': hasChildren, 'nav-item py-20 px-0': level === 0, dropend: isDropend}"
-        @mouseenter="openLevel(level, link.slug)">
+    <li :class="{'dropdown position-relative': hasChildren, 'nav-item py-20 px-0': resolvedLevel === 0, dropend: isDropend}"
+        @mouseenter="openLevel(resolvedLevel, link.slug)">
       <RouterLink :to="'/' + link.slug" class="nav-link py-10 px-20 min-h-38 d-flex align-items-center border-radius-120" exact-active-class="active"
                   :class="{'dropdown-toggle': hasChildren, 'dropdown-item d-flex justify-content-between py-10 px-0 min-w-180': level > 0}">
         {{ link.title }}
       </RouterLink>
       <ul v-if="hasChildren" class="dropdown-menu position-absolute py-18 px-27 border-primary lh-110"
-          :class="{ show: activeMenu[level] === link.slug, 'top-0 left-100 mt-m16 ms-35': isDropend, 'top-100 left-0 mt-8 ms-m8': !isDropend }">
+          :class="{ show: activeMenu[resolvedLevel] === link.slug, 'top-0 left-100 mt-m16 ms-35': isDropend, 'top-100 left-0 mt-8 ms-m8': !isDropend }">
         <LayoutMenuCategoryItem v-for="child in category.children" :key="child.id"
-                                :category="child" :level="level + 1" class="" />
+                                :category="child" :level="resolvedLevel + 1" class="" />
       </ul>
     </li>
   </template>
   <template v-else>
     <li :class="{'dropdown position-relative': hasChildren, 'nav-item': level === 0, dropend: isDropend}"
-        @mouseenter="openLevel(level, category.slug)">
+        @mouseenter="openLevel(resolvedLevel, category.slug)">
       <RouterLink :to="'/' + joinedCanonicalPath" exact-active-class="active"
-                  :class="{'dropdown-toggle': hasChildren, 'dropdown-item d-flex justify-content-between py-10 px-0 min-w-180': level > 0}">
+                  :class="{'dropdown-toggle': hasChildren, 'dropdown-item d-flex justify-content-between py-10 px-0 min-w-180': resolvedLevel > 0}">
         {{ category.title }}
       </RouterLink>
       <ul v-if="hasChildren" class="dropdown-menu position-absolute py-18 px-27 border-primary lh-110"
-          :class="{ show: activeMenu[level] === category.slug, 'top-0 left-100 mt-m16 ms-35': isDropend, 'top-100 left-0 mt-8 ms-m8': !isDropend }">
+          :class="{ show: activeMenu[resolvedLevel] === category.slug, 'top-0 left-100 mt-m16 ms-35': isDropend, 'top-100 left-0 mt-8 ms-m8': !isDropend }">
         <LayoutMenuCategoryItem v-for="child in category.children" :key="child.id"
-                                :category="child" :level="level + 1" class="" />
+                                :category="child" :level="resolvedLevel + 1" class="" />
       </ul>
     </li>
   </template>
