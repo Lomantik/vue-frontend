@@ -14,7 +14,13 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         quietDeps: true,
-        additionalData: `@use "@/assets/styles/tokens/variables.scss" as *;`
+        additionalData: `@use "@/assets/styles/tokens/variables.scss" as *;`,
+        silenceDeprecations: [
+          'global-builtin',
+          'import',
+          'if-function',
+          'color-functions'
+        ],
       },
     },
   },

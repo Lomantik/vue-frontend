@@ -53,11 +53,11 @@ watchEffect(async () => {
   <template v-if="link">
     <li :class="{'dropdown position-relative': hasChildren, 'nav-item py-20 px-0': level === 0, dropend: isDropend}"
         @mouseenter="openLevel(level, link.slug)">
-      <RouterLink :to="'/' + link.slug" class="nav-link py-10 px-20 lh-14 min-h-38 d-flex align-items-center border-radius-120" exact-active-class="active"
+      <RouterLink :to="'/' + link.slug" class="nav-link py-10 px-20 min-h-38 d-flex align-items-center border-radius-120" exact-active-class="active"
                   :class="{'dropdown-toggle': hasChildren, 'dropdown-item d-flex justify-content-between py-10 px-0 min-w-180': level > 0}">
         {{ link.title }}
       </RouterLink>
-      <ul v-if="hasChildren" class="dropdown-menu position-absolute py-18 px-27 border-primary lh-1_1"
+      <ul v-if="hasChildren" class="dropdown-menu position-absolute py-18 px-27 border-primary lh-110"
           :class="{ show: activeMenu[level] === link.slug, 'top-0 left-100 mt-m16 ms-35': isDropend, 'top-100 left-0 mt-8 ms-m8': !isDropend }">
         <LayoutMenuCategoryItem v-for="child in category.children" :key="child.id"
                                 :category="child" :level="level + 1" class="" />
@@ -71,7 +71,7 @@ watchEffect(async () => {
                   :class="{'dropdown-toggle': hasChildren, 'dropdown-item d-flex justify-content-between py-10 px-0 min-w-180': level > 0}">
         {{ category.title }}
       </RouterLink>
-      <ul v-if="hasChildren" class="dropdown-menu position-absolute py-18 px-27 border-primary lh-1_1"
+      <ul v-if="hasChildren" class="dropdown-menu position-absolute py-18 px-27 border-primary lh-110"
           :class="{ show: activeMenu[level] === category.slug, 'top-0 left-100 mt-m16 ms-35': isDropend, 'top-100 left-0 mt-8 ms-m8': !isDropend }">
         <LayoutMenuCategoryItem v-for="child in category.children" :key="child.id"
                                 :category="child" :level="level + 1" class="" />

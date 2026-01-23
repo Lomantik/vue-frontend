@@ -20,8 +20,8 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <div class="star-rating position-relative lh-1 fs-14 h-28 mw-66 ls-05 align-self-start" v-if="ratingData && ratingData.show">
-    <span :style="ratingData.style" class="star-rating-internal d-block overflow-hidden position-absolute top-0 left-0 h-14 lh-1"></span>
+  <div class="star-rating position-relative lh-100 fs-14 h-28 mw-66 ls-05 align-self-start" v-if="ratingData && ratingData.show">
+    <span :style="ratingData.style" class="star-rating-internal d-block overflow-hidden position-absolute top-0 left-0 h-14 lh-100"></span>
   </div>
 </template>
 
