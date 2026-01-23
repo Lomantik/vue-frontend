@@ -1,45 +1,18 @@
 <script setup>
-import { RouterLink, useRoute } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import MainLogo from '@/components/MainLogo.vue'
-import { computed, ref, watchEffect, provide, watch } from 'vue'
 import UserActions from '@/components/UserActions.vue'
 import LayoutMenuCategoryItem from '@/components/layout/LayoutMenuCategoryItem.vue'
-import { getCategoryTree } from '@/api/categories.api.js'
 import NavbarTogglerIcon from '@/components/ui/NavbarTogglerIcon.vue'
+import { useLayoutMenu } from '@/composables/useLayoutMenu.js'
 
-const showMobileMenu = ref(false)
-const showMobileMenuClass = computed(() => {
-  return showMobileMenu.value ? 'show' : ''
-})
-
-function openLevel(level, id) {
-  activeMenu.value[level] = id
-}
-
-function closeAll() {
-  activeMenu.value = []
-}
-
-const activeMenu = ref([])
-provide('activeMenu', {
-  activeMenu,
-  openLevel(level, id) {
-    activeMenu.value[level] = id
-  }
-})
-
-const route = useRoute()
-watch(
-  () => route.fullPath,
-  () => {
-    closeAll()
-  }
-)
-
-const categoryTree = ref()
-watchEffect(async () => {
-  categoryTree.value = await getCategoryTree()
-})
+const {
+  showMobileMenu,
+  showMobileMenuClass,
+  openLevel,
+  closeAll,
+  categoryTree
+} = useLayoutMenu()
 </script>
 
 <template>

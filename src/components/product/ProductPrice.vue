@@ -1,5 +1,6 @@
 <script setup>/** @typedef {import('@/types/product.js').Product} Product */
 import { useProductPrice } from '@/composables/useProductPrice.js'
+import { toRef } from 'vue'
 
 const props = defineProps({
   /** @type {Product} */
@@ -9,13 +10,14 @@ const props = defineProps({
   }
 })
 
+const productRef = toRef(props, 'product')
 const {
   minPrice,
   maxPrice,
   hasDiscount,
   salePrice,
   isRange
-} = useProductPrice(props.product)
+} = useProductPrice(productRef)
 </script>
 
 <template>

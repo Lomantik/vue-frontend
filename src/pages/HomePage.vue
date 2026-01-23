@@ -5,7 +5,7 @@ import ProductCarousel from '@/components/product/ProductCarousel.vue'
 
 <template>
   <LayoutHero />
-  <ProductCarousel />
+  <ProductCarousel :categoryId="5" />
 </template>
 
 <style scoped>

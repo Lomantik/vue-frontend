@@ -1,10 +1,9 @@
 <script setup>
 import ProductCard from '@/components/product/ProductCard.vue'
-import { ref, watchEffect } from 'vue'
-import { getAllProducts, getProductsByCategoryId } from '@/api/products.api.js'
+import { useProductList } from '@/composables/useProductList.js'
+import { toRef } from 'vue'
 
 /** @typedef {import('@/types/category.js').Category} Category */
-/** @typedef {import('@/types/product.js').Product} Product */
 
 const props = defineProps({
   /** @type {Category} */
@@ -17,14 +16,8 @@ const props = defineProps({
     required: false
   }
 })
-
-/** @type {import('vue').Ref<Product[]>} */
-const products = ref([])
-
-watchEffect(async () => {
-  if (props.category) products.value = await getProductsByCategoryId(props.category.id)
-  else products.value = await getAllProducts()
-})
+const categoryRef = toRef(props, 'category')
+const { products } = useProductList(categoryRef)
 </script>
 
 <template>

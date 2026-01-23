@@ -1,17 +1,5 @@
-/**
- * @typedef {Object} Breadcrumb
- * @property {string} label
- * @property {string} path
- */
-
-/**
- * @typedef {Object} AppRouteMeta
- * @property {string} layout
- * @property {boolean} hideHome
- * @property {boolean} hideBreadcrumbs
- * @property {string|((route: import('vue-router').RouteLocationNormalizedLoaded) => string)=} breadcrumb
- * @property {(route: import('vue-router').RouteLocationNormalizedLoaded) => Breadcrumb} parentBreadcrumb
- */
+/** @typedef {import('@/types/meta.js').Breadcrumb} Breadcrumb */
+/** @typedef {import('@/types/meta.js').AppRouteMeta} AppRouteMeta */
 
 /**
  * @param {import('vue-router').RouteLocationNormalizedLoaded} route
@@ -31,5 +19,3 @@ export function resolveBreadcrumb(meta, route) {
 
   return typeof meta.breadcrumb === 'function' ? meta.breadcrumb(route) : meta.breadcrumb
 }
-
-export {}

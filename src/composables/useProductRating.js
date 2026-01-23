@@ -1,34 +1,38 @@
 import { getReviewsByProductId } from '@/api/reviews.api.js'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 /** @typedef {import('@/types/review.js').Review} Review */
 
 /**
  * @param {Product} product
- * @returns {Promise<{
- * reviews: Review[],
- * overallRating: import('vue').Ref<number>
+ * @returns {{
  * show: import('vue').Ref<boolean>
- * style: Object<string|any>
- * }>}
+ * style: import('vue').ComputedRef<Object|any>
+ * }}
  */
-export async function useProductRating(product) {
-  const reviews = await getReviewsByProductId(product.id)
+export  function useProductRating(product) {
+  /** @type {import('vue').Ref<Review[]>} */
+  const reviews = ref([])
   const overallRating = ref(0)
   const show = ref(false)
-  for (const review of reviews) {
-    overallRating.value += review.rating
-  }
-  if (overallRating.value > 0) {
-    show.value = true
-  }
   const style = computed(() => ({
     width: (20 * overallRating.value) + '%'
   }))
 
+  watch(
+    () => product.value?.id,
+    async (productId) => {
+      reviews.value = await getReviewsByProductId(productId)
+      for (const review of reviews.value) {
+        overallRating.value += review.rating
+      }
+      if (overallRating.value > 0) {
+        show.value = true
+      }
+    }, { immediate: true }
+  )
+
   return {
-    reviews,
-    overallRating,
     show,
     style
   }

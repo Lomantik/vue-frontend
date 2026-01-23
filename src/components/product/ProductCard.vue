@@ -1,10 +1,9 @@
 <script setup>
-import { useNavigationStore } from '@/stores/navigation.store.js'
 import { resolvePublicUrl } from '@/domain/urls.js'
-import { computed, ref, watchEffect } from 'vue'
 import ProductPrice from '@/components/product/ProductPrice.vue'
 import { useProductCard } from '@/composables/useProductCard.js'
 import ProductRating from '@/components/product/ProductRating.vue'
+import { toRef } from 'vue'
 
 /** @typedef {import('@/types/category.js').Category} Category */
 /** @typedef {import('@/types/product.js').Product} Product */
@@ -26,12 +25,13 @@ const props = defineProps({
   }
 })
 
-const navStore = useNavigationStore()
-const titleTag = computed(() => { return props.titleTag ?? 'span' })
-const productCardData = ref(null)
-watchEffect(async () => {
-  productCardData.value = await useProductCard(props.product)
-})
+const productRef = toRef(props, 'product')
+const titleTagRef = toRef(props, 'titleTag')
+const {
+  resolvedTitleTag,
+  navStore,
+  primaryCategory
+} = useProductCard(productRef, titleTagRef)
 </script>
 
 <template>
@@ -39,21 +39,21 @@ watchEffect(async () => {
     <div class="product-image border-radius-6 overflow-hidden mb-25">
       <RouterLink :to="'/' + product.slug" @click="category && navStore.setCategoryTrail(category)"
                   class="text-decoration-none">
-      <img class="card-img-top" :src="resolvePublicUrl(product.imageUrl)" alt=""
-           :srcset="
+        <img class="card-img-top" :src="resolvePublicUrl(product.imageUrl)" alt=""
+             :srcset="
             resolvePublicUrl(product.imageUrlL)
             + ' 600w, ' + resolvePublicUrl(product.imageUrlM)
             + ' 250w, ' + resolvePublicUrl(product.imageUrlS)
             +  ' 200w'" sizes="(max-width: 600px) 100vw, 600px" loading="lazy" decoding="async">
-    </RouterLink>
+      </RouterLink>
     </div>
     <div class="card-body d-flex flex-column p-0">
-      <span class="product-category fs-12 mb-9" v-if="productCardData">
-        <RouterLink :to="'/' + productCardData.primaryCategory.slug" class="text-decoration-none">
-          {{ productCardData.primaryCategory.title }}
+      <span class="product-category fs-12 mb-9" v-if="primaryCategory">
+        <RouterLink :to="'/' + primaryCategory.slug" class="text-decoration-none">
+          {{ primaryCategory.title }}
         </RouterLink>
       </span>
-      <component :is="titleTag" class="card-title product-title font-family-bitter fs-16 mb-3">
+      <component :is="resolvedTitleTag" class="card-title product-title font-family-bitter fs-16 mb-3">
         <RouterLink :to="'/' + product.slug" class="text-decoration-none"
                     @click="category && navStore.setCategoryTrail(category)">
           {{ product.title }}

@@ -4,9 +4,7 @@ import DefaultLayout from "@/layouts/DefaultLayout.vue"
 import { getLayoutMeta } from '@/router/meta.js'
 
 const route = useRoute()
-
 const meta = getLayoutMeta(route)
-
 const layouts = {
   default: DefaultLayout,
 }

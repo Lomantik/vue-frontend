@@ -5,32 +5,34 @@ import { getAllChildProducts } from '@/utils/product.js'
 
 /**
  * @param {Product} product
+ * @returns {{
+ * minPrice: import('vue').ComputedRef<string|null>,
+ * maxPrice: import('vue').ComputedRef<string|null>,
+ * hasDiscount: import('vue').ComputedRef<boolean>,
+ * salePrice: import('vue').ComputedRef<string|null>,
+ * isRange: import('vue').ComputedRef<boolean>
+ * }}
  */
 export function useProductPrice(product) {
   const prices = ref([])
-
   const minPrice = computed(() => {
     return prices.value.length ? Math.min(...prices.value).toFixed(2) : null
   })
-
   const maxPrice = computed(() => {
     return prices.value.length ? Math.max(...prices.value).toFixed(2) : null
   })
-
   const isRange = computed(() => {
     return minPrice.value < maxPrice.value
   })
-
   const hasDiscount = computed(() => {
-    return typeof product.salePrice === 'number'
+    return typeof product.value.salePrice === 'number'
   })
-
   const salePrice = computed(() => {
-    return product.salePrice.toFixed(2)
+    return product.value.salePrice.toFixed(2)
   })
 
   watch(
-    () => product,
+    () => product.value,
     async (product) => {
       prices.value = []
       if (product.type === 'simple') {

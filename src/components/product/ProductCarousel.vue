@@ -1,18 +1,21 @@
 <script setup>
-import { ref, watchEffect } from 'vue'
 import ProductCard from '@/components/product/ProductCard.vue'
-import { getProductsByCategoryId } from '@/api/products.api.js'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/autoplay'
+import { useProductCarousel } from '@/composables/useProductCarousel.js'
+import { toRef } from 'vue'
 
-const products = ref([])
-
-watchEffect(async () => {
-  products.value = await getProductsByCategoryId(5)
+const props = defineProps({
+  categoryId: {
+    type: Number,
+    required: true
+  },
 })
+const categoryIdRef = toRef(props, 'categoryId')
+const { products } = useProductCarousel(categoryIdRef)
 </script>
 
 <template>
