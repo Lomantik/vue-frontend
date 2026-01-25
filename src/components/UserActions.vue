@@ -20,6 +20,6 @@ import CartIcon from '@/components/ui/CartIcon.vue'
   </nav>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 
 </style>
