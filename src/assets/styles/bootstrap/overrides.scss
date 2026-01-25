@@ -2,19 +2,32 @@
 @use 'sass:color';
 @use "../tokens/variables" as *;
 
+$enable-rfs: false;
+
 $container-max-widths: $custom-container-max-widths;
 $spacers: $custom-spacers;
 $theme-colors: $custom-theme-colors;
 
-$body-bg: map.get($custom-theme-colors, 'white');
+$body-bg: color('white');
 $body-color: color('primary');
 $body-font-family: font-family('base');
 $body-font-size: font-size(17);
+
 $breadcrumb-active-color: color('primary');
 $breadcrumb-color: color('muted');
+
+$btn-border-radius: border-radius('base');
+$btn-border-width: spacer(0);
 $btn-color: color('primary');
-$btn-font-family: font-family('base');
+$btn-padding-y: spacer(14);
+$btn-padding-x: spacer(34);
+$btn-focus-box-shadow: box-shadow('none');
+$btn-font-family: font-family(base);
+$btn-font-size: font-size(14);
+$btn-font-weight: font-weight(500);
+$btn-line-height: line-height('14-20');
 $btn-link-color: color('primary');
+
 $dropdown-font-size: font-size(14);
 $dropdown-link-active-bg: background('none');
 $dropdown-link-active-color: color('grey');
@@ -22,29 +35,47 @@ $dropdown-link-active-hover-color: color('blue');
 $dropdown-link-hover-bg: background('none');
 $dropdown-link-hover-color: color('blue');
 $dropdown-link-line-height: line-height(110);
+
 $grid-gutter-width: gutter(30);
+
 $headings-color: color('primary');
 $headings-font-family: font-family('bitter');
+
 $input-color: color('primary');
 $input-font-family: font-family('base');
 $input-placeholder-color: color('muted');
+$input-border-radius: border-radius('base');
+$input-padding-y: spacer(14);
+$input-padding-x: spacer(7);
+$input-focus-box-shadow: box-shadow('none');
+
 $line-height-base: line-height('base');
+
 $link-color: color('primary');
+$link-decoration: link-decoration('none');
+$link-hover-decoration: link-decoration('none');
 $link-hover-color: color('blue');
+
 $nav-link-color: color('primary');
 $nav-link-font-family: font-family('base');
 $nav-link-hover-color: color('blue');
+
 $navbar-light-active-color: color('grey');
 $navbar-light-color: color('primary');
 $navbar-light-hover-color: color('blue');
 $navbar-nav-link-padding-x: spacer(20);
+
 $spacer: spacer(3);
+
 $text-color: color('primary');
 $text-muted: color('muted');
 
 /* Bootstrap required */
 @import "../../../../node_modules/bootstrap/scss/functions";
 @import "../../../../node_modules/bootstrap/scss/variables";
+
+$font-sizes: map-merge($font-sizes, $custom-font-sizes);
+
 @import "../../../../node_modules/bootstrap/scss/maps";
 @import "../../../../node_modules/bootstrap/scss/mixins";
 
@@ -103,6 +134,12 @@ $utilities: map-merge(
         responsive: true,
         values: $custom-font-family
       ),
+      "font-size": map-merge(
+          map-get($utilities, "font-size"),
+          (
+            responsive: true
+          )
+      ),
       "height": map-merge(
           map-get($utilities, "height"),
           (
@@ -138,6 +175,7 @@ $utilities: map-merge(
       "max-width": (
         property: max-width,
         class: mw,
+        responsive: true,
         values: $custom-width
       ),
       "min-height": (
@@ -170,6 +208,15 @@ $utilities: map-merge(
         responsive: true,
         values: $custom-pointer-events
       ),
+      "rounded": map-merge(
+          map-get($utilities, "rounded"),
+          (
+            values: map-merge(
+                map-get(map-get($utilities, "rounded"), "values"),
+                $custom-rounded
+            )
+          )
+      ),
       "stroke": (
         property: stroke,
         class: stroke,
@@ -200,4 +247,13 @@ $utilities: map-merge(
   --bs-link-hover-color: color('blue');
 
   --color-accent: color('primary');
+}
+
+@each $name, $color in $theme-colors {
+  .btn-#{$name} {
+    --bs-btn-color: #{contrast-color($name)};
+    --bs-btn-bg: #{$color};
+    --bs-btn-hover-bg: #{$color};
+    --bs-btn-hover-color: #{contrast-color($name)};
+  }
 }

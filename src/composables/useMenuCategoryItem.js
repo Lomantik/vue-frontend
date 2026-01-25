@@ -12,7 +12,7 @@ import { buildCategoryPath } from '@/domain/categories/category.path.js'
  * joinedCanonicalPath: import('vue').ComputedRef<string>
  * }}
  */
-export function useLayoutMenuCategoryItem(category, link, level) {
+export function useMenuCategoryItem(category, link, level) {
   const resolvedLevel = level.value ? level.value : 0
   const { activeMenu, openLevel } = inject('activeMenu')
   const hasChildren = computed(() => {

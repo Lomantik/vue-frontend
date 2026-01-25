@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink } from 'vue-router'
-import { useLayoutMenuCategoryItem } from '@/composables/useLayoutMenuCategoryItem.js'
+import { useMenuCategoryItem } from '@/composables/useMenuCategoryItem.js'
 import { toRef } from 'vue'
 
 /** @typedef {import('@/types/category.js').Category} Category */
@@ -37,7 +37,7 @@ const {
   hasChildren,
   isDropend,
   joinedCanonicalPath
-} = useLayoutMenuCategoryItem(categoryRef, linkRef, levelRef)
+} = useMenuCategoryItem(categoryRef, linkRef, levelRef)
 </script>
 
 <template>
@@ -50,7 +50,7 @@ const {
       </RouterLink>
       <ul v-if="hasChildren" class="dropdown-menu position-absolute py-18 px-27 border-primary lh-110"
           :class="{ show: activeMenu[resolvedLevel] === link.slug, 'top-0 left-100 mt-m16 ms-35': isDropend, 'top-100 left-0 mt-8 ms-m8': !isDropend }">
-        <LayoutMenuCategoryItem v-for="child in category.children" :key="child.id"
+        <MenuCategoryItem v-for="child in category.children" :key="child.id"
                                 :category="child" :level="resolvedLevel + 1" class="" />
       </ul>
     </li>
@@ -64,7 +64,7 @@ const {
       </RouterLink>
       <ul v-if="hasChildren" class="dropdown-menu position-absolute py-18 px-27 border-primary lh-110"
           :class="{ show: activeMenu[resolvedLevel] === category.slug, 'top-0 left-100 mt-m16 ms-35': isDropend, 'top-100 left-0 mt-8 ms-m8': !isDropend }">
-        <LayoutMenuCategoryItem v-for="child in category.children" :key="child.id"
+        <MenuCategoryItem v-for="child in category.children" :key="child.id"
                                 :category="child" :level="resolvedLevel + 1" class="" />
       </ul>
     </li>

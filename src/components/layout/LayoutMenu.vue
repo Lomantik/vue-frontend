@@ -2,7 +2,7 @@
 import { RouterLink } from 'vue-router'
 import MainLogo from '@/components/MainLogo.vue'
 import UserActions from '@/components/UserActions.vue'
-import LayoutMenuCategoryItem from '@/components/layout/LayoutMenuCategoryItem.vue'
+import MenuCategoryItem from '@/components/blocks/MenuCategoryItem.vue'
 import NavbarTogglerIcon from '@/components/ui/NavbarTogglerIcon.vue'
 import { useLayoutMenu } from '@/composables/useLayoutMenu.js'
 
@@ -31,7 +31,7 @@ const {
             <RouterLink to="/" class="nav-link py-10 px-20 min-h-38 d-flex align-items-center
               border-radius-120" exact-active-class="active">Home</RouterLink>
           </li>
-          <LayoutMenuCategoryItem v-if="categoryTree" :link="{ title: 'Shop', slug: 'shop'}"
+          <MenuCategoryItem v-if="categoryTree" :link="{ title: 'Shop', slug: 'shop'}"
                                   :category="categoryTree" />
           <li class="nav-item py-20" @mouseenter="openLevel(0, 'blog')">
             <RouterLink to="/blog" class="nav-link py-10 px-20 min-h-38 d-flex

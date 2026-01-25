@@ -2,6 +2,7 @@ import products from '@/data/products.json'
 import categories from '@/data/categories.json'
 import pages from '@/data/pages.json'
 import reviews from '@/data/reviews.json'
+import images from '@/data/images.json'
 import aboutHtml from '@/content/pages/about.html?raw'
 import contactHtml from '@/content/pages/contact.html?raw'
 
@@ -71,5 +72,11 @@ export const mockService = {
   },
   async getReviewsByProductId(productId) {
     return reviews.filter(review => review.productId === productId)
+  },
+  async getImageById(imageId) {
+    return images.find(image => image.id === imageId)
+  },
+  async getImageBySlug(imageSlug) {
+    return images.find(image => image.slug === imageSlug)
   }
 }
