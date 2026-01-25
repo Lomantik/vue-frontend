@@ -5,7 +5,7 @@ import MediaBanner from '@/components/blocks/MediaBanner.vue'
 
 <template>
   <section class="subscription container">
-    <MediaBanner class="rounded overflow-hidden text-center justify-content-center py-6p px-6p px-md-10p" :imageId="13">
+    <MediaBanner class="rounded overflow-hidden text-center justify-content-center py-6p px-6p px-md-10p" :imageId="13" :lazy="true">
       <h4 class="text-tertiary fs-18 fs-sm-20 fs-lg-28 lh-145 mb-46 fw-medium">Subscribe to get notified about exclusive offers!</h4>
       <div class="d-flex flex-column align-items-center w-100">
         <div class="mw-440 w-100">
