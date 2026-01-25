@@ -227,7 +227,13 @@ $utilities: map-merge(
         property: --bs-text-opacity,
         class: text-opacity,
         values: $custom-opacity
-      )
+      ),
+      "width": map-merge(
+          map-get($utilities, "width"),
+          (
+            responsive: true
+          )
+      ),
     ));
 
 /* Utilities API (classes generation) */
