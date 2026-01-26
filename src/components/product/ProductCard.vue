@@ -1,9 +1,9 @@
 <script setup>
-import { resolvePublicUrl } from '@/domain/urls.js'
 import ProductPrice from '@/components/product/ProductPrice.vue'
 import { useProductCard } from '@/composables/useProductCard.js'
 import ProductRating from '@/components/product/ProductRating.vue'
 import { toRef } from 'vue'
+import ResponsiveImage from '@/components/ui/ResponsiveImage.vue'
 
 /** @typedef {import('@/types/category.js').Category} Category */
 /** @typedef {import('@/types/product.js').Product} Product */
@@ -39,12 +39,7 @@ const {
     <div class="product-image border-radius-6 overflow-hidden mb-25">
       <RouterLink :to="'/' + product.slug" @click="category && navStore.setCategoryTrail(category)"
                   class="text-decoration-none">
-        <img class="card-img-top" :src="resolvePublicUrl(product.imageUrl)" alt=""
-             :srcset="
-            resolvePublicUrl(product.imageUrlL)
-            + ' 600w, ' + resolvePublicUrl(product.imageUrlM)
-            + ' 250w, ' + resolvePublicUrl(product.imageUrlS)
-            +  ' 200w'" sizes="(max-width: 600px) 100vw, 600px" loading="lazy" decoding="async">
+        <ResponsiveImage :image-key="product.mainImageId" class="card-img-top h-auto" loading="lazy" />
       </RouterLink>
     </div>
     <div class="card-body d-flex flex-column p-0">

@@ -1,5 +1,5 @@
 <script setup>
-import { resolvePublicUrl } from '@/domain/urls.js'
+import ResponsiveImage from '@/components/ui/ResponsiveImage.vue'
 
 /** @typedef {import('@/types/product.js').Product} Product */
 
@@ -16,11 +16,7 @@ defineProps(({
   <div class="container pb-4" v-if="product">
     <div class="row">
       <div class="col-sm-4">
-        <img class="mb-3 w-100" :src="resolvePublicUrl(product.imageUrl)" alt="" :srcset="
-            resolvePublicUrl(product.imageUrlL)
-            + ' 600w, ' + resolvePublicUrl(product.imageUrlM)
-            + ' 250w, ' + resolvePublicUrl(product.imageUrlS)
-            +  ' 200w'" sizes="(max-width: 600px) 100vw, 600px" loading="lazy">
+        <ResponsiveImage :image-key="product.mainImageId" class="mb-3 w-100 h-auto" loading="lazy" />
       </div>
       <div class="col-sm-8">
         <div class="row mb-5">
