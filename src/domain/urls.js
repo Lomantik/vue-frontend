@@ -23,6 +23,15 @@ export function resolveHtmlUrls(html) {
     }
   })
 
+  doc.querySelectorAll('[poster]').forEach(el => {
+    const attr = 'poster'
+    const val = el.getAttribute(attr)
+
+    if (val && val.startsWith('/')) {
+      el.setAttribute(attr, base.replace(/\/$/, '') + val)
+    }
+  })
+
   doc.querySelectorAll('[srcset]').forEach(el => {
     const srcset = el.getAttribute('srcset')
     if (!srcset) return
