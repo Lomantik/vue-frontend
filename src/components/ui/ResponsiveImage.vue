@@ -17,12 +17,13 @@ const props = defineProps({
 const imageKeyRef = toRef(props, 'imageKey')
 const {
   image,
+  src,
   srcset
 } = useResponsiveImage(imageKeyRef)
 </script>
 
 <template>
-  <img v-if="image" :src="`/${image.src}`" :alt="image.alt"
+  <img v-if="image" :src="`${src}`" :alt="image.alt"
        :srcset="srcset"
        :width="image.width"
        :height="image.height"
