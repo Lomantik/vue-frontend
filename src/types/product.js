@@ -1,4 +1,10 @@
 /**
+ * @typedef {Object} ImageRef
+ * @property {number} id
+ * @property {number} order
+ */
+
+/**
  * @typedef {Object} Product
  * @property {number} id
  * @property {string} slug
@@ -11,10 +17,8 @@
  * @property {string} description
  * @property {string} sku
  * @property {string[]|null} tags
- * @property {string|null} imageUrl
- * @property {string|null} imageUrlL
- * @property {string|null} imageUrlM
- * @property {string|null} imageUrlS
+ * @property {ImageRef[]} images
+ * @property {number} mainImageId
  * @property {number|null} qty
  * @property {Object<string, number>|null} attributes
  * @property {number[]} configurableAttributes

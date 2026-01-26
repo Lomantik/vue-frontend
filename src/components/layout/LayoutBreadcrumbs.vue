@@ -6,7 +6,7 @@ const { meta, breadcrumbs } = useBreadcrumbs()
 
 <template>
   <nav v-if="!meta.hideBreadcrumbs" aria-label="breadcrumb" class="ms-5 py-20 px-0">
-    <div class="container px-0">
+    <div class="container">
       <ol class="breadcrumb mb-0">
         <li v-for="(crumb, index) in breadcrumbs" :key="index" class="breadcrumb-item">
           <RouterLink v-if="index < breadcrumbs.length - 1" :to="crumb.path">

@@ -1,14 +1,18 @@
 <script setup>
-
 import ResponsiveImage from '@/components/ui/ResponsiveImage.vue'
+
+/**
+ * @typedef {number|string} ImageKey
+ */
 
 defineProps({
   grayed: {
     type: Boolean,
     required: false
   },
-  imageId: {
-    type: Number,
+  /** @type {import('vue').PropType<ImageKey>} */
+  imageKey: {
+    type: [Number, String],
     required: true
   },
   lazy: {
@@ -22,7 +26,7 @@ defineProps({
   <div class="position-relative p-10p">
     <span v-if="grayed" class="bg-grayer position-absolute d-block w-100 h-100 top-0 left-0
       bottom-0 right-0 bg-black opacity-30 z-1"></span>
-    <ResponsiveImage :image-id="imageId" :loading="lazy ? 'lazy' : 'auto'" decoding="async"
+    <ResponsiveImage :image-key="imageKey" :loading="lazy ? 'lazy' : undefined"
                      class="w-100 object-fit-cover position-absolute z-0 left-0 top-0 bottom-0
                      right-0 h-100" />
     <div class="z-1 h-100 d-flex flex-column justify-content-between position-relative">

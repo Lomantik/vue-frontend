@@ -13,7 +13,7 @@ import JourneyBlock from '@/components/blocks/JourneyBlock.vue'
     <HeroBlock class="mb-50" />
     <ProductCarousel :categoryId="5" :title="'Best Sellers'" class="mb-90" />
     <BlogPromoBlock class="mb-102" />
-    <BannerGrid class="mb-80 mb-sm-30" />
+    <BannerGrid class="mb-80 mb-sm-30" :title="'Shop Your <em>Favorite Collections</em>'" />
     <BrandsBlock class="mb-50 mb-sm-0" />
     <SubscribeBlock class="mb-124" />
     <JourneyBlock class="mb-70" />

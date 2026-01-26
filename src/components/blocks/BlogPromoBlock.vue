@@ -22,7 +22,7 @@ import ResponsiveImage from '@/components/ui/ResponsiveImage.vue'
         </div>
       </template>
       <template #media>
-        <ResponsiveImage :image-id="22" loading="lazy" decoding="async" class="w-100 h-auto" />
+        <ResponsiveImage image-key="m1-2" loading="lazy" class="w-100 h-auto" />
       </template>
     </MediaSplit>
   </section>
