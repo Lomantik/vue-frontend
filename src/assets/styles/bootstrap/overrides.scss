@@ -104,17 +104,35 @@ $utilities: map-merge(
         responsive: true,
         values: $custom-background
       ),
-      "border": (
-        property: border,
-        class: border,
-        responsive: true,
-        values: $custom-border
+      "border": map-merge(
+          map-get($utilities, "border"),
+          (
+            responsive: true,
+            values: map-merge(
+                map-get(map-get($utilities, "border"), "values"),
+                $custom-border
+            )
+          )
+      ),
+      "border-color": map-merge(
+          map-get($utilities, "border-color"),
+          (
+            responsive: true,
+            values: map-merge(
+                map-get(map-get($utilities, "border-color"), "values"),
+                $custom-theme-colors
+            )
+          )
       ),
       "border-radius": (
         property: border-radius,
         class: border-radius,
         responsive: true,
         values: $custom-border-radius
+      ),
+      "border-width": map-merge(
+          map-get($utilities, "border-width"),
+          ( responsive: true )
       ),
       "content": (
         property: content,
@@ -208,6 +226,10 @@ $utilities: map-merge(
         responsive: true,
         values: $custom-pointer-events
       ),
+      "position": map-merge(
+          map-get($utilities, "position"),
+          (responsive: true),
+      ),
       "rounded": map-merge(
           map-get($utilities, "rounded"),
           (
@@ -227,6 +249,16 @@ $utilities: map-merge(
         property: --bs-text-opacity,
         class: text-opacity,
         values: $custom-opacity
+      ),
+      "viewport-height": map-merge(
+          map-get($utilities, "viewport-height"),
+          (
+            responsive: true,
+            values: map-merge(
+                map-get(map-get($utilities, "viewport-height"), "values"),
+                (auto: auto)
+            ),
+          ),
       ),
       "width": map-merge(
           map-get($utilities, "width"),

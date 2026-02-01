@@ -78,6 +78,7 @@ $custom-content: (
   big-arrow-right: "\e80c",
   arrow-down: "\e800",
   arrow-right: "\e801",
+  mobile-arrow-down: "\e802",
   stars: "\e805 \e805 \e805 \e805 \e805",
   stars-filled: "\e806 \e806 \e806 \e806 \e806"
 );
@@ -254,6 +255,7 @@ $custom-rounded: (
 
 // padding, margin, left, right, bottom, top
 $custom-spacers: (
+  auto: auto,
   0: 0,
   1: .25rem,
   2: .5rem,
@@ -270,6 +272,7 @@ $custom-spacers: (
   13: 0.8125rem,
   14: 0.875rem,
   15: 0.9375rem,
+  'm15': -0.9375rem,
   16: 1rem,
   'm16': -1rem,
   17: 1.0625rem,
@@ -282,6 +285,7 @@ $custom-spacers: (
   27: 1.6875rem,
   28: 1.75rem,
   30: 1.875rem,
+  'm30': -1.875rem,
   32: 2rem,
   34: 2.125rem,
   35: 2.1875rem,
@@ -293,6 +297,7 @@ $custom-spacers: (
   'm50': -3.125rem,
   56: 3.5rem,
   60: 3.75rem,
+  62: 3.875rem,
   70: 4.375rem,
   80: 5rem,
   90: 5.625rem,
@@ -315,6 +320,7 @@ $custom-spacers: (
 
 // Viewport Height
 $custom-viewport-height: (
+  auto: auto,
   25: 25vh,
   50: 50vh,
   65: 65vh,
