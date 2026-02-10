@@ -25,12 +25,13 @@ const { meta, breadcrumbs } = useBreadcrumbs()
 
 <style scoped lang="scss">
 .breadcrumbs {
-  margin-left: 0.3125rem; // 5px
   padding: 1.25rem 0; // 20px 0
+  border-bottom: 1px solid color-token(border);
   &__wrapper {
     margin-bottom: 0;
     &-item {
-      font-size: 1rem; // 16px
+      font-size: 0.875rem; // 14px
+      line-height: 1;
     }
   }
 }

@@ -22,6 +22,7 @@ $custom-theme-colors: (
   stars-empty: #ffcd00,
   stars-filled: #ffd0ad,
   body-bg: #ffffff,
+  border: #ebebeb,
 );
 @function color-token($key) {
   @return map.get($custom-theme-colors, $key);
