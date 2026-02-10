@@ -14,179 +14,214 @@ const props = defineProps({
   /** @type {Category} */
   category: {
     type: Object,
-    required: true
+    required: true,
   },
   /** @type {import('vue').PropType<Link>} */
   link: {
     type: Object,
-    required: false
+    required: false,
   },
   level: {
     type: Number,
-    required: false
+    required: false,
   },
   isMobile: {
     type: Boolean,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const categoryRef = toRef(props, 'category')
 const linkRef = toRef(props, 'link')
 const levelRef = toRef(props, 'level')
 const {
-  resolvedLevel,
-  activeMenu,
-  openLevel,
-  toggleLevel,
+  itemTitle,
+  itemSlug,
   hasChildren,
+  currentLevel,
+  showExpandable,
   isDropend,
-  joinedCanonicalPath
+  toggleLevel,
+  openLevel,
 } = useMenuCategoryItem(categoryRef, linkRef, levelRef)
 </script>
 
-<template>
-  <template v-if="link">
-    <li :class="{'dropdown position-relative': hasChildren, 'nav-item py-lg-20 px-0': resolvedLevel === 0, dropend: isDropend}"
-        @mouseenter="!isMobile && openLevel(resolvedLevel, link.slug)" class="border-bottom border-lg-none d-flex flex-column">
-      <div class="row">
-        <div class="col">
-          <RouterLink :to="'/' + link.slug" class="nav-link py-17 py-lg-10 px-lg-20 min-h-38 d-flex align-items-center border-radius-120 fs-17 fs-lg-14" exact-active-class="active"
-                                     :class="{'dropdown-toggle': hasChildren, 'dropdown-item d-flex justify-content-between py-10 px-0 min-w-180': level > 0, 'text-primary': isMobile}">
-            {{ link.title }}
-          </RouterLink>
-        </div>
-        <div class="col d-lg-none">
-          <button v-if="hasChildren && isMobile" class="expander d-flex bg-white align-items-center
-            ms-auto border-none h-100" @click="isMobile && toggleLevel(resolvedLevel, link.slug)"
-                  :class="{ expanded: activeMenu[resolvedLevel] === link.slug}">
-            <span class="text-primary"></span>
-          </button>
-        </div>
+<template class="expandable-menu">
+  <li
+    class="expandable-menu__item nav-item"
+    :class="{
+      'expandable-menu__item--level0': currentLevel === 0,
+      'expandable-menu__item--dropend': isDropend,
+    }"
+    @mouseenter="!isMobile && openLevel(currentLevel, itemSlug)"
+  >
+    <div class="row">
+      <div class="col">
+        <RouterLink
+          class="expandable-menu__item-link"
+          :to="'/' + itemSlug"
+          :class="{
+            'expandable-menu__item-link--level0 nav-link': currentLevel === 0,
+            'expandable-menu__item-link--has-children': hasChildren,
+            'expandable-menu__item-link--dropend': isDropend,
+          }"
+        >
+          {{ itemTitle }}
+        </RouterLink>
       </div>
-      <ul v-if="hasChildren" class="dropdown-menu position-lg-absolute px-15 pb-15 pt-0 py-lg-18 px-lg-27 border-0 border-lg border-lg-primary lh-110"
-          :class="{ show: activeMenu[resolvedLevel] === link.slug, 'top-0 left-100 mt-m16 ms-35': isDropend, 'top-100 left-0 mt-lg-8 ms-lg-m8': !isDropend }">
-        <MenuCategoryItem v-for="child in category.children" :key="child.id"
-                                :category="child" :level="resolvedLevel + 1" class="" :is-mobile="isMobile" />
-      </ul>
-    </li>
-  </template>
-  <template v-else>
-    <li :class="{'dropdown position-relative': hasChildren, 'nav-item': level === 0, dropend: isDropend}"
-        @mouseenter="!isMobile && openLevel(resolvedLevel, category.slug)" class="d-flex d-flex flex-column">
-      <div class="row">
-        <div class="col">
-          <RouterLink :to="'/' + joinedCanonicalPath" exact-active-class="active" class="lh-100"
-                      :class="{'dropdown-toggle': hasChildren, 'dropdown-item d-flex justify-content-between py-10 px-0 min-w-180': resolvedLevel > 0, 'text-primary': isMobile}">
-            {{ category.title }}
-          </RouterLink>
-        </div>
-        <div class="col d-lg-none">
-          <button v-if="hasChildren && isMobile" class="expander d-flex bg-white align-items-center
-            ms-auto border-none h-100"
-                  @click="isMobile && toggleLevel(resolvedLevel, category.slug)"
-                  :class="{ expanded: activeMenu[resolvedLevel] === category.slug}">
-            <span class="text-primary"></span>
-          </button>
-        </div>
+      <div class="col" v-if="hasChildren && isMobile">
+        <button
+          class="expandable-menu__item-expander"
+          :class="{
+            'expandable-menu__item-expander--expanded': showExpandable,
+          }"
+          @click="isMobile && toggleLevel(currentLevel, itemSlug)"
+        >
+          <span class="text-primary"></span>
+        </button>
       </div>
-      <ul v-if="hasChildren" class="dropdown-menu position-lg-absolute px-15 pb-0 pt-15 py-lg-18 px-lg-27 border-0 border-lg border-lg-primary lh-110"
-          :class="{ show: activeMenu[resolvedLevel] === category.slug, 'top-0 left-100 mt-lg-m16 ms-lg-35': isDropend, 'top-100 left-0 mt-lg-8 ms-lg-m8': !isDropend }">
-        <MenuCategoryItem v-for="child in category.children" :key="child.id"
-                                :category="child" :level="resolvedLevel + 1" class="" :is-mobile="isMobile" />
-      </ul>
-    </li>
-  </template>
+    </div>
+    <ul
+      class="expandable-menu__item-dropdown dropdown-menu"
+      v-if="hasChildren"
+      :class="{ 'expandable-menu__item-dropdown--show': showExpandable }"
+    >
+      <MenuCategoryItem
+        v-for="child in category.children"
+        :key="child.id"
+        :category="child"
+        :level="currentLevel + 1"
+        :is-mobile="isMobile"
+      />
+    </ul>
+  </li>
 </template>
 
 <style scoped lang="scss">
-@use "sass:map";
+@use 'sass:map';
+@use 'sass:color';
 
-a.dropdown-item:hover {
-  color: color('blue') !important;
-}
-
-.dropdown-toggle::after {
-  content: content('arrow-down');
-  font-family: map.get($custom-font-family, 'blooms');
-  font-size: font-size(16);
-  border: border('none');
-  margin-left: spacer(10);
-}
-
-.is-mobile .dropdown-toggle::after {
-  display: none;
-}
-
-.expander > span::after {
-  content: content('mobile-arrow-down');
-  font-family: map.get($custom-font-family, 'blooms');
-  font-size: font-size(13);
-  border: border('none');
-  margin-left: spacer(auto);
-  display: block;
-}
-
-.expander.expanded > span::after {
-  transform: rotateX(-180deg);
-}
-
-.nav-link:hover {
-  background-color: color('light-grey-10');
-}
-
-.is-mobile .nav-link:hover {
-  background-color: transparent;
-  color: color('blue') !important;
-}
-
-.dropdown-menu::before {
-  pointer-events: pointer-events('auto');
-  content: content('empty');
-  position: position('absolute');
-}
-
-.dropdown .dropdown-menu::before {
-  top: spacer('m9');
-  left: spacer(0);
-  right: spacer(0);
-  height: height(10);
-  width: width(100);
-}
-
-.dropdown.dropend > .dropdown-menu::before {
-  top: spacer(0);
-  left: spacer(m9);
-  bottom: spacer(0);
-  height: height(100);
-  width: width(10);
-}
-
-.dropdown.dropend .expander > span::after {
-  content: content('mobile-arrow-down');
-  font-family: map.get($custom-font-family, 'blooms');
-  font-size: font-size(13);
-  border: border('none');
-  position: position('relative');
-  right: spacer(0);
-  display: block;
-}
-
-.dropdown.dropend .expander.expanded > span::after {
-  transform: rotateX(-180deg);
-}
-
-.dropdown.dropend .dropdown-toggle::after {
-  content: content('arrow-right');
-  font-family: map.get($custom-font-family, 'blooms');
-  font-size: font-size(16);
-  border: border('none');
-  margin-left: spacer(10);
-  position: position('relative');
-  right: spacer(0);
-}
-
-.is-mobile .dropdown.dropend .dropdown-toggle::after {
-  display: none;
+.expandable-menu {
+  &__item {
+    padding: 0;
+    position: relative;
+    &-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.625rem 0; // 10px 0
+      //padding: 1.0625rem 0; // 17px 0
+      width: 180px;
+      border-radius: 120px;
+      @include media-breakpoint-up(lg) {
+        min-height: 38px;
+        padding: 0.625rem 0; // 10px 0
+      }
+      &--level0 {
+        width: auto;
+        justify-content: flex-start;
+        padding: 1.0625rem 0; // 17px 0
+        @include media-breakpoint-up(lg) {
+          &:hover {
+            background-color: color.adjust(color-token(menu-item-bg), $alpha: -0.9);
+          }
+          padding: 0.625rem 1.25rem; // 10px 20px
+        }
+      }
+      &--has-children {
+        &::after {
+          display: none;
+          content: content-token('arrow-down');
+          font-family: map.get($custom-font-family, 'blooms');
+          font-size: 1rem; // 16px
+          border: none;
+          margin-left: 0.625rem; // 10px
+          @include media-breakpoint-up(lg) {
+            display: block;
+          }
+        }
+        &.expandable-menu__item-link--dropend::after {
+          content: content-token('arrow-right');
+        }
+      }
+    }
+    &-expander {
+      display: flex;
+      background: color-token(menu-bg);
+      align-items: center;
+      border: none;
+      height: 100%;
+      margin-left: auto;
+      & > span::after {
+        content: content-token('mobile-arrow-down');
+        font-family: map.get($custom-font-family, 'blooms');
+        font-size: 0.8125rem; // 13px
+        border: none;
+        margin-left: auto;
+        display: block;
+      }
+      &--expanded {
+        transform: rotateX(-180deg);
+      }
+    }
+    &-dropdown {
+      display: none;
+      top: 100%;
+      left: 0;
+      padding: 0.9375rem 0.9375rem 0 0.9375rem; // 15px 15px 0 15px
+      border: none;
+      @include media-breakpoint-up(lg) {
+        margin-top: 0.5rem; // 8px
+        margin-left: -0.5rem; // -8px
+        padding: 1.125rem 1.6875rem; // 18px 27px
+        border: 1px solid color-token(primary);
+      }
+      &--show {
+        display: block;
+      }
+      &::before {
+        pointer-events: auto;
+        content: '';
+        position: absolute;
+        top: -0.5625rem; // -9px
+        left: 0;
+        right: 0;
+        height: 10px;
+        width: 100%;
+      }
+    }
+    &--level0 {
+      border-bottom: 1px solid var(--bs-border-color);
+      font-size: 1.0625rem; // 17px
+      @include media-breakpoint-up(lg) {
+        border-bottom: none;
+        padding: 1.25rem 0; // 20px 0
+        font-size: 0.875rem; // 14px
+      }
+      > .expandable-menu__item-dropdown {
+        padding: 0 0.9375rem 0.9375rem 0.9375rem; // 0 15px 15px 15px
+        @include media-breakpoint-up(lg) {
+          padding: 1.125rem 1.6875rem; // 18px 27px
+        }
+      }
+    }
+    &--dropend {
+      > .expandable-menu__item-dropdown {
+        @include media-breakpoint-up(lg) {
+          top: 0;
+          left: 100%;
+          margin-top: -1rem; // -16px
+          margin-left: 2.1875rem; //35px
+          &::before {
+            top: 0;
+            left: -0.5625rem; // -9px
+            bottom: 0;
+            height: 100vh;
+            width: 10px;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

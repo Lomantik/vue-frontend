@@ -1,26 +1,36 @@
 @use 'sass:map';
 
-// Theme Colors
 $custom-theme-colors: (
-  "primary": #154747,
-  "secondary": #ffd0ad,
-  "tertiary": #f8f1e3,
-  "muted": #6c757d,
-  "grey": #6b6b6b,
-  "white": #ffffff,
-  "light-white": #ebebeb,
-  "light-grey-10": rgba(21, 71, 71, 0.1),
-  "yellow": #ffcd00,
-  "blue": rgb(20, 104, 160)
+  primary: #154747,
+  secondary: #ffd0ad,
+  tertiary: #f8f1e3,
+  muted: #6c757d,
+  'white': #ffffff,
+  footer-text: #ffffff,
+  footer-bg: #154747,
+  banner-text: #ffffff,
+  hero-text: #ffffff,
+  grayer: #000000,
+  menu-bg: #ffffff,
+  menu-item-bg: #154747,
+  link-hovered: #1468A0,
+  link-active: #6b6b6b,
+  header-border: #ebebeb,
+  header-bg: #ffffff,
+  promo-bg: #154747,
+  promo-text: #ffffff,
+  stars-empty: #ffcd00,
+  stars-filled: #ffd0ad,
+  body-bg: #ffffff,
 );
-@function color($key) {
+@function color-token($key) {
   @return map.get($custom-theme-colors, $key);
 }
 
 $custom-contrast-colors: (
-  "primary": "white",
-  "secondary": "primary",
-  "white": "primary"
+  primary: white,
+  secondary: primary,
+  white: primary
 );
 @function contrast-color($key) {
   @if map-has-key($custom-contrast-colors, $key) {
@@ -29,64 +39,25 @@ $custom-contrast-colors: (
   @return color-contrast($key);
 }
 
-// Aspect Ratios
-$custom-aspect-ratios: (
-  "unset": auto
-);
-@function aspect-ratio($key) {
-  @return map.get($custom-aspect-ratios, $key);
-}
-
-// Background
-$custom-background: (
-  footer: color('primary') url("../../images/footer-bg.png") top left no-repeat,
-  none: 'none'
-);
-@function background($key) {
-  @return map.get($custom-background, $key);
-}
-
-// Border
-$custom-border: (
-  none: none
-);
-@function border($key) {
-  @return map.get($custom-border, $key);
-}
-
-// Border Radius
 $custom-border-radius: (
-  6: 0.375rem,
-  120: 7.5rem,
   'base': 624.9375rem
 );
 @function border-radius($key) {
   @return map.get($custom-border-radius, $key);
 }
 
-// Box Shadow
-$custom-box-shadow: (
-  none: none
-);
-@function box-shadow($key) {
-  @return map.get($custom-box-shadow, $key);
-}
-
-// Content
 $custom-content: (
-  empty: '',
   big-arrow-right: "\e80c",
   arrow-down: "\e800",
   arrow-right: "\e801",
   mobile-arrow-down: "\e802",
-  stars: "\e805 \e805 \e805 \e805 \e805",
+  stars-empty: "\e805 \e805 \e805 \e805 \e805",
   stars-filled: "\e806 \e806 \e806 \e806 \e806"
 );
-@function content($key) {
+@function content-token($key) {
   @return map.get($custom-content, $key);
 }
 
-// Container
 $custom-container-max-widths: (
   sm: 540px,
   md: 720px,
@@ -94,244 +65,119 @@ $custom-container-max-widths: (
   xl: 1140px,
   xxl: 1260px
 );
-@function container-max-width($key) {
-  @return map.get($custom-container-max-widths, $key);
-}
 
-// Font Family
 $custom-font-family: (
   base: ('Spline Sans', system-ui, -apple-system, sans-serif),
   bitter: ('Bitter', Georgia, serif),
   blooms: ('blooms', serif)
 );
-@function font-family($key) {
+@function font-family-token($key) {
   @return map.get($custom-font-family, $key);
 }
 
 // Font Sizes
 $custom-font-sizes: (
-  1: 5rem,
-  2: 4rem,
-  3: 3rem,
-  4: 2rem,
-  5: 1.5rem,
-  6: 1rem,
-  7: 0.4375rem,
-  12: 0.75rem,
   13: 0.8125rem,
   14: 0.875rem,
   15: 0.9375rem,
-  16: 1rem,
-  17: 1.0625rem,
-  18: 1.125rem,
   20: 1.25rem,
-  22: 1.375rem,
-  24: 1.5rem,
-  28: 1.75rem,
-  34: 2.125rem,
-  36: 2.25rem,
-  44: 2.75rem,
-  54: 3.375rem,
+  h1: 2.25rem, // 36px
+  h1-md: 2.625rem, // 42px
+  h1-lg: 3.375rem, // 54px
+  h2: 1.75rem, // 28px
+  h2-md: 2.25rem, // 36px
+  h2-lg: 2.75rem, // 44px
+  h3: 1.5rem, // 24px
+  h3-md: 1.75rem, // 28px
+  h3-lg: 2.125rem, // 34px
+  h4: 1.125rem, // 18px
+  h4-md: 1.25rem, // 20px
+  h4-lg: 1.75rem, // 28px
+  h5: 1rem, // 16px
+  h5-md: 1.125rem, // 18px
+  h5-lg: 1.375rem, // 22px
+  h6: 0.875rem, // 14px
+  h6-md: 1rem, // 16px
+  h6-lg: 1rem, // 16px
+  base: 1.0625rem, // 17px
+  p: 1.0625rem, // 17px
+  footer: 0.875rem, // 14px
+  footer-title: 1.75rem, // 28px
+  footer-contact-link: 0.8125rem, // 13px
+  footer-nav-links: 0.75rem, // 12px
+  subfooter: 0.75rem, // 12px
+  link-arrow: 0.4375rem, // 7px
+  button: 0.875rem, // 14px
+  dropdown: 0.875rem, // 14px
 );
 @function font-size($key) {
   @return map.get($custom-font-sizes, $key);
 }
 
 $custom-font-weight: (
-  400: 400,
-  500: 500
+  heading: 500,
+  button: 500,
 );
 @function font-weight($key) {
   @return map.get($custom-font-weight, $key);
 }
 
-// Gutters
 $custom-gutters: (
   30: 30px,
   40: 40px,
-  50: 50px,
   60: 60px,
-  140: 140px,
 );
 @function gutter($key) {
   @return map.get($custom-gutters, $key);
 }
 
-// Height
-$custom-height: (
-  0: 0,
-  10: 10px,
-  14: 14px,
-  22: 22px,
-  28: 28px,
-  30: 30px,
-  38: 38px,
-  80: 80px,
-  100: 100%
-);
-@function height($key) {
-  @return map.get($custom-height, $key);
-}
-
-// Letter Spacing
-$custom-letter-spacings: (
-  '02': 0.02em,
-  '05': 0.05em,
-  1: 0.1em,
-  2: 0.2em,
-  3: 0.3em,
-  15: 0.15em,
-  normal: normal
-);
-@function letter-spacing($key) {
-  @return map.get($custom-letter-spacings, $key);
-}
-
-// Line Height
 $custom-line-height: (
-  1: 1,
-  100: 1,
-  110: 1.1,
-  145: 1.45,
   170: 1.7,
   sm: 1.25,
   base: 1.75,
   lg: 2,
-  '14-20': 1.428571428571429,
-  '14-24': 1.714285714285714,
+  p: 1.7,
+  heading: 1.45,
+  footer: 1,
+  footer-text: 1.714285714285714,
+  footer-link: 1.846153846153846,
+  footer-link-arrow: 3.428571428571429,
+  button: 1.428571428571429,
+  dropdown-link: 1.1,
 );
 @function line-height($key) {
   @return map.get($custom-line-height, $key);
 }
 
-$custom-link-decoration: (
-  none: none,
-  underline: underline
-);
-@function link-decoration($key) {
-  @return map.get($custom-link-decoration, $key);
-}
-
-// Opacity
-$custom-opacity: (
-  1: 1,
-  30: .3,
-  60: .6,
-  90: .9,
-);
-@function text-opacity($key) {
-  @return map.get($custom-opacity, $key);
-}
-@function bg-opacity($key) {
-  @return map.get($custom-opacity, $key);
-}
-
-// Pointer Events
-$custom-pointer-events: (
-  none: none,
-  auto: auto,
-  initial: initial,
-);
-@function pointer-events($key) {
-  @return map.get($custom-pointer-events, $key);
-}
-
-// Position
-$custom-position: (
-  absolute: absolute,
-  relative: relative
-);
-@function position($key) {
-  @return map.get($custom-position, $key);
-}
-
-$custom-rounded: (
-  "6": 3rem,
-  "xl": 5rem
-);
-@function rounded($key) {
-  @return map.get($custom-rounded, $key);
-}
-
-// padding, margin, left, right, bottom, top
 $custom-spacers: (
-  auto: auto,
-  0: 0,
-  1: .25rem,
-  2: .5rem,
+  2: 0.5rem,
   3: 0.1875rem,
   4: 1.5rem,
   5: 0.3125rem,
-  7: 0.4375rem,
-  8: 0.5rem,
-  'm8': -0.5rem,
-  9: 0.5625rem,
-  'm9': -0.5625rem,
-  10: 0.625rem,
-  12: 0.75rem,
-  13: 0.8125rem,
-  14: 0.875rem,
-  15: 0.9375rem,
-  'm15': -0.9375rem,
-  16: 1rem,
-  'm16': -1rem,
-  17: 1.0625rem,
-  18: 1.125rem,
-  20: 1.25rem,
-  22: 1.375rem,
-  24: 1.5rem,
-  25: 1.5625rem,
   26: 1.625rem,
-  27: 1.6875rem,
-  28: 1.75rem,
-  30: 1.875rem,
-  'm30': -1.875rem,
-  32: 2rem,
-  34: 2.125rem,
-  35: 2.1875rem,
-  36: 2.25rem,
-  40: 2.5rem,
-  45: 2.8125rem,
-  46: 2.875rem,
-  50: 3.125rem,
-  'm50': -3.125rem,
-  56: 3.5rem,
-  60: 3.75rem,
-  62: 3.875rem,
-  70: 4.375rem,
   80: 5rem,
   90: 5.625rem,
-  95: 5.9375rem,
-  102: 6.375rem,
-  123: 7.6875rem,
-  124: 7.75rem,
-  125: 7.8125rem,
   136: 8.5rem,
-  176: 11rem,
-  '6p': 6%,
-  '7p': 7%,
   '10p': 10%,
   '13p': 13%,
-  100: 100%,
+  default: 0.1875rem, // 3px
+  footer-title: 1.5rem, // 24px
+  footer-text: 2rem, // 32px
+  footer-contact-link: 2rem, // 32px
+  link-arrow: 0.75rem, // 12px
+  heading-padding-bottom: 1rem, // 16px
+  paragraph-padding-bottom: 1rem, // 16px
+  button-border: 0,
+  button-padding-y: 0.875rem, // 14px
+  button-padding-x: 2.125rem, // 34px
+  input-padding-y: 0.875rem, // 14px
+  input-padding-x: 0.4375rem, // 7px
+  nav-link-x: 1.25rem, // 20px
 );
 @function spacer($key) {
   @return map.get($custom-spacers, $key);
 }
 
-// Viewport Height
-$custom-viewport-height: (
-  auto: auto,
-  25: 25vh,
-  50: 50vh,
-  65: 65vh,
-  75: 75vh,
-  100: 100vh
-);
-@function viewport-height($key) {
-  @return map.get($custom-viewport-height, $key);
-}
-
-// Width
 $custom-width: (
   10: 10px,
   66: 66px,
@@ -349,6 +195,3 @@ $custom-width: (
   '62p': 62%,
   100: 100%
 );
-@function width($key) {
-  @return map.get($custom-width, $key);
-}

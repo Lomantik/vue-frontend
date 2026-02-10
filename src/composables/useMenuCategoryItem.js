@@ -3,30 +3,44 @@ import { buildCategoryPath } from '@/domain/categories/category.path.js'
 
 /**
  * @returns {{
- * resolvedLevel: number,
- * activeMenu: any[],
- * openLevel: (level: number, id: any) => void,
- * toggleLevel: (level: number, id: any) => void,
+ * itemTitle: import('vue').ComputedRef<string>,
+ * itemSlug: import('vue').ComputedRef<string>,
  * hasChildren: import('vue').ComputedRef<boolean>,
- * isDropend: import('vue').ComputedRef<boolean>,
- * canonicalPath: import('vue').Ref<string[]>,
- * joinedCanonicalPath: import('vue').ComputedRef<string>
+ * currentLevel: import('vue').ComputedRef<number>,
+ * showExpandable: import('vue').ComputedRef<boolean>,
+ * isDropend: import('vue').ComputedRef<boolean>
+ * toggleLevel: (level: number, id: any) => void,
+ * openLevel: (level: number, id: any) => void,
  * }}
  */
 export function useMenuCategoryItem(category, link, level) {
-  const resolvedLevel = level.value ? level.value : 0
   const { activeMenu, openLevel, toggleLevel } = inject('activeMenu')
+  const itemTitle = computed(() => {
+    return link.value?.title ? link.value.title : category.value?.title
+  })
+  const itemSlug = computed(() => {
+    return link.value?.slug ? link.value.slug : joinedCanonicalPath.value
+  })
   const hasChildren = computed(() => {
-    return category.value.children && category.value.children.length > 0
+    return link.value ? true : (category.value.children
+      && category.value?.children?.length > 0)
+  })
+  const currentLevel = computed(() => {
+    return level.value ? level.value : 0
+  })
+  const showExpandable = computed(() => {
+    return link.value?.slug
+      ? activeMenu.value[currentLevel.value] === link.value.slug
+      : activeMenu.value[currentLevel.value] === category.value.slug
   })
   const isDropend = computed(() => {
-    return resolvedLevel % 2 !== 0
+    return currentLevel.value % 2 !== 0
   })
-  const canonicalPath = ref([])
   const joinedCanonicalPath = computed(() => {
-    return canonicalPath.value ? canonicalPath.value.join('/') : ''
+    return canonicalPath.value.join('/')
   })
 
+  const canonicalPath = ref([])
   watch(
     () => category.value,
     async (category) => {
@@ -35,13 +49,13 @@ export function useMenuCategoryItem(category, link, level) {
   )
 
   return {
-    resolvedLevel,
-    activeMenu,
-    openLevel,
-    toggleLevel,
+    itemTitle,
+    itemSlug,
     hasChildren,
+    currentLevel,
+    showExpandable,
     isDropend,
-    canonicalPath,
-    joinedCanonicalPath
+    toggleLevel,
+    openLevel
   }
 }

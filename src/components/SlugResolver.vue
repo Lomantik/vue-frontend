@@ -13,12 +13,7 @@ const route = useRoute()
 const pageContext = usePageContextStore()
 const navStore = useNavigationStore()
 
-const {
-  resolvedType,
-  resolvedData,
-  loading,
-  resolve
-} = useSlugResolver(route)
+const { resolvedType, resolvedData, loading, resolve } = useSlugResolver(route)
 
 watchEffect(async () => {
   await resolve()
@@ -40,6 +35,4 @@ watchEffect(async () => {
   <NotFoundPage v-else />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

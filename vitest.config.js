@@ -14,7 +14,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         quietDeps: true,
-        additionalData: `@use "@/assets/styles/tokens/variables.scss" as *;`,
+        additionalData: `@use "@/assets/styles/bootstrap-api.scss" as *;`,
         silenceDeprecations: [
           'global-builtin',
           'import',

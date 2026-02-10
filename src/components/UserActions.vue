@@ -6,20 +6,43 @@ import CartIcon from '@/components/ui/CartIcon.vue'
 
 <template>
   <nav class="user-actions">
-    <ul class="d-flex m-0 p-0">
-      <li class="d-none d-lg-flex ps-22 text-primary list-unstyled">
+    <ul class="user-actions__wrapper">
+      <li class="user-actions__item user-actions__item-search">
         <SearchIcon />
       </li>
-      <li class="d-flex ps-22 list-unstyled">
+      <li class="user-actions__item">
         <UserAreaIcon />
       </li>
-      <li class="d-flex ps-22 list-unstyled">
+      <li class="user-actions__item user-actions__item-cart">
         <CartIcon />
       </li>
     </ul>
   </nav>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+.user-actions {
+  &__wrapper {
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  &__item {
+    display: flex;
+    padding-left: 1.375rem; // 22px
+    list-style: none;
+    &-search {
+      display: none;
+      @include media-breakpoint-up(lg) {
+        display: flex;
+      }
+    }
+    &-cart {
+      padding-left: 1.125rem; // 18px
+      @include media-breakpoint-up(lg) {
+        padding-left: 1.375rem; // 22px
+      }
+    }
+  }
+}
 </style>

@@ -9,12 +9,12 @@ const props = defineProps({
   /** @type {Category} */
   category: {
     type: Object,
-    required: false
+    required: false,
   },
   titleTag: {
     type: String,
-    required: false
-  }
+    required: false,
+  },
 })
 const categoryRef = toRef(props, 'category')
 const { products } = useProductList(categoryRef)
@@ -28,6 +28,4 @@ const { products } = useProductList(categoryRef)
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

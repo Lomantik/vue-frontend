@@ -1,19 +1,21 @@
 <script setup>
-
 import MediaBanner from '@/components/blocks/MediaBanner.vue'
 </script>
 
 <template>
   <section class="subscription container">
-    <MediaBanner class="rounded overflow-hidden text-center justify-content-center py-6p px-6p px-md-10p" image-key="boxbg" :lazy="true">
-      <h4 class="text-tertiary fs-18 fs-sm-20 fs-lg-28 lh-145 mb-46 fw-medium">Subscribe to get notified about exclusive offers!</h4>
-      <div class="d-flex flex-column align-items-center w-100">
-        <div class="mw-440 w-100">
-          <input type="email" name="email" autocomplete="off" class="form-control mb-25 w-100 fs-17 lh-100" />
+    <MediaBanner class="subscription__banner-wrapper" image-key="boxbg" :lazy="true">
+      <h4 class="subscription__title">Subscribe to get notified about exclusive offers!</h4>
+      <div class="subscription__form">
+        <div class="subscription__form-wrapper">
+          <input
+            type="email"
+            name="email"
+            autocomplete="off"
+            class="subscription__form-input form-control"
+          />
           <div>
-            <button class="btn btn-secondary">
-              SUBSCRIBE
-            </button>
+            <button class="btn btn-secondary">SUBSCRIBE</button>
           </div>
         </div>
       </div>
@@ -21,6 +23,36 @@ import MediaBanner from '@/components/blocks/MediaBanner.vue'
   </section>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+.subscription {
+  &__banner-wrapper {
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+    justify-content: center;
+    padding: 6%;
+    @include media-breakpoint-up(md) {
+      padding: 6% 10%;
+    }
+  }
+  &__title {
+    color: color-token(tertiary);
+    margin-bottom: 2.875rem; // 46px
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    &-wrapper {
+      max-width: 440px;
+      width: 100%;
+    }
+    &-input {
+      margin-bottom: 1.5625rem; // 25px
+      width: 100%;
+      line-height: 1;
+    }
+  }
+}
 </style>
