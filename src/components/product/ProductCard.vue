@@ -12,45 +12,46 @@ const props = defineProps({
   /** @type {Product} */
   product: {
     type: Object,
-    required: true
+    required: true,
   },
   /** @type {Category} */
   category: {
     type: Object,
-    required: false
+    required: false,
   },
   titleTag: {
     type: String,
-    required: false
-  }
+    required: false,
+  },
 })
 
 const productRef = toRef(props, 'product')
 const titleTagRef = toRef(props, 'titleTag')
-const {
-  resolvedTitleTag,
-  navStore,
-  primaryCategory
-} = useProductCard(productRef, titleTagRef)
+const { resolvedTitleTag, navStore, primaryCategory } = useProductCard(productRef, titleTagRef)
 </script>
 
 <template>
-  <div class="card me-sm-3 mb-sm-3 h-100 w-100 border-none">
-    <div class="product-image border-radius-6 overflow-hidden mb-25">
-      <RouterLink :to="'/' + product.slug" @click="category && navStore.setCategoryTrail(category)"
-                  class="text-decoration-none">
-        <ResponsiveImage :image-key="product.mainImageId" class="card-img-top h-auto" loading="lazy" />
+  <div class="product-card card">
+    <div class="product-card__image-wrapper product-image">
+      <RouterLink :to="'/' + product.slug" @click="category && navStore.setCategoryTrail(category)">
+        <ResponsiveImage
+          :image-key="product.mainImageId"
+          class="product-card__image-wrapper-image card-img-top"
+          loading="lazy"
+        />
       </RouterLink>
     </div>
-    <div class="card-body d-flex flex-column p-0">
-      <span class="product-category fs-12 mb-9" v-if="primaryCategory">
-        <RouterLink :to="'/' + primaryCategory.slug" class="text-decoration-none">
+    <div class="product-card__info card-body">
+      <span class="product-card__info-category-wrapper product-category" v-if="primaryCategory">
+        <RouterLink :to="'/' + primaryCategory.slug">
           {{ primaryCategory.title }}
         </RouterLink>
       </span>
-      <component :is="resolvedTitleTag" class="card-title product-title font-family-bitter fs-16 mb-3">
-        <RouterLink :to="'/' + product.slug" class="text-decoration-none"
-                    @click="category && navStore.setCategoryTrail(category)">
+      <component :is="resolvedTitleTag" class="product-card__info-title card-title product-title">
+        <RouterLink
+          :to="'/' + product.slug"
+          @click="category && navStore.setCategoryTrail(category)"
+        >
           {{ product.title }}
         </RouterLink>
       </component>
@@ -62,6 +63,38 @@ const {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use 'sass:map';
 
+.product-card {
+  height: 100%;
+  width: 100%;
+  border: none;
+  @include media-breakpoint-up(sm) {
+    margin-right: 0.1875rem; // 3px
+    margin-bottom: 0.1875rem; // 3px
+  }
+  &__image-wrapper {
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 1.5625rem; // 25px
+    &-image {
+      height: auto;
+    }
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    &-category-wrapper {
+      font-size: 0.75rem; // 12px
+      margin-bottom: 0.5625rem; // 9px
+    }
+    &-title {
+      font-family: map.get($custom-font-family, bitter);
+      font-size: 1rem; // 16px
+      margin-bottom: 0.1875rem; // 3px
+    }
+  }
+}
 </style>

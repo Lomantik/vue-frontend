@@ -1,112 +1,103 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import SubfooterBlock from '@/components/blocks/SubfooterBlock.vue'
 </script>
 
 <template>
-  <footer class="footer py-40 pt-md-95 pb-md-125 lh-100 text-white text-opacity-90 background-footer
-    border-bottom border-1 border-solid border-opacity-10 border-white fs-14 ls-02">
+  <footer class="footer">
     <div class="container">
       <div class="p-0">
         <div class="row">
           <div class="col-12 col-md-3 col-lg-4">
-            <div class="footer-title mb-24 text-tertiary fs-24 ls-normal font-family-bitter">Visit Us in Store</div>
-            <p class="lh-14-24 mb-32">We would love to chat to you in person about making a lasting
-              difference for children in need. Find your closest store location below.</p>
-            <p class="mb-32 mb-md-0">
-              <RouterLink to="/contact" class="contact-link lh-14-24 d-inline-flex
-                text-decoration-none text-white text-opacity-90 fs-13 fw-medium">
-                FIND STORE
-              </RouterLink>
+            <div class="footer__title">Visit Us in Store</div>
+            <p class="footer__info">
+              We would love to chat to you in person about making a lasting difference for children
+              in need. Find your closest store location below.
+            </p>
+            <p class="footer__action">
+              <RouterLink to="/contact" class="footer__action-link"> FIND STORE </RouterLink>
             </p>
           </div>
           <div class="d-none d-lg-block col-lg-2"></div>
-          <div class="col-6 col-md-3 col-lg-2 py-0 px-15">
-            <div class="footer-subtitle mb-25 fs-12 ls-1 font-family-bitter">COMPANY</div>
-            <ul class="nav flex-column lh-170">
-              <li class="nav-item mb-8">
-                <RouterLink to="/about" class="nav-link text-white text-opacity-90 p-0 d-inline">
-                  About
-                </RouterLink>
+          <div class="footer__group col-6 col-md-3 col-lg-2">
+            <div class="footer__group-title">COMPANY</div>
+            <ul class="nav flex-column">
+              <li class="footer__group-nav-item">
+                <RouterLink to="/about" class="footer__group-nav-item-link"> About </RouterLink>
               </li>
-              <li class="nav-item mb-8">
-                <RouterLink to="/environmental-initiatives" class="nav-link text-white text-opacity-90 p-0 d-inline">
+              <li class="footer__group-nav-item">
+                <RouterLink to="/environmental-initiatives" class="footer__group-nav-item-link">
                   Environmental Initiatives
                 </RouterLink>
               </li>
-              <li class="nav-item mb-8">
-                <RouterLink to="/factories" class="nav-link text-white text-opacity-90 p-0 d-inline">
+              <li class="footer__group-nav-item">
+                <RouterLink to="/factories" class="footer__group-nav-item-link">
                   Factories
                 </RouterLink>
               </li>
-              <li class="nav-item mb-8">
-                <RouterLink to="/careers" class="nav-link text-white text-opacity-90 p-0 d-inline">
-                  Careers
-                </RouterLink>
+              <li class="footer__group-nav-item">
+                <RouterLink to="/careers" class="footer__group-nav-item-link"> Careers </RouterLink>
               </li>
-              <li class="nav-item">
-                <RouterLink to="/accessibility" class="nav-link text-white text-opacity-90 p-0 d-inline">
+              <li class="footer__group-nav-item footer__group-nav-item--last">
+                <RouterLink to="/accessibility" class="footer__group-nav-item-link">
                   Accessibility
                 </RouterLink>
               </li>
             </ul>
           </div>
-          <div class="col-6 col-md-3 col-lg-2 py-0 px-15">
-            <div class="footer-subtitle mb-25 fs-12 ls-1 font-family-bitter">ACCOUNT</div>
-            <ul class="nav flex-column lh-170">
-              <li class="nav-item mb-8">
-                <RouterLink to="/my-account" class="nav-link text-white text-opacity-90 p-0 d-inline">
+          <div class="footer__group col-6 col-md-3 col-lg-2">
+            <div class="footer__group-title">ACCOUNT</div>
+            <ul class="nav flex-column">
+              <li class="footer__group-nav-item">
+                <RouterLink to="/my-account" class="footer__group-nav-item-link">
                   My account
                 </RouterLink>
               </li>
-              <li class="nav-item mb-8">
-                <RouterLink to="/manage-account" class="nav-link text-white text-opacity-90 p-0 d-inline">
+              <li class="footer__group-nav-item">
+                <RouterLink to="/manage-account" class="footer__group-nav-item-link">
                   Manage Account
                 </RouterLink>
               </li>
-              <li class="nav-item mb-8">
-                <RouterLink to="/saved-items" class="nav-link text-white text-opacity-90 p-0 d-inline">
+              <li class="footer__group-nav-item">
+                <RouterLink to="/saved-items" class="footer__group-nav-item-link">
                   Saved Items
                 </RouterLink>
               </li>
-              <li class="nav-item mb-8">
-                <RouterLink to="/orders-and-returns" class="nav-link text-white text-opacity-90 p-0 d-inline">
+              <li class="footer__group-nav-item">
+                <RouterLink to="/orders-and-returns" class="footer__group-nav-item-link">
                   Orders & Returns
                 </RouterLink>
               </li>
-              <li class="nav-item">
-                <RouterLink to="/redeem-a-gift-card" class="nav-link text-white text-opacity-90 p-0 d-inline">
+              <li class="footer__group-nav-item footer__group-nav-item--last">
+                <RouterLink to="/redeem-a-gift-card" class="footer__group-nav-item-link">
                   Redeem a Gift Card
                 </RouterLink>
               </li>
             </ul>
           </div>
-          <div class="col-6 col-md-3 col-lg-2 py-0 px-15">
-            <div class="footer-subtitle mt-25 mt-md-0 mb-25 fs-12 ls-1 font-family-bitter">GET IN TOUCH</div>
-            <ul class="nav flex-column lh-170">
-              <li class="nav-item mb-8">
-                <RouterLink to="/facebook" class="nav-link text-white text-opacity-90 p-0 d-inline">
+          <div class="footer__group col-6 col-md-3 col-lg-2">
+            <div class="footer__group-title footer__group-title--last">GET IN TOUCH</div>
+            <ul class="nav flex-column">
+              <li class="footer__group-nav-item">
+                <RouterLink to="/facebook" class="footer__group-nav-item-link">
                   Facebook
                 </RouterLink>
               </li>
-              <li class="nav-item mb-8">
-                <RouterLink to="/instagram" class="nav-link text-white text-opacity-90 p-0 d-inline">
+              <li class="footer__group-nav-item">
+                <RouterLink to="/instagram" class="footer__group-nav-item-link">
                   Instagram
                 </RouterLink>
               </li>
-              <li class="nav-item mb-8">
-                <RouterLink to="/twitter" class="nav-link text-white text-opacity-90 p-0 d-inline">
-                  Twitter
-                </RouterLink>
+              <li class="footer__group-nav-item">
+                <RouterLink to="/twitter" class="footer__group-nav-item-link"> Twitter </RouterLink>
               </li>
-              <li class="nav-item mb-8">
-                <RouterLink to="/linkedin" class="nav-link text-white text-opacity-90 p-0 d-inline">
+              <li class="footer__group-nav-item">
+                <RouterLink to="/linkedin" class="footer__group-nav-item-link">
                   Linkedin
                 </RouterLink>
               </li>
-              <li class="nav-item">
-                <RouterLink to="/youtube" class="nav-link text-white text-opacity-90 p-0 d-inline">
-                  Youtube
-                </RouterLink>
+              <li class="footer__group-nav-item footer__group-nav-item--last">
+                <RouterLink to="/youtube" class="footer__group-nav-item-link"> Youtube </RouterLink>
               </li>
             </ul>
           </div>
@@ -114,20 +105,88 @@ import { RouterLink } from 'vue-router'
       </div>
     </div>
   </footer>
-  <div class="subfooter text-white text-opacity-60 bg-primary py-30 fs-12">
-    <div class="container justify-content-center justify-content-md-start d-flex">
-      <div>Copyright&nbsp;&nbsp;©&nbsp;&nbsp;2026</div>
-    </div>
-  </div>
+  <SubfooterBlock />
 </template>
 
 <style scoped lang="scss">
-@use "sass:map";
+@use 'sass:map';
+@use 'sass:color';
 
-.contact-link::after {
-  content: content('big-arrow-right');
-  margin-left: spacer(12);
-  font-size: font-size(7);
-  font-family: map.get($custom-font-family, 'blooms');
+.footer {
+  background-color: color-token(primary);
+  background-image: url('@/assets/images/footer-bg.png');
+  background-position: top left;
+  background-repeat: no-repeat;
+  font-size: 0.875rem; // 14px
+  color: color-token(footer-text);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  border-bottom: 1px solid color.adjust(color-token(footer-text), $alpha: -0.9);
+  padding-top: 2.5rem; // 40px
+  padding-bottom: 2.5rem; // 40px;
+  @include media-breakpoint-up(md) {
+    padding-top: 5.9375rem; // 95px
+    padding-bottom: 7.8125rem; // 125px
+  }
+  &__title {
+    font-size: 1.75rem; // 28px
+    letter-spacing: normal;
+    margin-bottom: 1.5rem; // 24px
+    font-family: map.get($custom-font-family, bitter);
+    color: color-token(tertiary);
+  }
+  &__info {
+    font-size: 0.875rem; // 14px
+    margin-bottom: 2rem; // 32px
+    line-height: 1.714285714285714;
+    color: color.adjust(color-token(footer-text), $alpha: -0.1);
+  }
+  &__action {
+    font-size: 0.8125rem; // 13px
+    margin-bottom: 2rem; // 32px
+    line-height: 1.846153846153846;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 0;
+    }
+    &-link {
+      color: color.adjust(color-token(footer-text), $alpha: -0.1);
+      display: inline-flex;
+      font-weight: 500;
+      &::after {
+        content: content-token('big-arrow-right');
+        margin-left: 0.75rem; // 12px
+        font-size: 0.4375rem; // 7px
+        font-family: map.get($custom-font-family, blooms);
+        line-height: 3.428571428571429;
+      }
+    }
+  }
+  &__group {
+    padding: 0 0.9375rem; // 0 15px
+    &-title {
+      font-size: 0.75rem; // 12px
+      font-family: map.get($custom-font-family, bitter);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5625rem; // 25px
+      &--last {
+        margin-top: 1.5625rem; // 25px
+        @include media-breakpoint-up(md) {
+          margin-top: 0;
+        }
+      }
+    }
+    &-nav-item {
+      line-height: 1.7;
+      margin-bottom: 0.5rem; // 8px
+      &--last {
+        margin-bottom: 0;
+      }
+      &-link {
+        color: color.adjust(color-token(footer-text), $alpha: -0.1);
+        display: inline;
+        padding: 0;
+      }
+    }
+  }
 }
 </style>

@@ -4,23 +4,25 @@ import BannerGrid from '@/components/blocks/BannerGrid.vue'
 
 /** @typedef {import('@/types/page.js').Page} Page */
 
-defineProps(({
+defineProps({
   /** @type {{page: Page}} */
   page: {
     type: Object,
-    required: true
+    required: true,
   },
-}))
+})
 </script>
 
 <template>
-  <div class="container mb-70">
+  <div class="static-page container">
     <h1 v-if="page.showTitle && page.title">{{ page.title }}</h1>
     <div class="static-content" v-html="resolveHtmlUrls(page.content)" />
-    <BannerGrid v-if="page.slug === 'contact'" class="mb-136" />
   </div>
+  <BannerGrid v-if="page.slug === 'contact'" class="mb-136" />
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+.static-page {
+  margin-bottom: 4.375rem; // 70px
+}
 </style>

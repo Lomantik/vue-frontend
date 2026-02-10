@@ -6,28 +6,44 @@ import ResponsiveImage from '@/components/ui/ResponsiveImage.vue'
 
 <template>
   <section class="blog-promo container">
-    <MediaSplit>
+    <MediaSplit class="media-split">
       <template #content>
-        <div class="mw-462">
-          <p class="subtitle fs-13 ls-15 fw-medium lh-170 mb-5">CERTIFIED GREENERY</p>
-          <h2 class="fs-28 fs-md-36 fs-lg-44 lh-145 mb-16">Our <em>plant finder</em> makes it real easy</h2>
-          <p class="fs-17 mb-36">
+        <div class="media-split__wrapper">
+          <p class="media-split__subtitle">CERTIFIED GREENERY</p>
+          <h2>Our <em>plant finder</em> makes it real easy</h2>
+          <p class="media-split__info">
             We only work with the very best! Our team of expert plant care specialists take great
-            care to make sure your plants are healthy and thriving when they arrive at your doorstep.
-            Plants are usually only in our care for a few days.
+            care to make sure your plants are healthy and thriving when they arrive at your
+            doorstep. Plants are usually only in our care for a few days.
           </p>
-          <RouterLink class="btn btn-primary" to="/shop">
-            TAKE THE QUIZ
-          </RouterLink>
+          <RouterLink class="btn btn-primary" to="/shop"> TAKE THE QUIZ </RouterLink>
         </div>
       </template>
       <template #media>
-        <ResponsiveImage image-key="m1-2" loading="lazy" class="w-100 h-auto" />
+        <ResponsiveImage image-key="m1-2" loading="lazy" class="media-split__image" />
       </template>
     </MediaSplit>
   </section>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+.media-split {
+  &__wrapper {
+    max-width: 462px;
+  }
+  &__subtitle {
+    font-size: 0.8125rem; // 13px
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    margin-bottom: 0.3125rem; // 5px
+  }
+  &__info {
+    margin-bottom: 2.25rem; // 36px
+    line-height: line-height(base);
+  }
+  &__image {
+    width: 100%;
+    height: auto;
+  }
+}
 </style>

@@ -1,10 +1,8 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
-  <div class="row">
-    <div class="col-12 col-md-6 mb-80 mb-md-0">
+  <div class="media-split row">
+    <div class="media-split__content col-12 col-md-6">
       <slot name="content" />
     </div>
     <div class="col-12 col-md-6">
@@ -13,6 +11,13 @@
   </div>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+.media-split {
+  &__content {
+    margin-bottom: 5rem; // 80px
+    @include media-breakpoint-up(md) {
+      margin-bottom: 0;
+    }
+  }
+}
 </style>

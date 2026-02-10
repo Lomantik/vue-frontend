@@ -1,32 +1,52 @@
 <script setup>
-
 import ResponsiveImage from '@/components/ui/ResponsiveImage.vue'
 </script>
 
 <template>
   <div class="brands container">
-    <div class="px-0 px-md-90">
-      <div class="row g-40 g-md-60 text-center w-100">
+    <div class="brands__wrapper">
+      <div class="brands__wrapper-row row g-40 g-md-60">
         <div class="col-md">
-          <ResponsiveImage class="w-md-100 mw-180 mw-md-100 h-auto" image-key="l-1" loading="lazy" />
+          <ResponsiveImage class="brands__image" image-key="l-1" loading="lazy" />
         </div>
         <div class="col-md">
-          <ResponsiveImage class="w-md-100 mw-180 mw-md-100 h-auto" image-key="l-2" loading="lazy" />
+          <ResponsiveImage class="brands__image" image-key="l-2" loading="lazy" />
         </div>
         <div class="col-md">
-          <ResponsiveImage class="w-md-100 mw-180 mw-md-100 h-auto" image-key="l-3" loading="lazy" />
+          <ResponsiveImage class="brands__image" image-key="l-3" loading="lazy" />
         </div>
         <div class="col-md">
-          <ResponsiveImage class="w-md-100 mw-180 mw-md-100 h-auto" image-key="l-4" loading="lazy" />
+          <ResponsiveImage class="brands__image" image-key="l-4" loading="lazy" />
         </div>
         <div class="col-md">
-          <ResponsiveImage class="w-md-100 mw-180 mw-md-100 h-auto" image-key="l-5" loading="lazy" />
+          <ResponsiveImage class="brands__image" image-key="l-5" loading="lazy" />
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+.brands {
+  &__wrapper {
+    padding-left: 0;
+    padding-right: 0;
+    @include media-breakpoint-up(md) {
+      padding-left: 5.625rem; // 90px
+      padding-right: 5.625rem; // 90px
+    }
+    &-row {
+      text-align: center;
+      width: 100%;
+    }
+  }
+  &__image {
+    max-width: 11.25rem; // 180px
+    height: auto;
+    @include media-breakpoint-up(md) {
+      width: 100%;
+      min-width: 100%;
+    }
+  }
+}
 </style>

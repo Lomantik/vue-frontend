@@ -5,10 +5,14 @@ const { meta, breadcrumbs } = useBreadcrumbs()
 </script>
 
 <template>
-  <nav v-if="!meta.hideBreadcrumbs" aria-label="breadcrumb" class="ms-5 py-20 px-0">
+  <nav v-if="!meta.hideBreadcrumbs" aria-label="breadcrumb" class="breadcrumbs">
     <div class="container">
-      <ol class="breadcrumb mb-0">
-        <li v-for="(crumb, index) in breadcrumbs" :key="index" class="breadcrumb-item">
+      <ol class="breadcrumbs__wrapper breadcrumb">
+        <li
+          v-for="(crumb, index) in breadcrumbs"
+          :key="index"
+          class="breadcrumbs__wrapper-item breadcrumb-item"
+        >
           <RouterLink v-if="index < breadcrumbs.length - 1" :to="crumb.path">
             {{ crumb.label }}
           </RouterLink>
@@ -19,6 +23,15 @@ const { meta, breadcrumbs } = useBreadcrumbs()
   </nav>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+.breadcrumbs {
+  margin-left: 0.3125rem; // 5px
+  padding: 1.25rem 0; // 20px 0
+  &__wrapper {
+    margin-bottom: 0;
+    &-item {
+      font-size: 1rem; // 16px
+    }
+  }
+}
 </style>
