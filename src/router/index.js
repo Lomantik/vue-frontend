@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from "@/pages/HomePage.vue"
-import CartPage from "@/pages/CartPage.vue"
-import CheckoutPage from "@/pages/CheckoutPage.vue"
+import HomePage from '@/pages/HomePage.vue'
+import CartPage from '@/pages/CartPage.vue'
+import CheckoutPage from '@/pages/CheckoutPage.vue'
 import ShopPage from '@/pages/ShopPage.vue'
 import SlugResolver from '@/components/SlugResolver.vue'
 import { useNavigationStore } from '@/stores/navigation.store.js'
@@ -11,21 +11,21 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/",
+      path: '/',
       component: HomePage,
       meta: {
-        breadcrumb: "Home",
+        breadcrumb: 'Home',
         hideHome: true,
-        hideBreadcrumbs: true
+        hideBreadcrumbs: true,
       },
     },
     {
-      path: "/shop",
+      path: '/shop',
       component: ShopPage,
       meta: {
-        breadcrumb: "Shop",
+        breadcrumb: 'Shop',
         hideHome: false,
-        hideBreadcrumbs: false
+        hideBreadcrumbs: true,
       },
     },
     {
@@ -34,8 +34,8 @@ const router = createRouter({
       meta: {
         breadcrumb: 'Cart',
         hideHome: true,
-        hideBreadcrumbs: true
-      }
+        hideBreadcrumbs: true,
+      },
     },
     {
       path: '/checkout',
@@ -43,8 +43,8 @@ const router = createRouter({
       meta: {
         breadcrumb: 'Checkout',
         hideHome: true,
-        hideBreadcrumbs: true
-      }
+        hideBreadcrumbs: true,
+      },
     },
     {
       path: '/:pathMatch(.*)*',
@@ -52,9 +52,9 @@ const router = createRouter({
       meta: {
         breadcrumb: null,
         hideHome: false,
-        hideBreadcrumbs: false
-      }
-    }
+        hideBreadcrumbs: false,
+      },
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
@@ -72,7 +72,7 @@ const router = createRouter({
       top: 0,
       behavior: 'smooth',
     }
-  }
+  },
 })
 
 router.beforeEach((to, from) => {
@@ -83,7 +83,7 @@ router.beforeEach((to, from) => {
     const navStore = useNavigationStore()
     navStore.clearTrails()
     if (breadcrumb === 'Shop') {
-      navStore.setFixedTrail({title: breadcrumb, path: from.path})
+      navStore.setFixedTrail({ title: breadcrumb, path: from.path })
     }
   }
 })

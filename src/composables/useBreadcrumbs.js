@@ -1,5 +1,5 @@
 import { useRoute } from 'vue-router'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { getLayoutMeta } from '@/router/meta.js'
 import { usePageContextStore } from '@/stores/pageContext.store.js'
 import { useNavigationStore } from '@/stores/navigation.store.js'
@@ -19,17 +19,17 @@ export function buildCategoryBreadcrumbs(category) {
   let path = ''
   for (const parent of category.parents) {
     path += '/' + parent.slug
-    crumbs.push({label: parent.title, path: path})
+    crumbs.push({ label: parent.title, path: path })
   }
   path += '/' + category.slug
-  crumbs.push({label: category.title, path: path})
+  crumbs.push({ label: category.title, path: path })
 
   return crumbs
 }
 
 /**
  * @returns {{
- * meta: import('vue').ComputedRef<AppRouteMeta>,
+ * hideBreadcrumbs: import('vue').ComputedRef<Boolean>,
  * breadcrumbs: import('vue').ComputedRef<Breadcrumb[]>
  * }}
  */
@@ -39,6 +39,13 @@ export function useBreadcrumbs() {
   const meta = computed(() => getLayoutMeta(route))
 
   const pageContext = usePageContextStore()
+
+  const hideBreadcrumbs = computed(() => {
+    return meta?.value?.hideBreadcrumbs
+      ? meta.value.hideBreadcrumbs
+      : pageContext?.type === 'category'
+  })
+
   const navStore = useNavigationStore()
 
   const breadcrumbs = computed(() => {
@@ -83,5 +90,5 @@ export function useBreadcrumbs() {
     return crumbs
   })
 
-  return { meta, breadcrumbs }
+  return { hideBreadcrumbs, breadcrumbs }
 }

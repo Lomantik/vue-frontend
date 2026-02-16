@@ -16,7 +16,11 @@ export async function getAllProducts(activeOnly = true, showInCatalogOnly = true
  * @param {boolean} showInCatalogOnly
  * @returns {Promise<Product[]>}
  */
-export async function getProductsByCategoryId(categoryId, activeOnly = true, showInCatalogOnly = true) {
+export async function getProductsByCategoryId(
+  categoryId,
+  activeOnly = true,
+  showInCatalogOnly = true,
+) {
   return dataService.getProductsByCategoryId(categoryId, activeOnly, showInCatalogOnly)
 }
 
@@ -26,7 +30,11 @@ export async function getProductsByCategoryId(categoryId, activeOnly = true, sho
  * @param {boolean} showInCatalogOnly
  * @returns {Promise<Product[]>}
  */
-export async function getProductsByCategorySlug(categorySlug, activeOnly = true, showInCatalogOnly = true) {
+export async function getProductsByCategorySlug(
+  categorySlug,
+  activeOnly = true,
+  showInCatalogOnly = true,
+) {
   return dataService.getProductsByCategorySlug(categorySlug, activeOnly, showInCatalogOnly)
 }
 
@@ -44,4 +52,18 @@ export async function getProductById(productId) {
  */
 export async function getProductBySlug(productSlug) {
   return dataService.getProductBySlug(productSlug)
+}
+
+/**
+ * @param {string} productId
+ */
+export async function getProductVariants(productId) {
+  return dataService.getProductVariants(productId)
+}
+
+/**
+ * @param {string} productId
+ */
+export async function getProductAttributes(productId) {
+  return dataService.getProductAttributes(productId)
 }

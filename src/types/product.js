@@ -21,7 +21,7 @@
  * @property {number} mainImageId
  * @property {number|null} qty
  * @property {Object<string, number>|null} attributes
- * @property {number[]} configurableAttributes
+ * @property {number[]} configurableAttributeIds
  * @property {number[]} variantIds
  * @property {number} defaultVariantId
  * @property {boolean} showInCatalog
