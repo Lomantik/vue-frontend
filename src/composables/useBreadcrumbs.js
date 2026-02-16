@@ -1,5 +1,5 @@
 import { useRoute } from 'vue-router'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { getLayoutMeta } from '@/router/meta.js'
 import { usePageContextStore } from '@/stores/pageContext.store.js'
 import { useNavigationStore } from '@/stores/navigation.store.js'
