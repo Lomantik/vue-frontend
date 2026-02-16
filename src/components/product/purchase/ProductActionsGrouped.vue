@@ -14,7 +14,16 @@ const props = defineProps({
   },
 })
 
+defineEmits(['variant-change'])
+
 const qtys = reactive({})
+
+const resultProducts = computed(() => {
+  return Object.entries(qtys).reduce((acc, [k, v]) => {
+    if (v > 0) acc[k] = v
+    return acc
+  }, {})
+})
 
 const groupedProducts = ref([])
 watch(
@@ -37,7 +46,10 @@ const handlePurchase = () => {
       'Please set quantity of any subproduct greater than 0 before adding this product to your cart.',
     )
   } else {
-    alert('Product added to cart')
+    const productsString = Object.entries(resultProducts.value)
+      .map(([id, quantity]) => `simple_id = ${id}; qty = ${quantity}`)
+      .join('\n')
+    alert(`Product added to cart!\ngrouped_id = ${props.product.id};\n${productsString}`)
   }
 }
 

@@ -1,9 +1,13 @@
 <script setup>
 import ProductQuantity from '@/components/ui/ProductQuantity.vue'
 import { computed, reactive, ref, watch } from 'vue'
-import { getProductAttributes, getProductVariants } from '@/api/products.api.js'
+import { getProductAttributes, getProductById, getProductVariants } from '@/api/products.api.js'
 
 /** @typedef {import('@/types/product.js').Product} Product */
+/** @typedef {import('@/types/attribute.js').Attribute} Attribute */
+/**
+ * @typedef {{id: number} & Object<string, string>} Variant
+ */
 
 const props = defineProps({
   /** @type {{product: Product}} */
@@ -13,27 +17,33 @@ const props = defineProps({
   },
 })
 
+const emit = defineEmits(['variant-change'])
+
 const selectedOptions = reactive({})
+/** @type {import('vue').Ref<Variant[]>} variants */
 const variants = ref([])
+/** @type {import('vue').Ref<Attribute[]>} attributes */
 const attributes = ref([])
 const availableOptions = computed(() => {
   const result = {}
   for (const attribute of attributes.value) {
     result[attribute.name] = new Set()
   }
-  variants.value.forEach((variant) => {
-    const matches = Object.entries(selectedOptions).every(([attrName, selectedValue]) => {
-      if (!selectedValue) return true
-      return variant[attrName] === selectedValue
-    })
-
-    if (matches) {
-      for (const attribute of attributes.value) {
-        result[attribute.name].add(variant[attribute.name])
+  for (const attribute of attributes.value) {
+    for (const option of attribute.options) {
+      const match = variants.value.some((allowedVariant) => {
+        const testedVariant = { ...selectedOptions }
+        testedVariant[attribute.name] = option.value
+        return Object.entries(testedVariant).every(([attrName, attrValue]) => {
+          if (attrValue === '') return true
+          return attrValue === allowedVariant[attrName]
+        })
+      })
+      if (match) {
+        result[attribute.name].add(option.value)
       }
     }
-  })
-
+  }
   return result
 })
 
@@ -41,13 +51,36 @@ function isOptionAvailable(attrName, value) {
   return availableOptions.value[attrName]?.has(value)
 }
 
+const variantProducts = ref([])
+
+const selectedVariantProduct = computed(() => {
+  return variantProducts.value.find(
+    (prod) =>
+      prod.id ===
+      variants.value.find((variant) =>
+        Object.entries(selectedOptions).every(
+          ([attrName, optValue]) => optValue === variant[attrName],
+        ),
+      )?.id,
+  )
+})
+
 watch(
   () => props.product,
   async (product) => {
     variants.value = await getProductVariants(product.id)
-    console.log(variants.value)
     attributes.value = await getProductAttributes(product.id)
-    attributes.value.forEach((attribute) => (selectedOptions[attribute.name] = ''))
+    variantProducts.value = await Promise.all(
+      product.variantIds.map(async (id) => await getProductById(id)),
+    )
+    if (product.defaultVariantId) {
+      const defaultVariant = variants.value.find(
+        (variant) => variant.id === product.defaultVariantId,
+      )
+      attributes.value.forEach(
+        (attribute) => (selectedOptions[attribute.name] = defaultVariant[attribute.name]),
+      )
+    } else attributes.value.forEach((attribute) => (selectedOptions[attribute.name] = ''))
   },
   { immediate: true },
 )
@@ -68,7 +101,9 @@ const handlePurchase = () => {
   } else if (notAllOptionsSelected.value) {
     alert('Please select some product options before adding this product to your cart.')
   } else {
-    alert('Product added to cart')
+    alert(
+      `Product added to cart!\nconfigurable_id = ${props.product.id}; simple_id = ${selectedVariantProduct?.value?.id}; qty = ${qty.value}`,
+    )
   }
 }
 
@@ -77,12 +112,10 @@ const purchaseDisabled = computed(() => {
 })
 
 watch(
-  () => selectedOptions,
-  (options) => {
-    console.log(options)
-    console.log(availableOptions.value)
+  () => selectedVariantProduct?.value,
+  (product) => {
+    emit('variant-change', product)
   },
-  { deep: true },
 )
 </script>
 

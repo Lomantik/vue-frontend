@@ -4,13 +4,15 @@ import { computed, ref } from 'vue'
 
 /** @typedef {import('@/types/product.js').Product} Product */
 
-defineProps({
+const props = defineProps({
   /** @type {{product: Product}} */
   product: {
     type: Object,
     required: true,
   },
 })
+
+defineEmits(['variant-change'])
 
 const qty = ref(1)
 
@@ -22,7 +24,7 @@ const handlePurchase = () => {
   if (zeroQty.value) {
     alert('Please set quantity greater than 0 before adding this product to your cart.')
   } else {
-    alert('Product added to cart')
+    alert(`Product added to cart!\nsimple_id = ${props.product?.id}; qty = ${qty.value}`)
   }
 }
 

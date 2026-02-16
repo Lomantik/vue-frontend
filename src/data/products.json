@@ -183,7 +183,7 @@
     "qty": 540,
     "attributes": null,
     "configurableAttributeIds": [1, 2],
-    "variantIds": [15, 16, 17, 18, 19, 20, 21, 22],
+    "variantIds": [15, 16, 17, 19, 20, 21, 22],
     "defaultVariantId": 15,
     "showInCatalog": true,
     "active": true

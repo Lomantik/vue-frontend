@@ -5,10 +5,11 @@ import ProductActionsSimple from '@/components/product/purchase/ProductActionsSi
 import ProductActionsGrouped from '@/components/product/purchase/ProductActionsGrouped.vue'
 import ProductActionsConfigurable from '@/components/product/purchase/ProductActionsConfigurable.vue'
 import ProductMeta from '@/components/product/ProductMeta.vue'
+import { ref } from 'vue'
 
 /** @typedef {import('@/types/product.js').Product} Product */
 
-defineProps({
+const props = defineProps({
   /** @type {{product: Product}} */
   product: {
     type: Object,
@@ -21,6 +22,12 @@ const actionComponents = {
   grouped: ProductActionsGrouped,
   configurable: ProductActionsConfigurable,
 }
+
+const currentVariant = ref(props.product)
+
+function onVariantChange(variant) {
+  variant ? (currentVariant.value = variant) : (currentVariant.value = props.product)
+}
 </script>
 
 <template>
@@ -29,7 +36,7 @@ const actionComponents = {
       <div class="col-12 col-md-6 col-xl-auto">
         <div class="product-page__main-area-image-wrapper">
           <ResponsiveImage
-            :image-key="product.mainImageId"
+            :image-key="currentVariant.mainImageId"
             class="product-page__main-area-image"
             loading="lazy"
           />
@@ -39,15 +46,16 @@ const actionComponents = {
         <div class="product-page__main-area-info-wrapper">
           <h1 class="product-page__main-area-title">{{ product.title }}</h1>
           <div class="product-page__main-area-price">
-            <ProductPrice :product="product" />
+            <ProductPrice :product="currentVariant" />
           </div>
           <p class="product-page__main-area-info">
-            {{ product.description }}
+            {{ currentVariant.description }}
           </p>
           <component
             :is="actionComponents[product.type]"
             :product="product"
             class="product-page__main-area-actions"
+            @variant-change="onVariantChange"
           />
           <ProductMeta :product="product" />
         </div>
