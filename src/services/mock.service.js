@@ -8,12 +8,16 @@ import contactHtml from '@/content/pages/contact.html?raw'
 import attributes from '@/data/attributes.json'
 import { getProductById } from '@/api/products.api.js'
 import { getAttributeById } from '@/api/attributes.api.js'
+import defaultProductDescriptionHtml from '@/content/products/default_description.html?raw'
 
 /** @typedef {import('@/types/product.js').Product} Product */
 
 const pagesContent = {
   about: aboutHtml,
   contact: contactHtml,
+}
+const productDescriptions = {
+  default_description: defaultProductDescriptionHtml,
 }
 
 export const mockService = {
@@ -37,25 +41,72 @@ export const mockService = {
     return products.filter((product) => product.categoryIds.includes(category.id))
   },
   async getProductById(productId) {
-    return products.find((product) => product.id === productId)
+    const product = products.find((product) => product.id === productId)
+    if (!product) return
+    return {
+      ...product,
+      description: productDescriptions[product.description],
+    }
   },
   async getProductBySlug(productSlug) {
-    return products.find((product) => product.slug === productSlug)
+    const product = products.find((product) => product.slug === productSlug)
+    if (!product) return
+    return {
+      ...product,
+      description: productDescriptions[product.description],
+    }
   },
   async getProductAttributes(productId) {
     const result = []
     const product = await this.getProductById(productId)
-    const variantProducts = await Promise.all(
-      product.variantIds.map(async (id) => await getProductById(id)),
-    )
-    for (const attributeId of product.configurableAttributeIds) {
-      const attribute = await getAttributeById(attributeId)
-      result.push({
-        ...attribute,
-        options: attribute.options.filter((option) =>
-          variantProducts.some((prod) => prod.attributes[attributeId] === option.id),
+    if (product.type === 'simple') {
+      if (product.attributes) {
+        const res = await Promise.all(
+          Object.entries(product.attributes).map(async ([attributeId, attributeOptionId]) => {
+            const attribute = await getAttributeById(Number(attributeId))
+            return {
+              ...attribute,
+              options: attribute.options.filter((option) => option.id === attributeOptionId),
+            }
+          }),
+        )
+        result.push(...Object.values(res))
+      }
+    } else if (product.type === 'grouped') {
+      const productsAttributes = await Promise.all(
+        product.variantIds.map(async (id) => await this.getProductAttributes(id)),
+      )
+
+      result.push(
+        ...Object.values(
+          productsAttributes
+            .flat()
+            .flat()
+            .reduce((acc, item) => {
+              if (item.name in acc) {
+                item.options
+                  .filter((option) => !acc[item.name].options.some((x) => x.id === option.id))
+                  .forEach((opt) => acc[item.name].options.push(opt))
+              } else {
+                acc[item.name] = { ...item }
+              }
+              return acc
+            }, {}),
         ),
-      })
+      )
+    } else if (product.type === 'configurable') {
+      const variantProducts = await Promise.all(
+        product.variantIds.map(async (id) => await getProductById(id)),
+      )
+      for (const attributeId of product.configurableAttributeIds) {
+        const attribute = await getAttributeById(attributeId)
+        result.push({
+          ...attribute,
+          options: attribute.options.filter((option) =>
+            variantProducts.some((prod) => prod.attributes[attributeId] === option.id),
+          ),
+        })
+      }
     }
     return result
   },

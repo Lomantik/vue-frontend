@@ -6,11 +6,14 @@ import ProductActionsGrouped from '@/components/product/purchase/ProductActionsG
 import ProductActionsConfigurable from '@/components/product/purchase/ProductActionsConfigurable.vue'
 import ProductMeta from '@/components/product/ProductMeta.vue'
 import { ref } from 'vue'
+import ProductTabs from '@/components/product/ProductTabs.vue'
+import RelatedProductsBlock from '@/components/blocks/RelatedProductsBlock.vue'
 
 /** @typedef {import('@/types/product.js').Product} Product */
 
+/** @type {{ product: Product }} */
 const props = defineProps({
-  /** @type {{product: Product}} */
+  /** @type { import('vue').PropType<Product> } */
   product: {
     type: Object,
     required: true,
@@ -23,6 +26,7 @@ const actionComponents = {
   configurable: ProductActionsConfigurable,
 }
 
+/** @type { import('vue').Ref<Product> } */
 const currentVariant = ref(props.product)
 
 function onVariantChange(variant) {
@@ -49,7 +53,7 @@ function onVariantChange(variant) {
             <ProductPrice :product="currentVariant" />
           </div>
           <p class="product-page__main-area-info">
-            {{ currentVariant.description }}
+            {{ currentVariant.shortDescription }}
           </p>
           <component
             :is="actionComponents[product.type]"
@@ -61,6 +65,8 @@ function onVariantChange(variant) {
         </div>
       </div>
     </div>
+    <ProductTabs :product="product" />
+    <RelatedProductsBlock :product="product" />
   </div>
 </template>
 
@@ -72,6 +78,7 @@ function onVariantChange(variant) {
   }
   &__main-area {
     --bs-gutter-x: 30px;
+    margin-bottom: 5rem; // 80px
     @include media-breakpoint-up(xl) {
       --bs-gutter-x: 80px;
     }

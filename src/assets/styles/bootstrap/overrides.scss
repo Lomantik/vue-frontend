@@ -10,13 +10,13 @@ $theme-colors: $custom-theme-colors;
 
 $body-bg: color-token(body-bg);
 $body-color: color-token(primary);
-$body-font-family: font-family-token('base');
+$body-font-family: font-family-token(base);
 $body-font-size: font-size(base);
 
 $breadcrumb-active-color: color-token(primary);
 $breadcrumb-color: color-token(muted);
 
-$btn-border-radius: border-radius('base');
+$btn-border-radius: border-radius(base);
 $btn-border-width: spacer(button-border);
 $btn-color: color-token(primary);
 $btn-padding-y: spacer(button-padding-y);
@@ -38,7 +38,7 @@ $dropdown-link-line-height: line-height(dropdown-link);
 
 $font-size-base: font-size(base);
 
-$grid-gutter-width: gutter(30);
+$grid-gutter-width: gutter(base);
 
 $h1-font-size: font-size(h1);
 $h2-font-size: font-size(h2);
@@ -48,7 +48,7 @@ $h5-font-size: font-size(h5);
 $h6-font-size: font-size(h6);
 
 $headings-color: color-token(primary);
-$headings-font-family: font-family-token('bitter');
+$headings-font-family: font-family-token(bitter);
 $headings-font-weight: font-weight(heading);
 $headings-line-height: line-height(heading);
 $headings-margin-bottom: spacer(heading-padding-bottom);
@@ -56,7 +56,7 @@ $headings-margin-bottom: spacer(heading-padding-bottom);
 $input-color: color-token(primary);
 $input-font-family: font-family-token('base');
 $input-placeholder-color: color-token(muted);
-$input-border-radius: border-radius('base');
+$input-border-radius: border-radius(base);
 $input-padding-y: spacer(input-padding-y);
 $input-padding-x: spacer(input-padding-x);
 $input-focus-box-shadow: none;
@@ -69,7 +69,7 @@ $link-hover-decoration: none;
 $link-hover-color: color-token(link-hovered);
 
 $nav-link-color: color-token(primary);
-$nav-link-font-family: font-family-token('base');
+$nav-link-font-family: font-family-token(base);
 $nav-link-hover-color: color-token(link-hovered);
 
 $navbar-light-active-color: color-token(link-active);
@@ -90,15 +90,15 @@ $text-muted: color-token(muted);
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
 
-$font-sizes: map-merge($font-sizes, $custom-font-sizes);
-
-/* Bootstrap utilities */
-@import "bootstrap/scss/utilities";
-
 $gutters: map-merge(
     $gutters,
     $custom-gutters
 );
+
+$font-sizes: map-merge($font-sizes, $custom-font-sizes);
+
+/* Bootstrap utilities */
+@import "bootstrap/scss/utilities";
 
 $utilities: map-merge(
     $utilities,
@@ -107,12 +107,6 @@ $utilities: map-merge(
         property: line-height,
         class: lh,
         values: $custom-line-height
-      ),
-      "max-width": (
-        property: max-width,
-        class: mw,
-        responsive: true,
-        values: $custom-width
       ),
       "width": map-merge(
           map-get($utilities, "width"),

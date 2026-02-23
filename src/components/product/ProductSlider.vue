@@ -5,22 +5,26 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/autoplay'
-import { useProductCarousel } from '@/composables/useProductCarousel.js'
-import { toRef } from 'vue'
 import { RouterLink } from 'vue-router'
 
-const props = defineProps({
-  categoryId: {
-    type: Number,
+defineProps({
+  products: {
+    type: Object,
     required: true,
   },
   title: {
     type: String,
     required: false,
   },
+  linkTitle: {
+    type: String,
+    required: false,
+  },
+  linkUrl: {
+    type: String,
+    required: false,
+  },
 })
-const categoryIdRef = toRef(props, 'categoryId')
-const { products } = useProductCarousel(categoryIdRef)
 </script>
 
 <template>
@@ -29,9 +33,9 @@ const { products } = useProductCarousel(categoryIdRef)
       <div class="col-6">
         <h3 v-if="title">{{ title }}</h3>
       </div>
-      <div class="product-carousel__main-link col-6">
-        <RouterLink class="product-carousel__main-link-link shop-all" to="/shop">
-          SHOP ALL BEST-SELLERS
+      <div v-if="linkTitle" class="product-carousel__main-link col-6">
+        <RouterLink class="product-carousel__main-link-link shop-all" :to="linkUrl">
+          {{ linkTitle }}
         </RouterLink>
       </div>
     </div>
