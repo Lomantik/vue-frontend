@@ -38,7 +38,6 @@ const { minPrice, maxPrice, hasDiscount, salePrice, isRange } = useProductPrice(
 
 <style scoped lang="scss">
 .price {
-  font-size: 0.875rem; // 14px
   &__del {
     opacity: 0.6;
   }

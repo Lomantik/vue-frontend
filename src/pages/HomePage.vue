@@ -1,19 +1,22 @@
 <script setup>
 import HeroBlock from '@/components/blocks/HeroBlock.vue'
-import ProductCarousel from '@/components/product/ProductCarousel.vue'
 import BlogPromoBlock from '@/components/blocks/BlogPromoBlock.vue'
 import BannerGrid from '@/components/blocks/BannerGrid.vue'
 import BrandsBlock from '@/components/blocks/BrandsBlock.vue'
 import SubscribeBlock from '@/components/blocks/SubscribeBlock.vue'
 import JourneyBlock from '@/components/blocks/JourneyBlock.vue'
+import BestSellersBlock from '@/components/blocks/BestSellersBlock.vue'
 </script>
 
 <template>
   <div class="page page--home">
     <HeroBlock class="section section--hero" />
-    <ProductCarousel :categoryId="5" :title="'Best Sellers'" class="section section--carousel" />
+    <BestSellersBlock :title="'Best Sellers'" class="section section--carousel" />
     <BlogPromoBlock class="section section--blog" />
-    <BannerGrid class="section section--banners" :title="'Shop Your <em>Favorite Collections</em>'" />
+    <BannerGrid
+      class="section section--banners"
+      :title="'Shop Your <em>Favorite Collections</em>'"
+    />
     <BrandsBlock class="section section--brands" />
     <SubscribeBlock class="section section--subscribe" />
     <JourneyBlock class="section section--journey" />

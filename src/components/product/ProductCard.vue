@@ -56,7 +56,7 @@ const { resolvedTitleTag, navStore, primaryCategory } = useProductCard(productRe
         </RouterLink>
       </component>
       <div>
-        <ProductPrice :product="product" class="card-text" />
+        <ProductPrice :product="product" class="product-card__info-price card-text" />
         <ProductRating :product="product" />
       </div>
     </div>
@@ -94,6 +94,9 @@ const { resolvedTitleTag, navStore, primaryCategory } = useProductCard(productRe
       font-family: map.get($custom-font-family, bitter);
       font-size: 1rem; // 16px
       margin-bottom: 0.1875rem; // 3px
+    }
+    &-price {
+      font-size: 0.875rem; // 14px
     }
   }
 }
