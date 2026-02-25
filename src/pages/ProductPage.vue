@@ -1,5 +1,4 @@
 <script setup>
-import ResponsiveImage from '@/components/ui/ResponsiveImage.vue'
 import ProductPrice from '@/components/product/ProductPrice.vue'
 import ProductActionsSimple from '@/components/product/purchase/ProductActionsSimple.vue'
 import ProductActionsGrouped from '@/components/product/purchase/ProductActionsGrouped.vue'
