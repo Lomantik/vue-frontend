@@ -1,13 +1,15 @@
 <script setup>
-import ResponsiveImage from '@/components/ui/ResponsiveImage.vue'
 import ProductPrice from '@/components/product/ProductPrice.vue'
 import ProductActionsSimple from '@/components/product/purchase/ProductActionsSimple.vue'
 import ProductActionsGrouped from '@/components/product/purchase/ProductActionsGrouped.vue'
 import ProductActionsConfigurable from '@/components/product/purchase/ProductActionsConfigurable.vue'
 import ProductMeta from '@/components/product/ProductMeta.vue'
-import { ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import ProductTabs from '@/components/product/ProductTabs.vue'
 import RelatedProductsBlock from '@/components/blocks/RelatedProductsBlock.vue'
+import ProductRating from '@/components/product/ProductRating.vue'
+import { getReviewsByProductId } from '@/api/reviews.api.js'
+import ProductImageGallery from '@/components/product/ProductImageGallery.vue'
 
 /** @typedef {import('@/types/product.js').Product} Product */
 
@@ -26,46 +28,68 @@ const actionComponents = {
   configurable: ProductActionsConfigurable,
 }
 
+const reviews = ref([])
+const additionalMessage = computed(() => {
+  if (reviews.value.length === 0) return ''
+
+  return (
+    '(' +
+    reviews.value.length +
+    ' customer ' +
+    (reviews.value.length > 1 ? 'reviews' : 'review') +
+    ')'
+  )
+})
+
+watch(
+  () => props.product,
+  async (product) => {
+    reviews.value = await getReviewsByProductId(product.id)
+  },
+  { immediate: true },
+)
+
 /** @type { import('vue').Ref<Product> } */
 const currentVariant = ref(props.product)
-
 function onVariantChange(variant) {
   variant ? (currentVariant.value = variant) : (currentVariant.value = props.product)
 }
 </script>
 
 <template>
-  <div class="product-page container" v-if="product">
-    <div class="product-page__main-area row">
-      <div class="col-12 col-md-6 col-xl-auto">
-        <div class="product-page__main-area-image-wrapper">
-          <ResponsiveImage
-            :image-key="currentVariant.mainImageId"
-            class="product-page__main-area-image"
-            loading="lazy"
-          />
-        </div>
-      </div>
-      <div class="product-page__main-area-info-col col-12 col-md-6 col-xl">
-        <div class="product-page__main-area-info-wrapper">
-          <h1 class="product-page__main-area-title">{{ product.title }}</h1>
-          <div class="product-page__main-area-price">
-            <ProductPrice :product="currentVariant" />
+  <div class="product-page" v-if="product">
+    <div class="container">
+      <div class="product-page__main-area row">
+        <div class="col-12 col-md-6 col-xl-auto">
+          <div class="product-page__main-area-image-wrapper">
+            <ProductImageGallery :product="currentVariant" />
           </div>
-          <p class="product-page__main-area-info">
-            {{ currentVariant.shortDescription }}
-          </p>
-          <component
-            :is="actionComponents[product.type]"
-            :product="product"
-            class="product-page__main-area-actions"
-            @variant-change="onVariantChange"
-          />
-          <ProductMeta :product="product" />
+        </div>
+        <div class="product-page__main-area-info-col col-12 col-md-6 col-xl">
+          <div class="product-page__main-area-info-wrapper">
+            <h1 class="product-page__main-area-title">{{ product.title }}</h1>
+            <div v-if="reviews.length > 0" class="product-page__main-area-reviews-wrapper">
+              <ProductRating class="product-page__main-area-rating" :product="product" />
+              <span class="product-page__main-area-reviews-info">{{ additionalMessage }}</span>
+            </div>
+            <div class="product-page__main-area-price">
+              <ProductPrice :product="currentVariant" />
+            </div>
+            <p class="product-page__main-area-info">
+              {{ currentVariant.shortDescription }}
+            </p>
+            <component
+              :is="actionComponents[product.type]"
+              :product="product"
+              class="product-page__main-area-actions"
+              @variant-change="onVariantChange"
+            />
+            <ProductMeta :product="product" />
+          </div>
         </div>
       </div>
     </div>
-    <ProductTabs :product="product" />
+    <ProductTabs class="container" :product="product" />
     <RelatedProductsBlock :product="product" />
   </div>
 </template>
@@ -96,10 +120,6 @@ function onVariantChange(variant) {
         width: 540px;
       }
     }
-    &-image {
-      width: 100%;
-      height: auto;
-    }
     &-info-wrapper {
       @include media-breakpoint-up(md) {
         max-width: 530px;
@@ -108,11 +128,13 @@ function onVariantChange(variant) {
     &-title {
       font-size: 2.125rem; // 34px
       line-height: 1.2;
+      margin-bottom: 0.75rem; // 12px
     }
     &-price {
+      margin-top: 1.125rem; // 18px
       font-size: 1.375rem; // 22px
       line-height: 1.7;
-      padding: 0 0 1.25rem 0; // 11px 0 20px 0
+      padding: 0 0 1.1875rem 0; // 11px 0 19px 0
     }
     &-info {
       font-size: 0.875rem; // 14px
@@ -120,6 +142,22 @@ function onVariantChange(variant) {
     }
     &-actions {
       margin-bottom: 1.875rem; // 30px
+    }
+    &-reviews-wrapper {
+      margin-bottom: -0.125rem; // -2px
+    }
+    &-rating {
+      font-size: 0.875rem; // 14px
+      line-height: 1;
+      display: inline-block;
+      height: 14px;
+    }
+    &-reviews-info {
+      font-size: 0.875rem; // 14px
+      margin-left: 0.5rem; // 8px
+      line-height: 1;
+      display: inline-block;
+      height: 14px;
     }
   }
 }

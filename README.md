@@ -1,69 +1,96 @@
-# vue-frontend
+# Vue 3 eCommerce Frontend Demo
 
-This template should help get you started developing with Vue 3 in Vite.
+Production-like eCommerce SPA built with Vue 3 + Vite.
 
-## Recommended IDE Setup
+Live Demo:
+https://lomantik.github.io/vue-frontend/
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Recommended Browser Setup
+## Project Goal
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+Demonstrate architecture and frontend logic of a scalable eCommerce platform, including:
 
-## Customize configuration
+- SPA architecture
+- Complex product types
+- Dynamic attribute dependency logic
+- Mock API layer (replaceable with real backend)
+- CI/CD pipeline
+- Performance considerations
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+---
 
-## Project Setup
+## Tech Stack
 
-```sh
-npm install
-```
+- Vue 3 (Composition API)
+- Vite
+- Pinia (state management)
+- Vue Router
+- SCSS
+- Vitest (unit tests)
+- Playwright (E2E)
+- GitHub Actions (CI/CD)
 
-### Compile and Hot-Reload for Development
+---
 
-```sh
-npm run dev
-```
+## Implemented Product Types
 
-### Compile and Minify for Production
+### 1. Simple Product
+Basic standalone product.
 
-```sh
-npm run build
-```
+### 2. Grouped Product
+Collection of simple products with independent quantity selection.
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### 3. Configurable Product
 
-```sh
-npm run test:unit
-```
+Complex product that:
 
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
+- Combines multiple Simple products
+- Allows attribute-based selection (e.g. size, color)
+- Dynamically disables invalid combinations
+- Reactively recalculates availability on each attribute change
 
-```sh
-# Install browsers for the first run
-npx playwright install
+The attribute selection engine ensures that only valid product combinations remain selectable at any time.
 
-# When testing on CI, must build the project first
-npm run build
+This logic mimics real-world Magento-style configurable products.
 
-# Runs the end-to-end tests
-npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
-```
+---
 
-### Lint with [ESLint](https://eslint.org/)
+## Architecture Highlights
 
-```sh
-npm run lint
-```
+- Modular folder structure
+- Domain-driven component separation
+- Reusable composables
+- Mock API abstraction layer
+- Centralized state management via Pinia
+- Clear separation of UI and business logic
+
+---
+
+## CI/CD
+
+GitHub Actions pipeline:
+
+1. Install dependencies
+2. Run unit tests
+3. Build project
+4. Deploy to GitHub Pages (on merge)
+
+Workflow file:
+.github/workflows/ci_deploy.yml
+
+---
+
+## Future Improvements
+
+- SSR version (Nuxt 3)
+- Full backend integration (Laravel API)
+- Cart & checkout logic
+- Authentication layer
+- TypeScript migration
+
+---
+
+## Author
+
+Frontend & Fullstack Engineer with 16+ years of commercial experience.

@@ -636,5 +636,14 @@
     "height": 44,
     "src": "logo-2x.png",
     "srcset": []
+  },
+  {
+    "id": 48,
+    "slug": "avatar",
+    "alt": "",
+    "width": 60,
+    "height": 60,
+    "src": "avatar.jpg",
+    "srcset": []
   }
 ]

@@ -27,6 +27,8 @@ $custom-theme-colors: (
   qty-border: #217171,
   form-border: #154747,
   table-header: #090909,
+  review-name: #090909,
+  review-date: #4f4f4f,
 );
 @function color-token($key) {
   @return map.get($custom-theme-colors, $key);
@@ -56,6 +58,8 @@ $custom-content: (
   arrow-down: "\e800",
   arrow-right: "\e801",
   mobile-arrow-down: "\e802",
+  star-empty: "\e805",
+  star-filled: "\e806",
   stars-empty: "\e805 \e805 \e805 \e805 \e805",
   stars-filled: "\e806 \e806 \e806 \e806 \e806",
   minus: "\e80b",
