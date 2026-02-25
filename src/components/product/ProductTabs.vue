@@ -1,19 +1,29 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import TabDescription from '@/components/product/tabs/TabDescription.vue'
 import TabSpecifications from '@/components/product/tabs/TabSpecifications.vue'
 import TabReviews from '@/components/product/tabs/TabReviews.vue'
+import { getReviewsByProductId } from '@/api/reviews.api.js'
 
 /** @typedef {import('@/types/product.js').Product} Product */
 
 /** @type {{ product: Product }} */
-defineProps({
+const props = defineProps({
   /** @type { import('vue').PropType<Product> } */
   product: {
     type: Object,
     required: true,
   },
 })
+
+const reviews = ref([])
+watch(
+  () => props.product,
+  async (product) => {
+    reviews.value = await getReviewsByProductId(product.id)
+  },
+  { immediate: true },
+)
 
 const activeTab = ref('description')
 onMounted(() => {
@@ -22,8 +32,13 @@ onMounted(() => {
 })
 function setTab(tab) {
   activeTab.value = tab
-  if (tab === 'description') history.replaceState(null, '', window.location.pathname)
-  else history.replaceState(null, '', `#${tab}`)
+  const url = new URL(window.location.href)
+  if (tab === 'description') {
+    url.hash = ''
+  } else {
+    url.hash = tab
+  }
+  history.replaceState(history.state, '', url)
 }
 </script>
 
@@ -57,7 +72,7 @@ function setTab(tab) {
           @click="setTab('reviews')"
           :class="{ 'product-tabs__buttons-button--active': activeTab === 'reviews' }"
         >
-          Reviews
+          Reviews ({{ reviews.length }})
         </button>
       </li>
     </ul>
@@ -69,7 +84,7 @@ function setTab(tab) {
         <TabSpecifications :product="product" />
       </div>
       <div class="tab-pane" role="tabpanel" :class="{ 'active show': activeTab === 'reviews' }">
-        <TabReviews :product="product" />
+        <TabReviews :product="product" :reviews="reviews" />
       </div>
     </div>
   </div>

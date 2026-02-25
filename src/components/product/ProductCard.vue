@@ -57,7 +57,7 @@ const { resolvedTitleTag, navStore, primaryCategory } = useProductCard(productRe
       </component>
       <div>
         <ProductPrice :product="product" class="product-card__info-price card-text" />
-        <ProductRating :product="product" />
+        <ProductRating :product="product" class="d-block" />
       </div>
     </div>
   </div>

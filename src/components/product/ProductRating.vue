@@ -1,7 +1,10 @@
 <script setup>
 /** @typedef {import('@/types/product.js').Product} Product */
-import { useProductRating } from '@/composables/useProductRating.js'
-import { toRef } from 'vue'
+import RatingIndicator from '@/components/ui/RatingIndicator.vue'
+import { computed, ref, watch } from 'vue'
+import { getReviewsByProductId } from '@/api/reviews.api.js'
+
+/** @typedef {import('@/types/review.js').Review} Review */
 
 const props = defineProps({
   /** @type {Product} */
@@ -11,46 +14,27 @@ const props = defineProps({
   },
 })
 
-const productRef = toRef(props, 'product')
-const { show, style } = useProductRating(productRef)
+/** @type {import('vue').Ref<Review[]>} */
+const reviews = ref([])
+const productRating = computed(() => {
+  return (
+    reviews.value.reduce((acc, cur) => {
+      return acc + cur.rating
+    }, 0) / reviews.value.length
+  )
+})
+
+watch(
+  () => props.product,
+  async (product) => {
+    reviews.value = await getReviewsByProductId(product.id)
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
-  <div class="product-rating" v-if="show">
-    <span :style="style" class="product-rating__filler"></span>
-  </div>
+  <RatingIndicator v-if="productRating > 0" :rating="productRating" />
 </template>
 
-<style scoped lang="scss">
-@use 'sass:map';
-
-.product-rating {
-  position: relative;
-  line-height: 1;
-  font-size: 0.875rem; // 14px
-  height: 28px;
-  max-width: 66px;
-  letter-spacing: 0.05em;
-  align-self: start;
-  &:before {
-    opacity: 1;
-    color: color-token(stars-empty);
-    font-family: map.get($custom-font-family, 'blooms');
-    content: content-token(stars-empty);
-  }
-  &__filler {
-    display: block;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 14px;
-    line-height: 1;
-    &:before {
-      color: color-token(stars-filled);
-      font-family: map.get($custom-font-family, 'blooms');
-      content: content-token('stars-filled');
-    }
-  }
-}
-</style>
+<style scoped lang="scss"></style>
